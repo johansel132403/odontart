@@ -1,0 +1,663 @@
+//flecha de retroseder
+.retroseder{
+   margin-left: 15px;
+   font-size: 25px;
+   
+}
+.padre{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.contenedor01 {
+    
+    width: 100%;
+    height: 210px;
+
+    background: #085078;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #85D8CE, #085078);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #85D8CE, #085078); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+;
+}
+
+.contenedor02 {
+    float:left;
+    color: white;
+    margin-left: 60px;
+    margin-top: 45px;
+    font-weight: 100 !important;
+    font-family: Arial, Helvetica, sans-serif;;   
+}
+
+
+//me quede por aqui tratando de buscarle un fondo de color al background, tengo que buscar un ejemplo
+// de un perfil....
+//esto aqui no esta funcionando .....
+
+//https://jcgonzalezmartin.files.wordpress.com/2015/04/image37.png
+ion-content{
+    background: #6a6a6a !important;
+    height: 100%;
+}
+main .inner-scroll .scroll-y{
+   
+    background: red !important;
+}
+
+
+ .aa{
+    text-decoration: none !important;
+    
+}
+
+.aa:hover{
+    
+
+    .retroseder{
+        
+        font-size: 40px !important;
+        transition: font-size 0.5s ease;
+
+    }
+   
+}
+
+
+
+//imagen del usuario
+.imgUser{
+    float: left;
+    margin-left: 91px;
+    margin-top: 4px;
+    width: 200px;
+    height: 200px;
+   // border: 0.2px solid rgba(163, 161, 161, 0.274);
+    padding:5px;
+    border-radius: 15px;
+}
+
+.imgUser img{
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.cuerpo{
+    width: 100%;
+    height: 1000px;
+    background-color: #e3e5e9;
+    border:none;
+    clear: both;
+}
+
+.aboutcontent{
+    position: relative;
+    left: 96px;
+    top: 25px;
+    width: 40%;
+    background: white;
+    height: 400px;
+  
+
+}
+
+//about 
+
+.about{
+    float: left;
+}
+.edit{
+    float:right;
+    color:red;
+}
+
+.aboutcontent{
+ padding:20px 20px 20px 20px;
+ 
+ .about{
+     font-size: 19px;
+     
+    }
+    .edit{
+        font-size: 19px;
+        
+    }
+    
+    ion-icon{
+        font-size: 20px;
+    }
+}
+
+.aboutcontentsa{
+    padding:20px 20px 20px 20px;
+ 
+    .about{
+        font-size: 19px;
+        
+       }
+       .edit{
+           font-size: 19px;
+           
+       }
+       
+       ion-icon{
+           font-size: 20px;
+       }
+}
+
+.contenido-datos{
+    position: relative;
+    top:15px;
+    margin:0px;
+    
+
+}
+
+.contenido-datos h6{
+    color:rgb(173, 169, 169);
+    margin:1px;
+    padding:0px;
+    margin-top:15px;
+   
+
+    
+}
+
+.contenido-datos
+p{
+    margin:0px;
+    margin-top:4px;
+    padding:0px;
+}
+
+
+.segundocuerpo{
+    
+    width: 40%;
+    position: relative;
+    left: 96px;
+    top: 25px;
+    
+    background: white;
+    height: 400px;
+}
+
+.aboutcontent02{
+    width: 40%;
+    position: relative;
+    left: -100px;
+    top: -374px;
+    background: white;
+    height: 171px;
+
+}
+
+.tercer{
+    top: -364px;
+    height: 220px !important;
+    
+    
+
+}
+
+    //historial de entrada
+  .listhistory {
+  //  overflow: scroll;
+  height: 100px;
+  width: auto;
+  overflow-x: hidden;
+  
+  
+  }
+  ::-webkit-scrollbar {display: none;}
+
+    //historial de entrada
+    .listhistory02 {
+        overflow: scroll;
+        height: 100px;
+        width: auto;
+        overflow-x: hidden;
+      }
+  
+  
+  
+
+::-webkit-scrollbar {
+ 
+  background-color: rgba(158, 158, 165, 0) !important;
+  scrollbar-face-color:red !important;
+  border-radius: 15px;
+  width: 10px;
+  margin-left: 15px;
+}
+::-webkit-scrollbar-button {
+  border-radius: 15px;
+  width: 10px;
+
+
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  width: 10px;
+
+} 
+
+
+
+//*************************************************
+
+.my-custom-class input{
+    width: 300px !important;
+    background: red;
+}
+
+.alert-wrapper.sc-ion-alert-md {
+    width: 25%;
+    border-radius: 30px;
+
+}
+
+//botton editar
+#editbtn{
+
+    &:hover{
+        cursor: pointer;
+    }
+    
+}
+
+ 
+ 
+#btneditar:hover {
+    color:rgb(184, 86, 7) !important;
+    cursor: pointer;
+}
+
+#editbtn:active{
+   
+    color:rgb(184, 86, 7) !important;
+}
+body.swal2-height-auto {
+    height: 1 !important
+}
+
+//botton eliminar cita
+
+#btnborrar:hover{
+   
+    color:rgb(206, 21, 21) !important;
+    cursor: pointer;
+    
+
+}
+
+
+
+
+
+
+ // calificacion.............
+// calificaciones del admin
+
+.estralla{
+    width: 50px;
+}
+
+
+.body{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    height: 300px;
+    width: 91.4%;
+    left: 20px;
+    overflow: hidden;
+    bottom: 354px;
+    margin-bottom: 25px;
+}
+ 
+.td{
+    width:15px;
+}
+
+
+
+
+
+ .containerr body{
+   overflow: hidden;
+ }
+
+
+
+.containerr .star-widget input{
+    display: none;
+}
+
+
+.star-widget label{
+    font-size: 15px;
+    color: #444;
+    padding: 2px;
+   // float: right;
+    transition: all 0.2s ease;
+}
+
+input label,
+input label{
+    color: #fd4;
+}
+
+input#rate-1 ~ label{
+    color: #fd4;
+}
+
+input#rate-2 ~ label{
+    color: #fd4;
+}
+
+input#rate-3 ~ label{
+    color: #fd4;
+}
+
+input#rate-4 ~ label{
+    color: #fd4;
+}
+
+input#rate-5 ~ label{
+    color: #fd4;
+}
+
+input#rate-5:checked ~ label{
+    color: #fe7;
+    text-shadow:  0 0 20px #952;
+}
+
+
+
+ .containerr form{
+     display: none;
+ }
+
+ input:checked ~ form{
+     display: block;
+ }
+
+ 
+
+
+form header{
+    width: 100%;
+    font-size: 25px;
+    color: #fe7;
+    font-weight: 500;
+    margin: 5px 0 20px 0;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+
+form .textarea{
+    height: 100px;
+    width: 100%;
+    overflow: hidden;    
+}
+
+form .textarea textarea{
+    height: 100%; 
+    width: 100%;
+    outline: none;
+    color: #eee;
+    border: 1px solid #333;
+    background: #222;
+    padding: 10px;
+    font-size: 17px;
+    resize: none;
+}
+
+form .btn{
+    height: 45px;
+    width: 100%;
+    margin: 15px 0;
+}
+
+form .btn button{
+    height: 100%;
+    width: 100%;
+    border: 1px solid #444;
+    outline: none;
+    background: #222;
+    color: #999;
+    font-size: 17px;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+}
+
+form .btn button:hover{
+    background: #1b1b1b;
+}
+
+
+///cambiar contraseña
+.cambiarcontrasena{
+    color:rgb(25, 25, 196)!important;
+    text-decoration:underline;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 2s all ease;
+    
+}
+
+.cambiarcontrasena:active{
+    color:rgb(255, 68, 0) !important;
+ 
+
+}
+
+//SUBIR IMAGEN......
+.uploadLabel {
+    position: relative;
+    left: 158px;
+    top: -30px;
+    cursor: pointer;
+    font-size: 28px;
+    color: #03276c78;
+    border-radius: 6px;
+    background: transparent;
+   }
+
+   
+ 
+  
+   .uploadButton {
+     display: none;
+   }
+
+//  .tdd {
+//     overflow-x: hidden;
+//     width: 170px;
+//     height: 53px;
+
+//     } 
+
+
+//  .tdd02{
+//     overflow-x: hidden;
+
+//     width: 396px;
+//     height: 43px;
+//     margin-right: -137px;
+//  }
+
+
+
+
+
+
+
+// @media (min-width: 576px){ 
+// .container {
+//     max-width: 100%;
+// }
+// }
+
+
+@media (max-width:1024px){  
+   
+    .aboutcontent02{
+        width: 52%;
+    }
+    
+    .aboutcontent02 {
+        left: -29px;
+       
+    }
+
+    .body{
+        //  width: 100%;
+        width: 95.4%;
+        left: 65px;
+      }
+    }
+
+@media (max-width:699px) { //667
+    .cuerpo{
+     display: block ;
+    }
+
+    .aboutcontent02{
+        float: right;
+        clear: both;
+        position: relative;
+        top: 38px;
+       // left: -21px;
+        left: 0px;
+        margin-bottom: 15px;
+       // width: 90%;
+        width: 100%;
+        height: 223px;
+        
+
+        
+    }   
+
+    .aboutcontent {
+       
+      //  left: 16px;
+       left: 0px;
+       
+        width: 100%;
+     
+        height: 355px;
+    }
+
+    .tercer{
+        
+        height: 271px !important;
+    }
+
+
+    .body {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: white;
+        height: 300px;
+       // width: 85%;
+        width: 100%;
+       // left: -7px;
+        left: 0px;
+
+        overflow: hidden;
+        bottom: -41px;
+    }
+
+    .listhistory {
+       //overflow: scroll;
+       height: 100px;
+       width: auto;
+       overflow-x: hidden;
+       position: relative;
+       left: -31px;
+    }
+    ::-webkit-scrollbar {display: none;}
+
+    .cuerpo{
+        
+        height: auto;
+       
+    }
+
+    .star-widget label {
+        font-size: 10px;
+
+    }
+
+   
+
+    //el segundo div
+    
+// element.style {
+//     float: right;
+//     clear: both;
+//     position: relative;
+//     top: 38px;
+//     left: -505px;
+// }
+
+
+// el tercer div
+
+
+}
+
+@media (min-width:700px) {
+
+   
+
+    .aboutcontent02 {
+        width: 55%;
+        left: -20px;
+        top: -374px;
+        margin-bottom:8px;
+        height: 171px;
+    }
+
+    .marge-about{
+        margin-right: 133px;
+    }
+
+    
+
+    .aboutcontent{
+      
+        left: 66px;
+        
+    }
+    
+    .body{
+      //  width: 100%;
+      width: 88.4%;
+      left: 65px;
+    }
+
+}
+
+
+
+
+
+  
+
+
+
+
+

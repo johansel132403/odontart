@@ -1,0 +1,218 @@
+
+  .ov{
+    height:100%;
+    overflow:scroll;
+  }
+
+
+.top-section{
+    min-height: 150px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+ //   background-color: deepskyblue;
+ background: #1A2980;  /* fallback for old browsers */
+ background: -webkit-linear-gradient(to right, #26D0CE, #1A2980);  /* Chrome 10-25, Safari 5.1-6 */
+ background: linear-gradient(to right, #26D0CE, #1A2980); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    padding-bottom: 32px;
+    .top-menu{
+        display: flex;
+        justify-content: space-between;
+        padding-top:10px;
+    }
+
+    .title{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        font-weight: bolder;
+
+        h2{
+            margin-top:10px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        ion-select{
+            border:3px solid #fff;
+            --placeholder-color: #61688b;
+            --placeholder-opacity:1 !important;
+            border-radius: 20px;
+            background-color: #fff;
+        }
+
+        ion-select::part(icon){
+            color: #61688b;
+            opacity: 1;
+            margin-right: 10px;
+        }
+    }
+
+    .sub-title{
+        display: flex;
+        flex-direction:column;
+        margin-top: 20px;
+
+        h3{
+            color: #ffffff;
+            font-weight: bold;
+            margin:0;
+        }
+
+        p{
+           // color: #c7c7c7;
+           color:white;
+            line-height: 1.6;
+        }
+    }
+
+    .action-buttons{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color:#ffffff;
+
+       
+
+        .call, .sms{
+            width: 52%;
+            --border-radius: 25px;
+            --padding-bottom: 24px;
+            --padding-end:24px;
+            --padding-top:24px;
+            --padding-start:24px;
+
+            ion-icon{
+                margin-right:10px;
+            }
+        }
+        .call{
+            --background:#ff4d58;
+           // margin-right: 20px;
+        }
+        .sms{
+            --background: #4d79ff;
+        }
+    }
+}
+
+.middle-secion{
+    display: flex;
+    flex-direction:colum;
+
+    h3{
+        font-size: 1.3rem;
+        font-weight: bold;
+        margin-bottom:20px;
+        margin-left: 10px;
+    } 
+    p{
+        font-weight: bold;
+    }
+
+    .content{
+        text-align: center;
+        img{
+            height:90px;
+            width: 90px;
+            object-fit: contain;
+        }
+    }
+}
+
+.bottom-section{
+    
+ background: #1A2980;  /* fallback for old browsers */
+ background: -webkit-linear-gradient(to right, #26D0CE, #1A2980);  /* Chrome 10-25, Safari 5.1-6 */
+ background: linear-gradient(to right, #26D0CE, #1A2980); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+   // background: url('https://www.seekpng.com/png/full/246-2460792_tall-blue-rectangle-clip-art-at-clker-blue.png');
+   // background-repeat: no-repeat;
+    //background-size: 100%;
+    display: flex;
+    border-radius: 10px;
+    img{
+        height: 112px;
+        padding:10px;
+    }
+
+    .content{
+        display: flex;
+        flex-direction: column;
+        padding:10px;
+     
+    }
+    h3{
+        font-size: 1.3rem;
+        margin:0;
+        color:#fff;
+        font-weight: bold;;
+    }
+
+    p{
+        color:#c7c7c7;
+        margin-top:8px;
+    }
+}
+
+.men {
+    color: White;
+    font-size: 22px;
+   
+  }
+
+//   .imgposiction{
+//    right: -18px;
+//   }
+
+  .mm{
+   
+        filter: invert(0.4) sepia(1) hue-rotate(20deg) saturate(1000%);
+
+  }
+
+  .imggg{
+      width: 22%;
+  }
+
+  .logowhat{
+      font-size:60px;
+      color:white;
+      background-color:  #1A2980;  /* fallback for old browsers */
+      background: linear-gradient(to right, #26D0CE, #1A2980); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      background: -webkit-linear-gradient(to right, #26D0CE, #1A2980);  /* Chrome 10-25, Safari 5.1-6 */
+      border-radius: 100%;
+      padding:15px; 
+      margin-left: 7px !important;
+  }
+
+  
+  
+.p-email-center{
+    margin-left: 21px;
+}
+
+
+//el bottom del mensage esta chiquito tengo que darle un tamaño igual que el otro
+
+.chatnublee{
+    font-size: 50px;
+}
+
+.bottom-section{
+    cursor: pointer;
+}
+
+.serv{
+  
+    margin: auto;
+    /* IMPORTANTE */
+   p{
+       text-align: center !important;
+   }
+   .p-email-center{
+       color:#007bff !important;
+   }
+
+}

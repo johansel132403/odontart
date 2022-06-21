@@ -1,0 +1,158 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>Inicio</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+  <div class="ov"> 
+    
+ 
+  <div   class='top-section ion-padding'>
+     <div class='top-menu'>
+      <ion-icon (click)="exit()" color="danger" class='men' name="exit-outline"></ion-icon>
+      <!-- <ion-icon class='men' name="crop-outline"></ion-icon> -->
+
+     <a (click)="getAllPost()"  [routerLink]="['/post']">
+     
+        
+        <ion-badge color="danger"  *ngIf="notificacionView && notificacionView.notificacionView == false">1</ion-badge>
+   
+       
+       <ion-icon class="men" name="notifications-outline" ></ion-icon>
+      </a>
+      
+      </div>
+      <div class="title">       
+       <h2>Odonto Arte</h2>
+       <!-- <ion-select [interfaceOption]='customActionSheetOptions' value='india'
+       interface='action-sheet' placeholder='Select one'>
+       <ion-select-option value='india'>//</ion-select-option>  estoy comentando esto 11/5/2022
+       <ion-select-option value='usa'>//</ion-select-option>
+      </ion-select> -->
+      </div>
+      <div class="sub-title">
+    <!--<h3>Odontólogos Especialistas al Cuidado de su Salud Dental</h3>-->
+    <h3>Como podemos Ayudar</h3>
+
+        <p>
+          Odontólogos Especialistas al Cuidado de su Salud Dental, Con el propósito de brindar un mejor servicio a nuestros pacientes, trabajamos con cita previa.</p>
+      </div>
+
+      <div class="action-buttons">
+
+       
+        <ion-button class="call" (click)='Call()'>
+           <ion-icon name='call'></ion-icon>Llamar
+        </ion-button>
+
+
+       
+          <ion-button class="sms" (click)='presentAlertPrompt()'>
+            <ion-icon class="chatnublee" name='chatbubble'></ion-icon>Enviar SMS
+         </ion-button>
+          
+      </div>
+  </div>
+  <div class="middle-section ion-padding">
+    <h3>Contactos</h3>
+    <div class="content">
+       <ion-row>
+         <div class="serv">
+
+                      <a href={{url}}>
+                        <ion-col size='4'>
+                          <!-- <img class="imm" src="../../assets/img/whatsnew_preview_rev_1.png" alt="">-->
+                          
+                          <ion-icon  class="logowhat" name="logo-whatsapp"></ion-icon>
+                          <p>Whatssapp</p>
+                          </ion-col>
+                        </a>
+          </div>
+          
+          <div class="serv">
+            <ion-col size='4' (click)='SendGmail()'>
+             <!--<img class="imm" src="../../assets/img/gml_preview_rev_1 01.png" alt="">-->
+             <ion-icon class="logowhat" name="mail-outline"></ion-icon>
+              <p class="p-email-center">Email</p>
+             </ion-col>
+            
+          </div>
+
+          <div class="serv">
+            <a href="https://www.google.com/maps/place/18%C2%B028'19.7%22N+69%C2%B053'21.9%22W/@18.4721403,-69.8899592,19z/data=!3m1!4b1!4m6!3m5!1s0x0:0xa1e1ea51abdc0e34!7e2!8m2!3d18.4721385!4d-69.889412">
+   
+              <ion-col  class="imgposiction" size='4'>
+                <!-- <img  class="imm" src="../../assets/img/ju_preview_rev_1 (4).png" alt="">-->
+                <ion-icon class="logowhat" name="location-outline"></ion-icon>
+                <p>Ubicacion</p>
+               </ion-col>
+             </a>
+
+          </div>
+       </ion-row>
+
+    </div>
+  </div>
+
+  <div class="bottom-section ion-margin" [routerLink]="['/servicios/servicio']">
+     <img class="iggg" src="../../assets/img/ee.png" alt="">
+      <div class="content">
+        <h3>Servicios</h3>
+        <!-- <p>La salud bucal de una persona se divide en varios servicios</p> -->
+        <p>Los Servicios que podrás encontrar en OdontoArte son los siguientes</p>
+      </div>
+    </div>
+
+    <div (click)="hacerCita()" class="bottom-section ion-margin">
+      <img class="imgg" src="../../assets/img/cita_preview_rev_1.png" alt="">
+       <div class="content">
+         <h3>Hacer cita</h3>
+         <p>Puede programar una cita por esta vía</p>
+       </div>
+     </div>
+
+     <div class="bottom-section ion-margin" [routerLink]="['/gallery']">
+      <img class="imgg" src="../../assets/img/gale_preview_rev_1.png" alt="">
+       <div class="content">
+         <h3>Galeria</h3>
+         <p>Imágenes guardadas</p>
+       </div>
+     </div>
+     
+     <div  class="bottom-section ion-margin" [routerLink]="['/micita']">
+       <img src="../../assets/img/doc_preview_rev_1.png" alt="">
+       <div class="content">
+         <h3>Mi cita</h3>
+         <p>Si necesita cancelar una cita, cancele aquí  o contáctenos</p>
+        </div>
+      </div>
+
+      <div class="bottom-section ion-margin" [routerLink]="['/saladechat']">
+        <img src="../../assets/img/chat03.png" alt="">
+        <div class="content">
+          <h3>Chat</h3>
+          <p>Nos interesa mantener el contacto contigo, escríbenos por chat</p>
+         </div>
+       </div>
+
+       <div class="bottom-section ion-margin">
+        <img src="../../assets/img/videollamada.png" alt="">
+        <div class="content">
+          <h3>Videollamada</h3>
+          <p>Para hacer una videollamada contáctanos vía chat para mandarle la solicitud</p>
+         </div>
+       </div>
+
+       <div class="bottom-section ion-margin" [routerLink]="['/cepillado']">
+        <img src="../../assets/img/cepillado03.png" alt="">
+        <div class="content">
+          <h3>Cepillado</h3>
+          <p>Técnica adecuada para cepillarse los dientes</p>
+         </div>
+       </div>
+      </div>
+    </ion-content>
+
+
+        

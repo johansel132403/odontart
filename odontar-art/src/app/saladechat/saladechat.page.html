@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color='secondary'>
+    <ion-buttons slot='start'>
+       <ion-back-button text="Inicio" defaulHref='/inicio'>Inicio</ion-back-button>
+    </ion-buttons>
+    <ion-title>Sala de chat</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  
+  <aside>
+   
+    <ul>
+        <li (click)="userFunction(user)"  *ngFor="let user of users">
+          <img style="width: 55px; height:55px" src="https://st2.depositphotos.com/1007566/12110/v/450/depositphotos_121102950-stock-illustration-man-wearing-suit-and-tie.jpg" alt="">
+            <div>
+             <h2>{{user.nombre}}</h2>
+              <h3>
+              <span class="status green"></span>
+               En linea
+               </h3>
+
+               <h3>
+                <!-- <span class="status green" *ngIf="!line"></span>
+                 off line -->
+              </h3>
+               
+            </div>
+        </li>
+     </ul>
+   
+    </aside>
+  
+
+</ion-content>

@@ -1,0 +1,228 @@
+<ion-content>
+
+  
+
+  <div class="header ion-padding">
+    
+    <div class="info">
+      
+      
+      <!-- kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk -->
+
+      
+    
+      <!-- <a href="http://localhost:8100/admin/chatsadmin" *ngIf="identity.role == 'Role_admin' || identity.role == 'Role_subadmin'" >
+          <ion-icon name="chevron-back-outline"  >
+          </ion-icon>
+        </a> -->
+
+        <a href="admin/chatsadmin" *ngIf="identity.role === 'Role_admin' || identity.role === 'Role_subadmin'">
+          <ion-icon name="chevron-back-outline">
+          </ion-icon>
+        </a>
+
+        <a href="inicio"  *ngIf="identity.role === 'Role_user' && identity.calificar === true">
+          <ion-icon name="chevron-back-outline">
+          </ion-icon>
+        </a>
+
+        <span (click)="calificacionf()" *ngIf="identity.role === 'Role_user' && identity.calificar === false">
+          <ion-icon name="chevron-back-outline">
+          </ion-icon>
+        </span>
+        
+        
+        
+
+       <ion-avatar *ngIf="!otherimg">
+         <img src="https://st2.depositphotos.com/1007566/12110/v/450/depositphotos_121102950-stock-illustration-man-wearing-suit-and-tie.jpg" alt="">
+        </ion-avatar>
+        <ion-avatar *ngIf="otherimg">
+          <img style="width: 55px; height: 55px" src="{{url+'getimagen/'+otherimg}}" alt="">
+         </ion-avatar>
+        <span class="details">
+          <h1 *ngIf="identity && identity.nombre">{{other}}</h1>
+          <p>Online</p>
+        </span>
+    </div>
+    <div class="calling">
+      
+
+      <!-- <a [routerLink]='["/videollamada/",idClient]' *ngIf="identity.role == 'Role_admin'">
+        <ion-icon name="videocam-outline"></ion-icon>               //asi era que estaba....
+      </a> -->
+
+      <!-- <a [routerLink]='["/videollamada/",idClient]'>                //esto lo voy a comentar 12/5/2022
+        <ion-icon name="videocam-outline"></ion-icon>
+      </a> -->
+
+      <span  class="callspan" *ngIf="identity.role != 'Role_user'">
+        <ion-icon (click)="invitarVideoLlamada()" name="videocam-outline"></ion-icon>
+      </span>
+
+      <!-- <a [routerLink]='["/videollamada"]' >
+        <ion-icon name="videocam-outline"  *ngIf="identity.role == 'Role_user'"></ion-icon>
+      </a> -->
+
+      <!-- <ion-icon name="call-outline"></ion-icon> -->
+      
+
+       <!-- input File subir imagen al chat -->
+      <label class="uploadLabel">
+        <ion-icon name="image-outline"></ion-icon>
+          <input id="uploadCaptureFile" #inputFile (change)="uploadImagenInput($event)" type="file" class="uploadButton"/>
+      </label>
+
+      <ion-icon></ion-icon>
+    </div>
+  </div>
+  
+  
+  <div class="conversation ion-padding" >
+
+      <!-- ***************************************calificacion***************************************** -->
+      <div class="container01 animate__animated animate__backInLeft">
+        <div class="container">
+          <div class="post">
+             <dir class="text">Thanks for rating us!</dir>
+             <div (click)="btnSumit02()" class="edit">Edit</div>
+          </div>
+          <div class="star-widget">
+            <dir class="text">Califique nuestro servicio!</dir>
+            <input type="radio" name="rate" id="rate-5" value="5">
+            <label for="rate-5" class="fas fa-star"></label>
+            
+            <input type="radio" name="rate" id="rate-4" value="4">
+            <label for="rate-4" class="fas fa-star"></label>
+            
+            <input type="radio" name="rate" id="rate-3" value="3">
+            <label for="rate-3" class="fas fa-star"></label>
+            
+            <input type="radio" name="rate" id="rate-2" value="2">
+            <label for="rate-2" class="fas fa-star"></label>
+            
+            <input type="radio" name="rate" id="rate-1" value="1">
+            <label for="rate-1" class="fas fa-star"></label>
+            
+            <form  action="#">
+              <header></header>
+              <div class="textarea">
+                 <textarea name="calificacion" #calificacion="ngModel" [(ngModel)]="user.calificacion" cols="30" placeholder="Describe tu experiencia..."></textarea>
+              </div>
+    
+              <div class="btn">
+                <button (click)="btnSumit()" type="submit">Enviar</button>
+             </div>
+            </form>
+            
+            
+          </div>
+        </div>
+    
+      </div>
+<!-- *****************************************calificacion *************************************** -->
+    
+    <ion-spinner class="sp" name="lines-sharp-small" color="tertiary" *ngIf="snipper"></ion-spinner>
+    
+    <div class="chat-section" id="chat">
+      <div class="chat" *ngFor="let user of chats; let i  = index">
+        
+        <!-- aqui tenemos que reparar lo de los mensaje -->
+        
+        
+        <!-- este es el emisor  que nos envia mensaje..... -->
+        <div class="yours messages" id="msj"   *ngIf="user && user.correo_emisor != identity.email">
+          <!-- <div id="messange" class="message other">
+            {{user}}
+          </div> -->
+          <!-- <div class="message other">
+            u there?
+          </div> -->
+          <div class="last-message-other" >
+            <ion-avatar>
+              <img src="http://pm1.narvii.com/7240/9d64f0773a1889d8cae9b9e34a3259cad13237e2r1-480-484v2_uhq.jpg" alt="">
+            </ion-avatar>
+            <div class="message last" *ngIf="user.msg">
+              {{ user.msg }}
+            </div>
+              
+            <img (click)="imagenOpen(user.imagen)" id="myImg" src="{{url+'getimagen/'+user.imagen}}" *ngIf="user.imagen" style="width:100%;max-width:300px">
+            
+            
+            <!-- <div id="myModal" class="modal">
+              <span class="close">&times;</span>
+              <img class="modal-content" id="img01">
+              <div id="caption"></div>
+            </div> -->
+            
+          </div>
+          <span *ngIf="user && user.correo_emisor == identity.email">1:15 pm</span>
+          
+          
+        </div>
+        
+        <div id="myModal" class="message last imgg modaly" *ngIf="user.imagen">
+           <span (click)="exitImagen()" class="close">&times;</span>
+          <img class="modal-content" id="img01">
+          <div id="caption"></div>
+        </div>
+        
+        <!-- este es el receptor, recibimos el mensaje -->
+        <div class="mine messages"  *ngIf="user && user.correo_emisor == identity.email" >
+          <div class="message last" *ngIf="user.msg">
+            <!-- <!-- {{user.msg}} --> 
+            {{ user.msg }}
+            
+          </div>
+          
+          
+          <img (click)="imagenOpen(user.imagen)" id="myImg" src="{{url+'getimagen/'+user.imagen}}" *ngIf="user.imagen" style="width:100%;max-width:300px">
+          
+          <!-- <div id="myModal" class="modal">
+          </div> -->
+          
+          <!-- <div class="message last" >
+            <img src="{{url+'getImagen/'user.imagen}}" >
+          </div> -->
+          <!-- <div class="message last">
+            How about you?
+          </div>
+          <span>
+            <ion-icon name="checkmark-done-outline"></ion-icon>1:55 PM
+          </span>  -->
+        </div>
+        
+        <div id="myModal" class="message last imgg modaly" *ngIf="user.imagen">
+          <span (click)="exitImagen()" class="close">&times;</span>
+          <img class="modal-content" id="img01">
+          <div id="caption"></div>
+        </div>
+        
+        
+        
+        
+        
+      </div>
+    </div>
+    <div class="message-input">
+      <ion-input type="text" id="btn" name="texto" #texto="ngModel" [(ngModel)]="mensaje.texto" placeholder="Type your message...."></ion-input>
+      <div class="send-button" *ngIf="btn">
+        <ion-icon (click)="ionViewWillEnterr()" name="send-sharp"></ion-icon>
+        <!-- <ion-icon  name="send-sharp" *ngIf="!btn"></ion-icon> -->
+
+        
+      </div>
+    </div>
+    
+    <!-- barra de progresso.. -->
+    <div id="barra" >
+      <ion-progress-bar   [value]="progres" buffer="0.5" style="height: 8px;"></ion-progress-bar>
+      <!-- <div id="barra02" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style='width:"progres"+"%"'></div> -->
+    </div>
+    
+  
+  </div>
+
+
+ 
+</ion-content>

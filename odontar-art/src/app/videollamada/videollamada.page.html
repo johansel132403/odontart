@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>videollamada</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <!-- <button ion-button color="danger"  (click)="startVideoCall()">video cam</button> -->
+
+<!-- <div class="header">
+  <div class="logo">
+    <div class="header__back" (click)="primeraFunction()"> 
+      <ion-icon name="arrow-back-outline lef"></ion-icon> 
+                              // esto lo comente seria bueno ver para que sirve....
+    </div>
+   
+  </div>
+</div>   -->
+<div class="main">  
+<div class="main__left">
+  <div class="videos__group">
+    <div id="video-grid">
+
+    </div>
+  </div>
+  <div class="options">
+    <div class="options__left">
+      <div id="stopVideo" class="options__button" (click)="stopVideo()">
+        <ion-icon name="videocam-outline"></ion-icon>
+      </div>
+      <div id="muteButton" class="options__button" (click)="muteButton()">
+        <ion-icon name="mic-outline"></ion-icon>
+      </div>
+      <!-- <div id="showChat" class="options__button" (click)="showChat()">
+        <ion-icon name="person-add-outline"></ion-icon>
+      </div> -->
+    </div> 
+           
+    <!-- Hacer video llamada --> 
+    <div class="options__right" *ngIf="calling; else cancel">
+      <div id="inviteButton" class="options__button"  (click)="startVideoCall()">
+        <ion-icon name="call-outline" ></ion-icon>
+      </div>
+    </div>
+        
+    <!-- CANCEL VIDEO -->
+    <ng-template #cancel>
+      <div class="options__right" >
+        <div id="buttoncancel" class="options__button calcel"  (click)="cancelarLLamada(uu)">
+          <ion-icon name="close-circle-outline"></ion-icon>
+        </div>
+      </div>
+    </ng-template>
+
+  </div>
+</div>
+<!-- <div class="main__right">
+  <div class="main__chat_window">
+      <div class="messages">
+
+      </div>
+  </div>
+  <!-- <div class="main__message_container">
+    <input id="chat_message" type="text" autocomplete="off" placeholder="Type message here...">
+    <div id="send" class="options__button">
+      <ion-icon name="add-outline"></ion-icon>
+    </div>
+  </div> 
+</div> -->
+</div>
+
+
+
+</ion-content>

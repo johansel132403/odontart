@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color='secondary'>
+    <ion-buttons slot="start">
+       <ion-back-button defaulHref='/inicio'></ion-back-button>
+    </ion-buttons>
+    <ion-title>Imagenes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="imgMensaje" *ngIf="imagenes == ''">
+     <p>No hay Imagenes...</p>
+  </div>
+  
+  <!-- <div id="myModal" class="message last imgg modaly" *ngIf="imagenes">
+     <span (click)="exitImagen()" class="close">&times;</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+  </div> -->
+
+  
+  
+  <div class="ion-align-items-start div">
+    <div id="myModal" class="message last imgg modaly">
+      <span (click)="exitImagen()" class="close">&times;</span>
+     <img class="modal-content" id="img01">
+     <div id="caption"></div>
+   </div>
+    <ion-list    *ngFor="let img of imagenes" class="imagenchat">
+      <ion-item>
+
+
+        <!-- <ion-img (click)="imagenOpen()" id="myImg"  class="po" src="{{url+'getimagen/'+img.imagen}}" (click)='imagen()' style="width:100%;max-width:300px"></ion-img> -->
+        <img (click)="imagenOpen(img.imagen)" id="myImg"  class="po" src="{{url+'getimagen/'+img.imagen}}"  style="width:100%;max-width:300px">
+  
+       <!-- <img src="../../assets/img/yt.jpg" alt=""> -->
+      </ion-item>
+  
+    
+   
+  </ion-list>
+</div>
+</ion-content>

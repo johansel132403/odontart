@@ -1,0 +1,184 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title class="header01">Administracion</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+
+
+<!-- 
+<ion-menu contentId="main">
+
+
+<ion-content> -->
+
+
+
+
+
+<!-- <div class="navigatio" id="main-content">
+    <div class="content">
+        <h1 class="header-titler">Generalss</h1>
+
+
+        <div id="navigation">
+          <a href="#">
+            <ion-icon class="logo-icono"  name="search-outline"></ion-icon>
+            Buscar
+          </a>
+          <a [routerLink]="['/admin']">
+            <ion-icon class="logo-icono" name="people-outline"></ion-icon>
+            Pasientes
+          </a>
+
+          <a [routerLink]="['/clientes']">
+            <ion-icon class="logo-icono" name="calendar-outline"></ion-icon>
+            Citas
+          </a>
+
+          <a href="#">
+            <ion-icon class="logo-icono" name="chatbubble-ellipses-outline"></ion-icon>
+            Chat
+          </a>
+
+        </div>
+
+        <nav id="user_logged">
+            <span>
+              <ion-icon class="logo-icono" name="person-outline"></ion-icon>
+              Johansel Perez
+            </span>
+            <span href="#">
+              <ion-icon class="logo-icono" name="cog-outline"></ion-icon>
+              Mis Datos
+            </span>
+            <span>
+              <ion-icon class="logo-icono" name="exit-outline"></ion-icon>
+              cerrar sesion
+            </span>
+          </nav>
+
+        </div>
+      </div> -->
+
+
+<!-- 
+    </ion-content>
+
+
+  </ion-menu>
+  <ion-router-outlet id="main" main></ion-router-outlet>
+ -->
+
+
+<!-- <ion-menu contentId="main-content"></ion-menu>
+  <div id="main-content">...</div> -->
+
+
+ <!-- <ion-toolbar color="primary">
+   <ion-buttons slot="start">
+     <ion-menu-buttons></ion-menu-buttons>
+    </ion-buttons>
+ </ion-toolbar> -->
+
+
+
+  <!-- ////////////////////////// -->
+
+  <!-- en el contentId lo que iba main y yo puse la que esta  -->
+
+  <ion-split-pane  contentId="main" > <!--aqui lo que tenia era un if con el identity.id-->
+    <ion-menu class="nume" menuId="first" side="start" content-id="main-content"  contentId="main" type="overlay">
+      <ion-header>
+      
+      </ion-header>
+      <ion-content class="nume">
+          <div class="navigatio" contentId="main">
+            <div class="content">
+                <h1 class="header-titler">General</h1>
+        
+                
+                <div id="navigation">
+                  <ion-menu-toggle autoHide="false">
+
+                    <a href="#">
+                      <ion-icon class="logo-icono"  name="search-outline"></ion-icon>
+                      Buscar
+                    </a>
+                    
+                    <a [routerLink]="['/admin/client']" routerDirection="forward">
+                      <ion-icon class="logo-icono" name="people-outline"></ion-icon>
+                      Pasientes
+                    </a>
+                    
+                    <a routerDirection="root" [routerLink]="['/admin/citas']">
+                      <ion-icon class="logo-icono" name="calendar-outline"></ion-icon>
+                      Citas
+                    </a>
+                    
+                    <a [routerLink]="['/admin/chatsadmin']" routerDirection="forward">
+                    <ion-icon class="logo-icono" name="chatbubble-ellipses-outline"></ion-icon>
+                    Chat
+                  </a>
+                </ion-menu-toggle>
+        
+                </div>
+        
+                <nav id="user_logged">
+                  <ion-menu-toggle autoHide="false">
+
+
+                    <a [routerLink]="['/admin/usuario-admin']" routerDirection="forward">
+                      <span>
+                        
+                        <ion-icon class="logo-icono" name="person-circle-outline"></ion-icon>
+                       Usuario
+                      </span>
+                    </a>
+
+                  
+                  <a [routerLink]="['/admin/crearadmin']" routerDirection="forward">
+                      <span>
+                        
+                        <ion-icon class="logo-icono" name="person-add-outline"></ion-icon>
+                        Crear usuario
+                      </span>
+                    </a>
+                    <a [routerLink]="['/admin/admins']">
+                      
+                      <span href="#">
+                        <ion-icon class="logo-icono" name="cog-outline"></ion-icon>
+                        Administradores
+                      </span>
+                    </a>
+                    <span (click)="exitSesion()">
+                      <ion-icon  class="logo-icono" name="exit-outline"></ion-icon>
+                      cerrar sesion
+                    </span>
+                  </ion-menu-toggle>
+                  </nav>
+        
+                </div>
+              </div>
+            </ion-content>
+         
+          </ion-menu>
+
+          <div class="divsetting">
+            <div style="width:40px">
+              <ion-icon  id="gear" name="cog-outline">
+
+              </ion-icon>
+            </div>
+            <div style="position:relative; width:40px;top:-15px">
+              <ion-icon   id="gear02" name="settings-outline"></ion-icon>
+            </div>
+
+          </div>
+          
+        
+          
+          
+          <ion-router-outlet class="menu02" id="main" ></ion-router-outlet>  
+        </ion-split-pane>
+

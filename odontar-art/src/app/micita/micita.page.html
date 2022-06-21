@@ -1,0 +1,66 @@
+<ion-header>
+  
+  
+  <ion-toolbar color='secondary' *ngIf="identity.role == 'Role_user'">
+    <ion-buttons slot='start'>
+      <ion-back-button text="Inicio" defaulHref='/inicio'>Inicio</ion-back-button>
+    </ion-buttons>
+    <ion-title>Mi cita</ion-title>
+  </ion-toolbar>
+</ion-header>
+  <!-- Seach -->
+<!-- <ion-toolbar>
+  <ion-searchbar (keydown)="functionclick()"></ion-searchbar>
+</ion-toolbar> -->
+
+<ion-content >
+
+  <div class="citainfo" *ngIf="citas == ''">
+     <p>No hay citas</p>
+  </div>
+ 
+
+  <div class="alert alert-danger" role="alert" *ngIf="errorUpdate">
+   Error: Usted no tiene permiso para eliminar
+  </div>
+
+  <div class="bodycita">
+  
+    <div>
+      <ul>
+        <li *ngFor="let cita of citas;  let i = index">
+          
+         
+             
+            <span class="number">{{i+1}} </span>&nbsp;&nbsp;
+            <span id="name" class="name" >
+              <!-- {{cita.IdUser.nombre}} {{cita.IdUser.apellido}}  -->
+              <ion-icon name="person-outline" style="margin-right: 5px; margin-bottom: -1px;"></ion-icon>
+              <p id="pp"> </p>
+            </span>
+            <span class="points">
+              <ion-icon name="calendar-outline" style="margin-right: 5px; margin-bottom: -1px;"></ion-icon>
+              <!-- {{cita.fecha}} -->
+            </span>
+          
+          <span class="badge"></span>
+          <!-- <ion-button (click)="editarCita(cita._id)" class="badge" slot="end" color="warning"><ion-icon name="create-outline"></ion-icon></ion-button> -->
+          &nbsp;
+          
+          &nbsp;
+          <ion-button (click)='presentAlertMultipleButtons(cita._id)' class="badge" slot="end" color="medium"><ion-icon name="eye-outline"></ion-icon></ion-button>
+
+          &nbsp;
+          <ion-button (click)="deleteCita(cita._id)" class="badge" style="margin-left: 10px;" slot="end" color="danger"><ion-icon name="close-circle-outline"></ion-icon></ion-button>
+
+        </li >
+      
+
+
+
+
+      </ul>
+    </div>
+  </div>
+
+</ion-content>

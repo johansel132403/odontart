@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color='secondary'>
+    <ion-buttons slot='start'>
+       <ion-back-button text="atras" defaultHref="/servicio">atras</ion-back-button>
+    </ion-buttons>
+    <ion-title>{{data.title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-no-padding">
+    <ion-row>
+      <ion-col class="ion-no-padding" style="width: 96%; max-width: 960px;margin: 0 auto;">
+        <ion-img style="margin: 0 auto;max-width: 100%;width: 80%;" [src]='data.imagenURL'></ion-img>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <h1 class="ion-text-center">{{data.title}}</h1>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item *ngFor='let coment of data.comentarios'>
+            {{coment}}
+            <br>
+            <br>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+
+   
+      <!-- Button del menu  -->
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+       </ion-buttons>
+   
+   
+
+
+    <ion-title>Crear Usuarios Administrativos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div style="margin-top:20px" class="error_alert alert alert-danger" *ngIf='status == false'>{{erro}}</div>
+  <div style="margin-top:20px" class="succes_alert alert alert-success" *ngIf='status == true'>{{statusSuccess}}</div>
+
+<div class="div_form">
+
+  <form #registerForm="ngForm"  (ngSubmit)="onSubmit(registerForm)">
+    <div class="form-group">
+      <label for="inputAddress">Nombre </label>
+      <input name="nombre"  #nombre="ngModel" [(ngModel)]="user.nombre" type="text" class="form-control" id="inputAddress" placeholder="Nombre" required>
+    </div>
+    <div class="form-group">
+      <label for="inputAddress2">Apellido</label>
+      <input name="apellido"  #apellido="ngModel" [(ngModel)]="user.apellido" type="text" class="form-control" id="inputAddress2" placeholder="Apellido" required>
+    </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Email</label>
+              <input name="email" #email="ngModel" [(ngModel)]="user.email" type="email"  required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  class="form-control" id="inputEmail4" placeholder="Email">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputPassword4">Contraseña</label>
+              <input  name="password" #password="ngModel" [(ngModel)]="user.password" type="password" placeholder="************" required class="form-control" id="inputPassword4" >
+            </div>
+          </div>
+    <div class="form-row">
+      <!-- <div class="form-group col-md-6">
+        <label for="inputCity">City</label>
+        <input type="text" class="form-control" id="inputCity">
+      </div> -->
+      <div class="form-group col-md-6">
+        <label for="inputState">Role</label>
+
+        <select name="role" [(ngModel)]="user.role" id="inputState" class="form-control" >
+            <!-- <option selected>Role de usuario...</option> -->
+            <option *ngFor="let list of lists"  [ngValue]="list.role">{{list.role}}</option>
+           <!-- // <option  [ngValue]="Role_admin">{{list.admin}}</option> -->
+        </select>
+
+      </div>
+      
+       <!-- <div class="form-group col-md-2">
+        <label for="inputZip">Zip</label>
+        <input type="text" class="form-control" id="inputZip">
+      </div>  -->
+     
+        <div class="form-group col-md-2 btn_activo">
+            <label>Usuario Activo</label>
+            <ion-toggle   [(ngModel)]="user.activo" slot="end" name="activo" #activo="ngModel" color="success" Default></ion-toggle>
+        </div>
+
+    </div>
+    <!-- <div class="form-group">
+      <!-- <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="gridCheck">
+        <label class="form-check-label" for="gridCheck">
+          Check me out
+        </label>
+      </div>
+    </div> -->
+    <button type="submit" class="btn btn-primary bt" [disabled]="!registerForm.form.valid">Guardar</button>
+    
+  </form>
+
+  
+</div>
+
+</ion-content>

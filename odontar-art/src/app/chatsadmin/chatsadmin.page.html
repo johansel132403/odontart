@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    
+      <!-- Button del menu  -->
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+       </ion-buttons>
+    
+    <ion-title>Chat</ion-title>
+    <!-- <ion-icon  (click)="updateData01()" class="refresh" slot="end" name="refresh-outline"></ion-icon> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content> 
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Tire para actualizar"
+      refreshingSpinner="circles"
+      refreshingText="Actualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+ 
+    <aside>
+   
+    <ul >
+        <li (click)="userFunction(user)"  *ngFor="let user of users">
+          
+          <div class="imgbox">
+          </div>
+          <img style="width: 55px; height:55px" class="imagadmin"  src="../../assets/img/user01.png" alt="" *ngIf="!user.imagen">
+          <img style="width: 55px; height:55px" class="imagadmin"  src="{{url+'getimagen/'+user.imagen}}" alt="" *ngIf="user.imagen">
+            <div>
+             <h2>{{user.nombre}}</h2>
+              <h3 slot="end" *ngIf="user.visto === false">
+                <ion-badge color="danger">1</ion-badge>
+              <!-- <span class="status orange" *ngIf="line"></span>
+               online -->
+               </h3>
+<!-- 
+               <h3>
+                <span class="status orange" *ngIf="!line"></span>
+                 off line
+                 </h3> -->
+               
+            </div>
+        </li>
+     </ul>
+   
+    </aside>
+  
+   
+
+</ion-content>

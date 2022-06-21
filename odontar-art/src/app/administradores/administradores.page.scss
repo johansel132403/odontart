@@ -1,0 +1,141 @@
+html,body{
+    margin:0px;
+    padding:0px;
+   // height: 100%;
+    
+}
+
+
+
+
+*{
+    margin:0px;
+    padding:0px;
+}
+
+#user_logged span{
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+ 
+}
+#user_logged span:hover{
+    color:rgb(255, 255, 255);
+    cursor: pointer;
+  }
+  
+  .header01{
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    display: block;
+  }
+
+.header-titler{
+  
+   font-size: 20px;
+   font-weight: bold;
+   text-transform: uppercase;
+   margin-bottom: 25px;
+   display: block;
+   text-align: center;
+   justify-content: center;
+   margin: 0px auto;
+}
+
+.header-subtitulo{
+  text-align: center;
+  justify-content: center;
+  margin: 0px auto;
+  font-weight: bold;
+}
+
+.navigatio{
+    text-align: center;
+    width: 20%;
+    background: #1C1C1F ;
+    color:rgb(195, 192, 192);   
+    height: 100%;
+}
+
+#navigation a{
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-decoration: none;
+  color: rgb(195, 192, 192);;
+}
+#navigation a:hover{
+  color:rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+.logo-icono {
+  display: block;
+   text-align: center;
+   justify-content: center;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   font-size: 25px;
+   width: 100%;
+}
+
+#user_logged{
+
+  text-decoration: center;
+   position: absolute;
+   bottom:0px;
+   border-top: 1px solid #444;
+   width: 20%;
+}
+
+//imagen del avatar 
+.avatar-imagen{
+margin-right: 25px;
+}
+//los clientes
+.item-cliente{
+  margin-bottom: 20px;
+}
+
+         
+
+.a-item-clientes{
+text-decoration: none;
+}
+
+.item-cliente:hover {
+  //color: rgba(204, 17, 17, 0.561) !important;
+ // padding:1px;
+  background-color: rgba(141, 141, 141, 0.472);
+  box-shadow: 1px  2px 1px rgb(99, 99, 100);
+  cursor: pointer;
+
+}
+
+.datos-clientes h2{
+   color:rgb(141, 140, 140);
+   font-weight: bold;
+   font-size: 27x;
+}
+.datos-clientes h3{
+  font-weight: 600;
+  color:rgb(141, 140, 140);
+}
+
+.datos-clientes p {
+  color:rgb(141, 140, 140);
+}
+
+ion-avatar img  {
+  margin-top: -12px;
+  width:150% !important;
+  height : 150% !important;
+  max-width: 100px !important;  //any size
+  max-height: 100px !important; //any size
+  }
+
+  .list-header{
+    right: 58px;
+  }

@@ -1,0 +1,239 @@
+
+
+
+html,body{
+    margin:0px;
+    padding:0px;
+    height: 100%;
+}
+*{
+    margin:0px;
+    padding:0px;
+    border-right: none;
+  //  right: -40px;
+    width: 90%;        //compente esto en la actualizacion...
+}
+
+.content {
+
+ 
+  width: 114%;
+}
+
+.menu02{
+  //width: 155px; //esto lo Hice con la actualizacion....final
+  width: 100%;
+}
+
+
+
+.divsetting{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 45px;
+ }
+ 
+ 
+ //aqui esta la animacion del engranaje......
+ .divsetting{
+   #gear{
+     // position: relative;
+     // left: 92px;
+     // top: 19px;
+     animation-name: ckw;
+     animation-duration: 5s;
+     animation-iteration-count: infinite;
+     transform-origin: 50% 50%;
+     display: inline-block;
+     animation-timing-function: linear;
+     color: #26D0CE;
+ }
+ @keyframes ckw {
+     0% {
+         transform: rotate(0deg);
+     }
+     100% {
+         transform: rotate(360deg);
+     }
+ }
+ 
+ 
+ #gear02{
+   // position: relative;
+   // left: -91px;
+   // top: 4px;
+   
+   animation-name: ckw02;
+   animation-duration: 5s;
+   animation-iteration-count: infinite;
+   transform-origin: 50% 50%;
+   display: inline-block;
+   animation-timing-function: linear;
+   color: #26D0CE;
+   
+ }
+ @keyframes ckw02 {
+   0% {
+       transform: rotate(360deg);
+   }
+   100% {
+       transform: rotate(0deg);
+   }
+ }
+ } 
+
+
+
+
+
+
+#user_logged span{
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+ 
+}
+#user_logged span:hover{
+    color:rgb(255, 255, 255);
+    cursor: pointer;
+  }
+  
+  .header01{
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    display: block;
+  }
+
+.header-titler{
+  
+   font-size: 20px;
+   font-weight: bold;
+   text-transform: uppercase;
+   margin-bottom: 25px;
+   display: block;
+}
+
+.navigatio{
+    text-align: center;
+    width: 100%;
+    background: #1C1C1F ;
+    color:rgb(195, 192, 192);   
+    height: 100%;
+}
+
+#navigation a{
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-decoration: none;
+  color: rgb(195, 192, 192);;
+}
+#navigation a:hover{
+  color:rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+.logo-icono {
+  display: block;
+   text-align: center;
+   justify-content: center;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   font-size: 25px;
+   width: 100%;
+}
+
+#user_logged{
+
+   text-decoration: center;
+   position: absolute;
+   bottom:0px;
+   border-top: 1px solid #444;
+   width: 100%;
+}
+
+
+
+
+#user_logged a{
+  text-decoration: none;
+  color: rgb(195, 192, 192);;
+}
+#user_logged a:hover{
+  color:rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+
+
+
+//                                         Me quede aqui en la parte del response.....
+// @media (min-width:667px) {
+//   #user_logged {
+ 
+//     height: 1px !important;
+// }
+// .navigatio{
+//   text-align: center;
+//   width: 100%;
+//   background: #1C1C1F ;
+ 
+//   height: 650px;
+// }
+
+// .content{
+//   width: 100%;
+// }
+  
+// }
+
+@media (max-width:500px) {
+  .content{
+    width: 100%;
+}
+}
+@media (max-width:600px) {
+  .content{
+    width: 100%;
+}
+  
+}
+
+@media (max-width: 800px) {
+  ion-split-pane {
+    width: 100%;
+   
+    
+  }
+  
+  .menu-inner {
+    --background: red  var(--background);
+    
+ 
+}
+
+*{
+
+  width: 100%;        //compente esto en la actualizacion...
+}
+
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

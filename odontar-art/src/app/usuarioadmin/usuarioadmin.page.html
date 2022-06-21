@@ -1,0 +1,98 @@
+<ion-header>
+  <ion-toolbar>
+
+      <!-- Button del menu  -->
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+       </ion-buttons>
+
+    <ion-title>Configuracion</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div class="body">
+
+  <div class="container">
+    <div class="title">Administrador</div>
+       <form (submit)="actualizarDatos()">
+         <div class="user-details" *ngIf="user">
+            <div class="input-box">
+              <span class="details">Nombre</span>
+               <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="user.nombre" placeholder="Entre su Nombre" required>
+            </div>
+
+
+            <div class="input-box">
+              <span class="details">Apellido</span>
+               <input type="text" name="apellido" #apellido="ngModel" [(ngModel)]="user.apellido" placeholder="Apellido" required>
+            </div>
+
+            <div class="input-box">
+              <span class="details">Email</span>
+               <input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" placeholder="Email" required>
+            </div>
+
+            
+            <div class="input-box">
+              <span class="details">Role</span>
+              <input type="text"  name="role" #role="ngModel" [(ngModel)]="user.role" value="user.role" placeholder="hay que poner algo" disabled>
+            </div>
+            
+            <div class="input-box">
+              <span class="details">Contraseña</span>
+               <input type="password" placeholder="Contraseña" required>
+            </div>
+
+            <div class="input-box">
+              <span class="details">Confirmar contraseña</span>
+               <input type="password" placeholder="Confirmar contraseña" required>
+            </div>
+            
+           <div class="gender-details">
+
+             <input type="radio" name="gender" id="dot-1">
+             <input type="radio" name="gender" id="dot-2">
+             <input type="radio" name="gender" id="dot-3">
+             <span class="gender-title">En linea</span>
+
+             <div class="category">
+
+              <div class="form-group col-md-2 btn_activo">
+                <label>Usuario Activo</label>
+                <ion-toggle  [(ngModel)]="user.online"   slot="end" name="activo"  color="primary" Default></ion-toggle>
+            </div>
+<!-- 
+                <label for="dot-1">
+                  <span class="dot one"></span>
+                  <span class="gender">Male</span>
+                </label>
+
+            
+
+                <label for="dot-2">
+                  <span class="dot two"></span>
+                  <span class="gender">Female</span>
+                </label> 
+
+                <label for="dot-3">
+                  <span class="dot three"></span>
+                  <span class="gender">adfadf</span>
+                </label> -->
+
+
+             </div> 
+           </div>
+
+           <div class="button">
+
+            <input type="submit" value="Guardar">
+           </div>
+
+         </div>
+       </form>
+  </div>
+
+  
+</div>
+</ion-content>

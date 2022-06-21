@@ -1,0 +1,40 @@
+.div_form{
+    margin-top: 50px;
+}
+
+.bt:disabled{
+  cursor:not-allowed;
+}
+.btn_activo{
+  position: relative;
+  left: 20px;
+  bottom: 17px;
+}
+
+.btn_activo ion-toggle{
+  bottom: -43px;
+  right: 116px;
+}
+
+@media (max-width: 600px) {
+  
+  .div_form {
+    margin-top: 50px;
+    margin-left: 22px;
+    width: 360px;
+
+    button{
+      margin-top: 25px;
+
+      margin-bottom: 25px;
+    }
+
+    .form-control {
+      display: block;
+      width: 95%;
+
+    }
+}
+
+
+}

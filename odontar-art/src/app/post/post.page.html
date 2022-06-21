@@ -1,0 +1,73 @@
+<ion-header>
+  <!-- <ion-toolbar>
+    <ion-title>post</ion-title>
+  </ion-toolbar> -->
+
+  <ion-toolbar color='secondary' *ngIf="identity.role == 'Role_user'">
+    <ion-buttons slot='start'>
+     
+        <ion-back-button text="Inicio" defaulHref='/inicio'>Inicio</ion-back-button>
+
+      
+    </ion-buttons>
+    <ion-title>Notificaciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-buttons slot="start" *ngIf="identity.role == 'admin' || identity.role == 'Role_subadmin'">
+  <ion-menu-button></ion-menu-button>
+</ion-buttons>
+
+
+<div id="myModal" class="message last imgg modaly" >
+  < <span (click)="exitImagen()" class="close">&times;</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+</div>
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Tire para actualizar"
+      refreshingSpinner="circles"
+      refreshingText="Actualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
+  
+  
+  <div class="notifi" *ngIf="notes ==''">
+    <p>No hay Notificacion</p>
+  </div>
+  <ion-list *ngFor="let note of notes">
+    <ion-item-sliding>
+
+      
+      
+      <ion-card>
+        <img (click)="imagenOpen()" id="myImg" src="{{url+'getimagen/'+note.imagen}}" *ngIf="note.imagen" />
+        <ion-card-header>
+          <ion-card-title>{{note.tituloseg}}
+           
+              <ion-icon  (click)="deleteNote(note._id)"   color="danger" name="trash"></ion-icon>
+  
+           
+
+          </ion-card-title>
+          <ion-card-subtitle>{{note.titulopri}}</ion-card-subtitle>
+          <span>
+            {{note.fecha}}
+          </span>
+        </ion-card-header>
+        <ion-card-content>
+          {{note.nota}}
+        </ion-card-content>
+      </ion-card>
+      
+    </ion-item-sliding>
+    
+  </ion-list>
+
+
+
+</ion-content>

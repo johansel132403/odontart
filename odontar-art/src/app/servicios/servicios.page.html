@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar color='secondary'>
+    <ion-buttons slot='start'>
+       <ion-back-button text="Inicio" defaulHref='/inicio'>Inicio</ion-back-button>
+    </ion-buttons>
+    <ion-title>Servicios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item *ngFor='let service of services' [routerLink]="['/servicios', service.id]">
+      <ion-avatar slot="start">
+        <ion-img [src]='service.imagenURL'></ion-img>
+      </ion-avatar>
+      <ion-label>
+        {{service.title}}
+  
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>

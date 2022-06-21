@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar color='secondary'>
+    <ion-buttons slot="start">
+       <ion-back-button text="Inicio" defaulHref='/inicio'>Inicio</ion-back-button>
+    </ion-buttons>
+    <ion-title>Cepillado</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="body">
+     <img src="../../assets/img/foto azul.jpeg" alt="">
+  </div>
+
+
+  <!-- <div id="sonido">
+    <audio id="player" src="../../assets/song/song01.mp3" ></audio>
+  </div> -->
+
+<div>
+  
+  <!-- El tiempo de cepillado debe ser de 2 minutos estrictos, es el tiempo que se ha calculado por la Asociación Dental Americana que una persona tarda en eliminar todos los restos de comida. -->
+</div>
+  <div class="barra_de_progreso">
+<p></p>
+    <ion-progress-bar   [value]="progres" buffer="0.5"></ion-progress-bar>
+    <button class="btn_inicio" (click)="functionButton()" *ngIf="btn_function == true">INICIO</button>
+    <button class="btn_inicio"  *ngIf="btn_function == false">INICIO</button>
+  </div>
+
+  <div class="imagen_div01 flecha">
+    <img id="img01" src="../../assets/img/flecha.gif" alt="">
+  </div>
+
+  <div class="imagen_div02 flecha">
+    <img id="img02" src="../../assets/img/flecha.gif" alt="">
+  </div>
+
+  <div class="imagen_div03 flecha">
+    <img id="img03"  src="../../assets/img/flecha.gif" alt="">
+  </div>
+
+  <div class="imagen_div04 flecha">
+    <img id="img04" src="../../assets/img/flecha.gif" alt="">
+  </div>
+
+  <div class="imagen_div05 flecha">
+    <img id="img05" src="../../assets/img/flecha.gif" alt="">
+  </div>
+
+  <div class="imagen_div06 flecha">
+    <img id="img06" src="../../assets/img/flecha.gif" alt="">
+  </div>
+
+</ion-content>

@@ -1,0 +1,414 @@
+<ion-header>
+ 
+
+  <a *ngIf="user && user.role == 'Role_user'" class="aa" [routerLink]="['/admin/client']">
+  <ion-toolbar>
+      <ion-icon  slot="start" class="retroseder" name="arrow-back-outline"></ion-icon>
+      <ion-title  class="title02" >Datos personales del Cliente</ion-title>
+      <!-- <ion-title *ngIf="user && user.role == 'Role_admin' || user.role == 'Role_subadmin'" class="title02" >Datos personales del administrador</ion-title> -->
+
+    </ion-toolbar>
+  </a>
+
+  <a *ngIf="user && user.role == 'Role_admin'  || user && user.role == 'Role_subadmin'"  class="aa" [routerLink]="['/admin/admins']">
+    <ion-toolbar>
+        <ion-icon  slot="start" class="retroseder" name="arrow-back-outline"></ion-icon>
+        <!-- <ion-title *ngIf="user && user.role == 'Role_user'" class="title02" >Datos personales del Cliente</ion-title> -->
+        <ion-title  class="title02" >Datos personales del administrador</ion-title>
+  
+      </ion-toolbar>
+    </a>
+</ion-header>
+
+<ion-content class="contenedor" *ngIf="user && user._id">
+
+  <div class="contenedor01">
+
+    
+    <div>
+
+      
+      
+      <div class="imgUser" *ngIf='user && user._id'>
+        <img class="myImageId" src="../../assets/img/user01.png" *ngIf="!user.imagen" alt="">
+        <img class="myImageId" src="{{url+'getimagen/'+user.imagen}}" *ngIf="user.imagen" alt="">
+            <label class="uploadLabel">
+              <ion-icon slot="end" name="camera"></ion-icon>
+                <input id="uploadCaptureFile" #inputFile (change)="uploadImagenInput($event)" type="file" class="uploadButton"/>
+            </label>
+      </div>
+      
+      <div class="contenedor02" >
+        <h1>{{user.nombre}}</h1>
+      </div>
+      
+      <div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="cuerpo">
+
+    <div class="marge-about">
+
+      
+      <div class="aboutcontent">
+        <div class="about">
+          <ion-icon slot="end" name="person"></ion-icon>
+          Cliente
+        </div>
+        
+        <div (click)=actualizarDatoPopUp() id="editbtn"  style="color:rgb(255, 115, 0)" class="edit">
+          <ion-icon   style="color:rgb(255, 115, 0);" name="pencil"></ion-icon>
+          Editar
+        </div>
+        
+        
+
+        <div style="clear: both" class="contenido">
+          
+          <div class="contenido-datos">
+            <h6>Nombre</h6>
+            <p *ngIf="user.nombre">{{user.nombre}}</p>
+          </div>
+
+          <div class="contenido-datos">
+            <h6>Apellido</h6>
+            <p *ngIf="user.apellido">{{user.apellido}}</p>
+          </div>
+
+          <div class="contenido-datos">
+            <h6>Email</h6>
+            <p *ngIf="user.email">{{user.email}}</p>
+          </div>
+
+          <div class="contenido-datos" *ngIf="user && user.role == 'Role_admin' || user.role == 'Role_subadmin'  ">
+            <h6>Administrador Activo</h6>
+            <div  style="padding-left: 0px;" *ngIf="user && user.role == 'Role_admin' || user.role == 'Role_subadmin'  " class="form-group col-md-2 btn_activo">
+             
+              <!-- (click)="functionprueba()" -->
+
+              <ion-toggle (ngModelChange)="functionprueba(this.user)"  [(ngModel)]="user.activo" slot="end" name="activo" #activo="ngModel" color="success" Default></ion-toggle>
+            </div>
+          
+          </div>
+
+
+<!-- 
+          <div class="contenido-datos">
+            <h6>Sexo</h6>
+            <p>Masculino</p>
+          </div> -->
+
+          <div  *ngIf="user && user.role == 'Role_user' " class="contenido-datos">
+            <h6>Direccion</h6>
+            <p *ngIf="user.direccion">{{user.direccion}}</p>
+          </div>
+
+
+          <div  class="contenido-datos">
+            <h6 (click)="cambiarcontrasena()" class="cambiarcontrasena">Cambiar contraseña</h6>
+            
+          </div>
+
+        </div>  
+         
+
+        
+        
+        
+      </div>
+    </div>
+    
+    <!-- segundo***************** -->                           
+    <div *ngIf="user && user.role == 'Role_user' || identity && identity.role == 'Role_admin' " class="aboutcontent02" style="float: right; clear: both;">
+      <div    class="aboutcontentsa">
+        <div  *ngIf="user && user.role == 'Role_user'" class="about">
+          <ion-icon  slot="end" name="person"></ion-icon>
+          
+          Contacto
+        </div>
+        
+        <div  *ngIf="identity && identity.role == 'Role_admin' && user && user.role == 'Role_subadmin' || user && user.role == 'Role_admin'" class="about">
+         
+          <ion-icon  name="calendar-outline"></ion-icon>
+          
+          Historial de entrada
+
+          <ion-list class="listhistory">
+            <ion-item  *ngFor="let historial of user.fecha_entrada">
+              <ion-label>{{historial}}</ion-label>
+            </ion-item>
+            
+          </ion-list>
+        </div>
+        
+        <div *ngIf="user && user.role == 'Role_user'"  (click)="actualizarContacto()" id="editbtn" style="color:rgb(255, 115, 0)" class="edit">
+          <ion-icon  style="color:rgb(255, 115, 0)"style="color:rgb(255, 115, 0)" name="pencil"></ion-icon>
+          Editar
+        </div>
+        
+        
+
+        <div *ngIf="user && user.role == 'Role_user'" style="clear: both" class="contenido">
+          
+          <div class="contenido-datos">
+            <h6>Telefono</h6>
+            <p *ngIf="user.telefono">{{user.telefono}}</p>
+          </div>
+
+          <div class="contenido-datos">
+            <h6>Email</h6>
+            <p>JohanselP@gmail.com</p>
+          </div>
+           <!-- //Historial -->
+
+
+
+
+
+
+        </div>
+
+      </div>
+   
+    </div>
+    
+     <!-- tecer***************** -->
+     <div  *ngIf="user && user.role == 'Role_user' || identity && identity.role == 'Role_admin'" class="aboutcontent02 tercer" style="float: right; clear: both;">
+      <div    class="aboutcontentsa">
+        <div *ngIf="user && user.role == 'Role_user'" class="about">
+          <ion-icon name="calendar"></ion-icon>
+          
+          Cita agendada
+        </div>
+
+        <div *ngIf="user && user.role == 'Role_subadmin' || user && user.role == 'Role_admin' &&  identity && identity.role == 'Role_admin'" class="about">
+          <ion-icon name="calendar"></ion-icon>
+          
+          Historial de salida 
+          
+          <ion-list class="listhistory">
+            <ion-item  *ngFor="let historia of user.fecha_salida">
+              <ion-label>{{historia}}</ion-label>
+            </ion-item>
+            
+          </ion-list>
+          
+        </div>
+       
+       
+        <ion-fab *ngIf="user && user.role == 'Role_user'" (click)="presentAlertPrompt()" horizontal="end" style="right: 40px; top: 12px;"  slot="fixed">
+          <ion-fab-button style="width: 42px; height: 42px;"color="secondary">
+            <ion-icon   name="add"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+
+        
+        <!-- <div class="edit">
+          <ion-icon  color='danger' name="pencil"></ion-icon>
+          Editar
+        </div> -->
+        
+        
+
+        <div  *ngIf="user && user.role == 'Role_user'" style="clear: both;" style="height: auto;" class="contenido">
+          <ion-list style="width: 100%; height:168px;  overflow-x:hidden;">
+            
+            
+         
+              <ion-list-header>  <!--TITLE-->   </ion-list-header>
+              
+              <ion-item  *ngFor="let item of cita">
+               
+                <ion-label *ngIf="cita">
+                  <h2 aria-placeholder="Dr">Dr.{{item.doctor}}</h2>
+                  <h3>{{item.descripcion}}</h3>
+                  <p>{{item.fecha}}</p>
+                </ion-label>
+
+                      <div (click)="editarCita(item._id)" id="btneditar" class="edit" style="font-size: 15px;margin-right: 10px; color:rgb(255, 115, 0)">
+                        <ion-icon  style="width: 15px; color:rgb(255, 115, 0); " name="pencil"></ion-icon>
+                        Editar 
+                      </div>
+                      &nbsp;
+                      │
+                      &nbsp;
+                      &nbsp;
+                      <div (click)="borrarCita(item._id)"  id="btnborrar" class="edit" style="font-size: 15px;">
+                        Borrar 
+                        <ion-icon slot="end" style="color:red" style="width: 15px; " name="trash-outline"></ion-icon>
+                      </div>
+
+              </ion-item>
+              
+            </ion-list>
+            
+            
+            
+          </div>
+
+
+
+          <!-- <div  *ngIf="user && user.role == 'Role_admin'" style="clear: both;" style="height: auto;" class="contenido">
+            <ion-list style="width: 100%; height:171px;  overflow-x:hidden;">
+              
+              
+           
+                <ion-list-header> Recent Conversations </ion-list-header>
+                
+                <ion-item  *ngFor="let item of cita">
+                 
+                  <ion-label *ngIf="cita">
+                    <h2 aria-placeholder="Dr">Dr.{{item.doctor}}</h2>
+                    <h3>{{item.descripcion}}</h3>
+                    <p>{{item.fecha}}</p>
+                  </ion-label>
+  
+                        <div (click)="editarCita(item._id)" id="btneditar" class="edit" style="font-size: 15px;margin-right: 10px; color:rgb(255, 115, 0)">
+                          <ion-icon  style="width: 15px; color:rgb(255, 115, 0); " name="pencil"></ion-icon>
+                          Editar 
+                        </div>
+                        &nbsp;
+                        │
+                        &nbsp;
+                        &nbsp;
+                        <div (click)="borrarCita(item._id)"  id="btnborrar" class="edit" style="font-size: 15px;">
+                          Borrar 
+                          <ion-icon slot="end" style="color:red" style="width: 15px; " name="trash-outline"></ion-icon>
+                        </div>
+  
+                </ion-item>
+                
+              </ion-list>
+              
+              
+              
+            </div> -->
+        
+        
+        
+      </div>
+   
+      
+    </div>
+    
+   <div class="containerr body" *ngIf="user.role ==='Role_admin'|| user.role === 'Role_subadmin'">
+     <table class="table" >
+       <thead>
+         <tr>
+           <th scope="col">#</th>
+           <th scope="col">Nombre</th>
+           <th scope="col">Calificacion</th>
+           <th scope="col">Mensaje</th>
+         </tr>
+       </thead>    
+       <tbody>
+         <tr *ngFor="let user of user.calificacion;let i = index">
+           <th scope="row">{{i}}</th>
+           <td class="nombre">{{user.id}}</td>
+           <!-- <td>{{user.calificacionEstrella}} / 5</td> estrella -->
+           <td>
+                    <!-- ESTRELLA DE CALIFICACION -->
+             <div class="star-widget" *ngIf="user.calificacionEstrella == 5">
+               <input  type="radio" name="rate" id="rate-5" value="5">
+               <label  for="rate-5" class="fas fa-star"></label>
+               
+               <input  type="radio" name="rate" id="rate-4" value="4">
+               <label  for="rate-4" class="fas fa-star"></label>
+               
+               <input *ngIf= type="radio" name="rate" id="rate-3" value="3">
+               <label  for="rate-3" class="fas fa-star"></label>
+               
+               <input  type="radio" name="rate" id="rate-2" value="2">
+               <label  for="rate-2" class="fas fa-star"></label>
+               
+               <input  type="radio" name="rate" id="rate-1" value="1">
+               <label  for="rate-1" class="fas fa-star"></label>
+             </div>
+
+             
+             <div class="star-widget" *ngIf="user.calificacionEstrella == 4">
+               <input  type="radio" name="rate" id="rate-4" value="4">
+               <label  for="rate-4" class="fas fa-star"></label>
+               
+               <input *ngIf= type="radio" name="rate" id="rate-3" value="3">
+               <label  for="rate-3" class="fas fa-star"></label>
+               
+               <input  type="radio" name="rate" id="rate-2" value="2">
+               <label  for="rate-2" class="fas fa-star"></label>
+               
+               <input  type="radio" name="rate" id="rate-1" value="1">
+               <label  for="rate-1" class="fas fa-star"></label>
+             </div>
+
+             
+             <div class="star-widget" *ngIf="user.calificacionEstrella == 3">
+               <input  type="radio" name="rate" id="rate-3" value="3">
+               <label  for="rate-3" class="fas fa-star"></label>
+               
+               <input  type="radio" name="rate" id="rate-2" value="2">
+               <label  for="rate-2" class="fas fa-star"></label>
+               
+               <input  type="radio" name="rate" id="rate-1" value="1">
+               <label  for="rate-1" class="fas fa-star"></label>
+             </div>
+
+             <div class="star-widget" *ngIf="user.calificacionEstrella == 2">
+               <input  type="radio" name="rate" id="rate-2" value="2">
+               <label  for="rate-2" class="fas fa-star"></label>
+               
+               <input  type="radio" name="rate" id="rate-1" value="1">
+               <label  for="rate-1" class="fas fa-star"></label>
+             </div>
+
+             <div class="star-widget" *ngIf="user.calificacionEstrella == 1">
+               <input  type="radio" name="rate" id="rate-1" value="1">
+               <label  for="rate-1" class="fas fa-star"></label>
+             </div>
+
+
+
+
+
+           </td>
+           <td class="tddsss">
+             <div class="tdd02">
+               {{user.mensaje}}
+               
+             </div>
+           </td>
+         </tr>    
+         <!-- <tr>
+           <th scope="row">2</th>
+           <td>Jacob</td>
+           <td>Thornton</td>
+           <td>@fat</td>
+         </tr>
+         <tr>
+           <th scope="row">3</th>
+           <td>Larry</td>
+           <td>the Bird</td>
+           <td>@twitter</td>
+         </tr> -->
+       </tbody>
+     </table>
+   </div>
+
+    
+
+
+
+  </div>
+
+</ion-content>
+  
+
+
+
+
+ 
+
+  
+

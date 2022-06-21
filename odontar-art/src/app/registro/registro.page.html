@@ -1,0 +1,99 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <!-- <ion-title>signup</ion-title> -->
+    <ion-buttons slot="start">
+      <ion-back-button defaulthref="login" text="">
+      </ion-back-button>
+      </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content class="bg-color">
+
+    <ion-card class="ion-no-margin">
+
+        <ion-card-header>
+            <ion-card-title>
+              Registrarse
+            </ion-card-title>
+            <ion-card-subtitle>
+              Crea tu cuenta llenando el formulario
+              </ion-card-subtitle>
+        </ion-card-header>
+
+
+        <div class="error_alert" *ngIf='status == false'>{{erro}}</div>
+        <div class="succes_alert" *ngIf='status == true'>{{statusSuccess}}</div>
+
+        
+
+             <form #registerForm="ngForm"  (ngSubmit)="onSubmit(registerForm)">
+       <ion-card-content>
+           <ion-item>
+             
+             <ion-input name="nombre"  #nombre="ngModel" [(ngModel)]="user.nombre" type="text" placeholder="Nombre" required >
+               <ion-icon name="person-outline"  ></ion-icon>
+              </ion-input>
+              <ion-text color="danger">
+                <span *ngIf='!nombre.valid && nombre.touched'>*</span>
+              </ion-text>
+           </ion-item>
+
+           <ion-item>
+             
+            <ion-input name="apellido"  #apellido="ngModel" [(ngModel)]="user.apellido" type="text" placeholder="Apellido" required >
+              <ion-icon name="person-outline"  ></ion-icon>
+             </ion-input>
+             <ion-text color="danger">
+               <span *ngIf='!apellido.valid && apellido.touched'>*</span>
+             </ion-text>
+          </ion-item>
+              <div>
+                
+
+              </div>
+           <ion-item>
+               <ion-input name="telefono" #telefono="ngModel"  onKeyPress="if(this.value.length==10) return false;" [(ngModel)]="user.telefono" type="number" placeholder="Telefono  No." required>
+                 <ion-icon name="call-outline" ></ion-icon>
+               </ion-input>
+               <ion-text color="danger">
+                <span *ngIf='!telefono.valid && telefono.touched' >*</span>
+              </ion-text>
+           </ion-item>
+           <div>
+                     
+
+           </div>
+           <ion-item>
+               <ion-input name="email" #email="ngModel" [(ngModel)]="user.email" type="email" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"> 
+                 <ion-icon name="mail-outline" ></ion-icon>
+               </ion-input>
+               <ion-text color="danger">
+                <span *ngIf='!email.valid && email.touched' >*</span>
+              </ion-text>
+           </ion-item>
+           
+           <ion-item>
+               <ion-input name="password" #password="ngModel" [(ngModel)]="user.password" type="password" placeholder="************" required >
+                 <ion-icon name="lock-closed" ></ion-icon>
+               </ion-input>
+               <ion-text color="danger">
+                <span  [style.fontSize]="['x-large']" *ngIf='!password.valid && password.touched' >*</span>
+              </ion-text>
+           </ion-item>
+          
+
+           <div class="sign-btn-wrap">
+              <ion-button  shape="round" type="submit"  fill="solid" class="sign-btn" [disabled]="!registerForm.form.valid">Registrarte </ion-button>
+             </div>
+
+             
+
+             
+
+       </ion-card-content>
+        </form>
+    </ion-card>
+
+</ion-content>

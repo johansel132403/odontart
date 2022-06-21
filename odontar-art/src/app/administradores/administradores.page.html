@@ -1,0 +1,71 @@
+
+ <ion-header>
+
+   
+   
+   
+   <ion-toolbar>
+    <!-- Button del menu  -->
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+     </ion-buttons>
+    <ion-title class="header-titler">Administradores
+    </ion-title>
+        <p class="header-subtitulo">
+       
+        </p>
+
+  </ion-toolbar>
+</ion-header>
+<ion-toolbar>
+  <ion-searchbar id="ion-searchbar" placeholder="Buscar" (keydown)="functionclick()"></ion-searchbar>
+</ion-toolbar>
+    <ion-content>
+
+      <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+          
+          pullingIcon="chevron-down-circle-outline"
+          pullingText="Tire para actualizar"
+          refreshingSpinner="circles"
+          refreshingText="Actualizando...">
+        </ion-refresher-content>
+      </ion-refresher>
+
+
+
+      <ion-list-header class="  ">
+      
+      </ion-list-header>
+
+      
+      <ion-list>
+        <!-- <button  class="btn btn-light" (click)="actualizarDatos()" style="width: 50px; padding: 5px; border-radius: 5px;">
+          <ion-icon name="reload-outline" style="font-size: 25px;"></ion-icon>
+         </button> -->
+         
+         <ion-item (click)="funcionEnlace(user._id)" *ngFor='let user of users' class="item-cliente">
+           
+          
+          <ion-avatar slot="start" class="avatar-imagen">
+           
+            <img src="{{url+'getimagen/'+user.imagen}}" *ngIf="user.imagen" alt="">
+            <img src="../../assets/img/user01.png" alt="" *ngIf="!user.imagen">
+            
+          </ion-avatar>
+          <ion-label  class="datos-clientes">
+            <div  >
+              <h2>{{user.nombre}}</h2>
+              <h3>{{user.email}}</h3>
+              <p>Aqui tiene que ir la parte del comentarioo...</p>
+
+            </div>
+          </ion-label>
+          
+        </ion-item>
+
+
+       </ion-list>  
+
+
+</ion-content>
