@@ -23,8 +23,11 @@ var app = express();
     //     })
     
     //Cargar Rutas 
-    let userRouter = require('../back-end/routers/userRouter');
-    let citaRouter = require('../back-end/routers/citasRouter')
+    // let userRouter = require('../back-end/routers/userRouter');
+    // let citaRouter = require('../back-end/routers/citasRouter')
+    let userRouter = require('./routers/userRouter');
+    let citaRouter = require('./routers/citasRouter')
+
     
     
     //Middlewares
