@@ -42,7 +42,7 @@ console.log(process.env.DB_URL)
     //******************************************************************************************************************** */
 //let port = 3800;
 var host = process.env.HOST || "0.0.0.0";
-var port = process.env.PORT || 3800;
+var port = process.env.PORT || 3000;
 //ac-ccswtcz-shard-00-02.tvfjxum.mongodb.net
 
 
