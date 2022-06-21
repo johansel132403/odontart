@@ -61,6 +61,7 @@ mongoose.connect(process.env.DB_URL,{ useNewUrlParser : true})
 
                     //Crear servidor
                     var serve = app.listen( port, () => {
+                        console.log(port)
                      
                         // video de socket https://www.youtube.com/watch?v=CKrJZdxEeNA , parte de este codigo es de este video o una idea 
                         /**/////////////////////////////////////////////// */
