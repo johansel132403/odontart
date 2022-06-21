@@ -1,6 +1,8 @@
 
-let User = require('../../back-end/model/user.model');
-let Chat = require('../../back-end/model/chat.model');
+//let User = require('../../back-end/model/user.model');
+let User = require('../model/user.model');
+
+let Chat = require('../model/chat.model');
 
 let bcrypt = require('bcryptjs');
 
