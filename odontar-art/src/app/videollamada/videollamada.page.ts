@@ -19,8 +19,9 @@ import {v4 as uuidv4} from 'uuid';
   styleUrls: ['./videollamada.page.scss'],
 })
 export class VideollamadaPage implements OnInit {
-
-    public sIo = io('http://localhost:3800');
+  //https://odontoart.herokuapp.com
+// public sIo = io('http://localhost:3800');
+  public sIo = io('https://odontoart.herokuapp.com');
   public identity;
   public usuarioDeOtraCuenta;
   public receptorr;
@@ -67,8 +68,10 @@ export class VideollamadaPage implements OnInit {
 
     this.peer = new Peer(undefined, {
       path: "/peerjs",
-      host: 'localhost',
-      port: 3800,
+      // host: 'localhost',
+      // port: 3800,
+      host:'https://odontoart.herokuapp.com',
+      
 
 
      });
