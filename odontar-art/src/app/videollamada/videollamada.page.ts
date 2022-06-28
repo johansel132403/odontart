@@ -70,7 +70,7 @@ export class VideollamadaPage implements OnInit {
       path: "/peerjs",
       // host: 'localhost',
       // port: 3800,
-      host:'https://odontoart.herokuapp.com',
+      host:'odontoart.herokuapp.com',
       
 
 
