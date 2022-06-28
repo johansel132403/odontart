@@ -46,6 +46,8 @@ import { UserServices } from './services/user.services';
 import { SaveLogin } from './services/user.saveLogin';
 import { UserProtedurls } from './services/user.protected-urls';
 
+import { AndroidPermissions } from '@awesome-cordova-plugins/android-permissions/ngx';
+
 
 
 // EmailComposer  comente este codigo......
@@ -56,7 +58,7 @@ import { UserProtedurls } from './services/user.protected-urls';
   declarations: [ AppComponent, UsercomponentComponent ],
   entryComponents: [],                                                
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,InicioPageModule,HomePageModule, FormsModule, HttpClientModule, SweetAlert2Module ],//routing
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, CallNumber, SMS, Services, DatosServios, PhotoViewer,UserGuard,UserServices,SaveLogin,UserProtedurls ], //aapRouting.......
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, CallNumber, SMS, Services, DatosServios, PhotoViewer,UserGuard,UserServices,SaveLogin,UserProtedurls,AndroidPermissions ], //aapRouting.......
   bootstrap: [AppComponent],
   exports:[InicioPageModule,HomePageModule]
  
