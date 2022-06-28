@@ -18,7 +18,8 @@ import { HomePage } from '../home/home.page';
 
 import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
 import { SMS } from '@awesome-cordova-plugins/sms/ngx'; 
-import { EmailComposer } from '@awesome-cordova-plugins/email-composer/ngx';
+//import { EmailComposer } from '@awesome-cordova-plugins/email-composer/ngx';
+//import { EmailComposer } from '@ionic-native/email-composer/ngx';
 
 import { AlertController } from '@ionic/angular';
 import { Services } from '../services/sms.services';
@@ -43,15 +44,15 @@ export class InicioPage implements OnInit, DoCheck, OnChanges {
   
   // public scroll$:Observable<number>;
   // data gmail...
-  subject:string ='';
-  body:string ='';
-  to:string ='';
+  subject ='';
+  body ='';
+  to   ='';
   notes;
   val;
   notificacionView;
   // URL Para WhatssApp.....
   countrycode: string = '+1';
-  whatsappnumber:string = '8093199970';
+  whatsappnumber:string = '8492878742';
   url:string = "https://wa.me/"+this.countrycode+this.whatsappnumber+"?text=Hello";
   identity;
   alertError;
@@ -64,7 +65,7 @@ export class InicioPage implements OnInit, DoCheck, OnChanges {
         private callnub: CallNumber, 
         public alertController: AlertController, 
         private mensage: Services,
-        private email: EmailComposer,
+        //private email: EmailComposer,
         private _citaServices:CitaServices ,
         private _userService: UserServices,
         private router:Router
@@ -160,7 +161,7 @@ export class InicioPage implements OnInit, DoCheck, OnChanges {
 
   // llamar 
   Call(){
-    this.callnub.callNumber("18093199970", true)
+    this.callnub.callNumber("18292453332", true)
   .then(res => console.log('Make Call!', res))
   .catch(err => console.log('Error launching dialer', err));
   }
@@ -201,20 +202,21 @@ export class InicioPage implements OnInit, DoCheck, OnChanges {
   }
 
 
-  SendGmail(){
+//  async SendGmail(){
 
-    let gmail = {
-      to: this.to,
-      cc: [],
-      bcc: ['john@doe.com', 'jane@doe.com'],
-      attachments: [],
-      subject: this.subject,
-      body: this.body,
-      isHtml: false,
-      app:'Gmail'
-    }
-    this.email.open(gmail);
-  }
+//     let gmail = {
+//       to:'odontoarte@gmail.com'
+//       // cc: [],
+//       // bcc: [],
+//       // attachments: [],
+//       // subject: this.subject,
+//       // body: this.body,
+//       // isHtml: false
+   
+//     }
+//    // await this.email.addAlias('gmail', 'com.google.android.gm')
+//     await  this.email.open(gmail);
+//   }
 
 
  async hacerCita(){

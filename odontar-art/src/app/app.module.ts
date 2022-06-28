@@ -17,7 +17,9 @@ import { HomePageModule } from './home/home.module';
 
 import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
 import { SMS } from '@awesome-cordova-plugins/sms/ngx';
-import { EmailComposer } from '@awesome-cordova-plugins/email-composer/ngx';
+//import { EmailComposer } from '@awesome-cordova-plugins/email-composer/ngx';
+//import { EmailComposer } from '@ionic-native/email-composer/ngx';
+
 import { PhotoViewer } from '@awesome-cordova-plugins/photo-viewer/ngx';
 
 
@@ -46,7 +48,7 @@ import { UserProtedurls } from './services/user.protected-urls';
 
 
 
-
+// EmailComposer  comente este codigo......
 
 
 
@@ -54,7 +56,7 @@ import { UserProtedurls } from './services/user.protected-urls';
   declarations: [ AppComponent, UsercomponentComponent ],
   entryComponents: [],                                                
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,InicioPageModule,HomePageModule, FormsModule, HttpClientModule, SweetAlert2Module ],//routing
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, CallNumber, SMS, Services, DatosServios, EmailComposer, PhotoViewer,UserGuard,UserServices,SaveLogin,UserProtedurls ], //aapRouting.......
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, CallNumber, SMS, Services, DatosServios, PhotoViewer,UserGuard,UserServices,SaveLogin,UserProtedurls ], //aapRouting.......
   bootstrap: [AppComponent],
   exports:[InicioPageModule,HomePageModule]
  

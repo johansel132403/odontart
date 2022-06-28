@@ -82,7 +82,7 @@ mongoose.connect(process.env.DB_URL,{ useNewUrlParser : true})
                         
                         var io =  socketio(serve,{
                             cors:{
-                                origin:['http://localhost:8100'],
+                                origin:['http://localhost:8100','http://localhost'],
                                
                             },
                             //este codigo es porque da un error (ws:) y puse esto para eliminar el error

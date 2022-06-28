@@ -25,7 +25,9 @@ import { AdministradoresPage } from '../administradores/administradores.page';
 })
 export class ChatPage implements OnInit, DoCheck, OnDestroy {
   
-  public sIo = io('http://localhost:3800');
+
+
+  public sIo = io('https://odontoart.herokuapp.com');
   
   public mensaje: Mensaje;
   public mensajes:Array<any>;
@@ -63,7 +65,7 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
    btn_function =  true;
 
   constructor(
-    private socket: webSocketService, 
+   // private socket: webSocketService, 
     private route:ActivatedRoute, 
     private userServices:UserServices, 
     private router: Router,  
@@ -82,6 +84,10 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
       }
       
       ngOnInit() {
+      //   const IS_PROD = process.env.NODE_ENV === "production";
+      //   const URL = IS_PROD ? "odontoart.herokuapp.com" : "http://localhost:3000";
+      //  this.sIo = io(URL);
+      
 
       this.user = new User('','','','','','','','','','','',null,null,null,'','','');
 

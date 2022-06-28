@@ -19,7 +19,7 @@ export class ChatsadminPage implements OnInit,DoCheck {
   private identity;
   private line;
   url;
-  public sIo = io('http://localhost:3800');
+  public sIo = io('https://odontoart.herokuapp.com');
   
   constructor( private userServices: UserServices,private router: Router) {
 
