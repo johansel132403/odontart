@@ -69,8 +69,9 @@ export class VideollamadaPage implements OnInit {
     this.peer = new Peer(undefined, {
       path: "/peerjs",
       // host: 'localhost',
-      // port: 3800,
       host:'odontoart.herokuapp.com',
+      port: 443, //this port has given us heroes....
+      secure: true
       
 
 
@@ -326,7 +327,7 @@ export class VideollamadaPage implements OnInit {
    setTimeout(() => {
      
      this.sockeCall( this.datos )
-  }, 200);
+  }, 500);
   // socket.IO CALL....
 
 
@@ -407,6 +408,8 @@ export class VideollamadaPage implements OnInit {
     const video = document.createElement("video");
    
     call.on("stream", (userVideoStream) => {
+
+      console.log(call,userVideoStream)
      
       this.addVideoStream(video, userVideoStream);
     });
@@ -466,6 +469,7 @@ sockeCall(datosd){
 
   this.identity = JSON.parse(localStorage.getItem('identity'));
 
+  console.log('log',this.datos.email)
   let datos = {
 
     id: this.identity._id,
