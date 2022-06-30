@@ -790,15 +790,18 @@ uploadImagenInput(inputFile:any){
       setTimeout(() => {
 
         console.log(this.token)
-        
+        console.log('pop')
         this._uploadimagen.subirImagen(this.url+'subimagen/'+idCliente._id,[],this.uploadFile,this.token,'imagen')
         .then((value:any)=>{
 
-       
+          console.log('pop',value)
+          
            // este codigo es para cambiar la imagen.....
            document.querySelector(".myImageId").setAttribute( 'src', this.url+'getimagen/'+`${value.response.imagen}` );
          
-      });
+      }).catch(e => {
+        console.log(e)
+      })
 
     }, 300);
 

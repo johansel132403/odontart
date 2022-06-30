@@ -440,6 +440,8 @@ function uploadImagen02(req, res ){
 
                  if(response){
 
+                    console.log(response)
+
                      return res.status(200).send({response});
 
                  }else{

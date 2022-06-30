@@ -4,7 +4,7 @@
   <a *ngIf="user && user.role == 'Role_user'" class="aa" [routerLink]="['/admin/client']">
   <ion-toolbar>
       <ion-icon  slot="start" class="retroseder" name="arrow-back-outline"></ion-icon>
-      <ion-title  class="title02" >Datos personales del Cliente</ion-title>
+      <ion-title style="text-align: center;"  class="title02" >Datos personales del cliente</ion-title>
       <!-- <ion-title *ngIf="user && user.role == 'Role_admin' || user.role == 'Role_subadmin'" class="title02" >Datos personales del administrador</ion-title> -->
 
     </ion-toolbar>
@@ -14,7 +14,7 @@
     <ion-toolbar>
         <ion-icon  slot="start" class="retroseder" name="arrow-back-outline"></ion-icon>
         <!-- <ion-title *ngIf="user && user.role == 'Role_user'" class="title02" >Datos personales del Cliente</ion-title> -->
-        <ion-title  class="title02" >Datos personales del administrador</ion-title>
+        <ion-title style="text-align: center;"  class="title02" >Datos personales del administrador</ion-title>
   
       </ion-toolbar>
     </a>

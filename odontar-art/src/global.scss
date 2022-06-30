@@ -34,7 +34,7 @@
 }
 
 .udateData .alert-wrapper{
-    min-width: 450px  !important;
+    min-width: 320px  !important;
 }
 
 body.swal2-height-auto {
@@ -61,6 +61,9 @@ body.swal2-height-auto {
     -webkit-transform: rotateY(180deg);
     -moz-transform: rotateY(180deg);
   }
+
+ 
+  
 
 
 // :root {
@@ -264,7 +267,8 @@ ion-progress-bar{
     }
   
     video {
-      height: auto;
+     // height: auto;
+      height: 50%;
       width: 100%;
     }
   
@@ -285,7 +289,7 @@ ion-progress-bar{
   @media (max-width: 600px) {
 
     .my-custom-class .alert-wrapper {
-        min-width: 366px !important;
+        min-width: 314px !important;
     }
 
   
