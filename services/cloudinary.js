@@ -10,6 +10,8 @@ cloudinary.config({
 
  async function uploadFileImgCloudinary(fileImage){
 
+    console.log('prue',fileImage)
+
   return  await cloudinary.uploader.upload(fileImage,{
     folder: 'imgodonto'
   });
