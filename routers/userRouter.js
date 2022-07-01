@@ -2,6 +2,7 @@
 let express = require('express');
 
 let controllers = require('../controllers/userController');
+let path = require('path');
 
 let api = express.Router();
 
