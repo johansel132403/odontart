@@ -49,7 +49,7 @@
           
           <ion-avatar slot="start" class="avatar-imagen">
            
-            <img src="{{url+'getimagen/'+user.imagen}}" *ngIf="user.imagen" alt="">
+            <img src="{{user.imagen.secure_url}}" *ngIf="user.imagen" alt="">
             <img src="../../assets/img/user01.png" alt="" *ngIf="!user.imagen">
             
           </ion-avatar>

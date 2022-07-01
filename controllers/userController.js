@@ -390,25 +390,8 @@ async function uploadImagen(req, res ){
               console.log(err);
             }
 
-
-    // console.log('imgRespon***************',imgRespon)
-
         await fs.unlink(req.files.imagen.tempFilePath)
-        // var file_path = req.files.imagen.path;
 
-        // var file = file_path.split('\\');
-
-        // var imagUrl = file[file.length -1];
-
-        // var formtoImg = imagUrl.split('.');
-
-        // var formato = formtoImg[formtoImg.length -1];
-
-        // var imgg = {
-        //     public_id: imgRespon.public_id,
-        //     secure_id: imgRespon.secure_url
-        // } 
-         
         if( imgg  ){
 
 
@@ -422,24 +405,9 @@ async function uploadImagen(req, res ){
                } catch (error) {
                    console.log(error)
                }
-                   
-
-                //  if(err) return res.status(500).send({Mensaje:'Error con la imagen'});
-
-            //      if(response){
-
-            //          return res.status(200).send({response});
-
-            //      }else{
-            //          return removeFileUpload( res, file_path, 'No exciste la imagen' );
-            //      }
-
-            //    }).catch(e =>{
-            //     console.log(e)
-            //    })
-                
+          
             }else{
-           return  removeFileUpload(res, file_path, 'No se puede subir esta imagen');
+           return  removeFileUpload(res, req.files.imagen.tempFilePath, 'No se puede subir esta imagen');
            // return res.status(500).send({Mensaje:'Error: formato erróneo'});
         }
        
@@ -506,43 +474,58 @@ function uploadImagen02(req, res ){
 function uploadImagenChatNew(req, res ){
 
     let userId = req.params.id;
-      
+
+    var imgg = {
+        public_id: "",
+        secure_id: ""
+    } 
    
-
-    if(req.files){
-
-        var file_path = req.files.imagen.path;
-
-        var file = file_path.split('\\');
-
-        var imagUrl = file[file.length -1];
-
-        var formtoImg = imagUrl.split('.');
-
-        var formato = formtoImg[formtoImg.length -1];
-
-        if( formato == 'jpg' || formato == 'jpg'  || formato == 'png'  || formato == 'GIF' ||
-            formato == 'PNG' || formato == 'jpeg' || formato == 'JPEG' || formato == 'gif'  ){
-
+    
+    if(req.files?.imagen){
+        
+        try {
+            //listing messages in users mailbox                            
+            var imgRespon = await uploadFileImgCloudinary(req.files.imagen.tempFilePath)
+              
+               imgg = {
+                public_id: imgRespon.public_id,
+                secure_url: imgRespon.secure_url
+            } 
+            
+            } catch (err) {
+              console.log(err);
+            }
+            await fs.unlink(req.files.imagen.tempFilePath)
+        
+        if( imgg ){
+            
+            try {
+                await Chat.findByIdAndUpdate(userId, {imagen: {public_id: imgRespon.public_id, secure_url: imgRespon.secure_url}}, {new:true})  //(err, response ) => {
+                    .then((response) => res.status(200).send(response))
+                    .catch((err) => res.status(500).send({ Mensaje:'Error con la imagen'}));
+             
+            } catch (error) {
+                console.log(error)
+            }
 
                //Actualizar documento del usuario que esta subiendo la imagen....
 
-               Chat.findByIdAndUpdate(userId, {imagen: imagUrl}, {new:true}, (err, response ) => {
+            //    Chat.findByIdAndUpdate(userId, {imagen: imagUrl}, {new:true}, (err, response ) => {
                    
-                 if(err) return res.status(500).send({Mensaje:'Error con la imagen'});
+            //      if(err) return res.status(500).send({Mensaje:'Error con la imagen'});
 
-                 if(response){
+            //      if(response){
 
-                     return res.status(200).send({response});
+            //          return res.status(200).send({response});
 
-                 }else{
-                     return removeFileUpload( res, file_path, 'No exciste la imagen' );
-                 }
+            //      }else{
+            //          return removeFileUpload( res, file_path, 'No exciste la imagen' );
+            //      }
 
-               })
+            //    })
                 
             }else{
-           return  removeFileUpload(res, file_path, 'No se puede subir esta imagen');
+           return  removeFileUpload(res, req.files.imagen.tempFilePath, 'No se puede subir esta imagen');
            // return res.status(500).send({Mensaje:'Error: formato erróneo'});
         }
        

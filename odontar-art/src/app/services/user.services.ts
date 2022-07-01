@@ -258,4 +258,5 @@ subirImagenFromChNew(id):Observable<any>{
 
 
 
+
 }

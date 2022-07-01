@@ -15,7 +15,10 @@ let chatSchema = Schema({
     correo_emisor:String,
     correo_recep:String,
     chatroom: String,
-    imagen:String,
+    imagen:{
+      public_id: String,
+      secure_url: String
+    },
    // IdUserChat: { type: Schema.ObjectId, ref: 'user'  },
     create_at:{
         type:Date,

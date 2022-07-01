@@ -622,7 +622,7 @@ export class ClientePage implements OnInit, DoCheck,OnChanges {
      
          await alert.present();
 
-         console.log(this.citaUpdate.doctor)
+        
       },
       error=>{
 
@@ -712,7 +712,7 @@ export class ClientePage implements OnInit, DoCheck,OnChanges {
 
 // cambiar contraseña..
 async cambiarcontrasena(){
-  console.log('cambiando contrasena');
+ 
 
   if(this.user.password == undefined || this.user.password == ''){
     this.user.password = '';
@@ -789,15 +789,11 @@ uploadImagenInput(inputFile:any){
     
       setTimeout(() => {
 
-        console.log(this.token)
-        console.log('pop')
+      
         this._uploadimagen.subirImagen(this.url+'subimagen/'+idCliente._id,[],this.uploadFile,this.token,'imagen')
         .then((value:any)=>{
-
-          console.log('pop',value)
-          
            // este codigo es para cambiar la imagen.....
-           document.querySelector(".myImageId").setAttribute( 'src', this.url+'getimagen/'+`${value.response.imagen}` );
+           document.querySelector(".myImageId").setAttribute( 'src', `${value.imagen.secure_url}`);
          
       }).catch(e => {
         console.log(e)

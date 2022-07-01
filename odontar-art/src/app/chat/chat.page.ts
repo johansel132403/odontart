@@ -838,6 +838,8 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
           
           this._uploadimagen.subirImagen(this.url+'subimagen04/'+result.response._id,[],this.uploadFile,this.token,'imagen')
           .then((value:any)=>{
+
+            console.log(value)
             
             this.imagenT = value.response.imagen;
             // llamamos esta funcion para que una vez que le demos a la imagen se envie automaticamente...

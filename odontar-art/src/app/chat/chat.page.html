@@ -31,14 +31,14 @@
           </ion-icon>
         </span>
         
-        
+        <!-- secure_url -->
         
 
        <ion-avatar *ngIf="!otherimg">
          <img src="https://st2.depositphotos.com/1007566/12110/v/450/depositphotos_121102950-stock-illustration-man-wearing-suit-and-tie.jpg" alt="">
         </ion-avatar>
         <ion-avatar *ngIf="otherimg">
-          <img style="width: 55px; height: 55px" src="{{url+'getimagen/'+otherimg}}" alt="">
+          <img style="width: 55px; height: 55px" src="{{otherimg.secure_url}}" alt="">
          </ion-avatar>
         <span class="details">
           <h1 *ngIf="identity && identity.nombre">{{other}}</h1>

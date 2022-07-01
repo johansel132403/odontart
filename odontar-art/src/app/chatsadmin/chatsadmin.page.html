@@ -32,7 +32,7 @@
           <div class="imgbox">
           </div>
           <img style="width: 55px; height:55px" class="imagadmin"  src="../../assets/img/user01.png" alt="" *ngIf="!user.imagen">
-          <img style="width: 55px; height:55px" class="imagadmin"  src="{{url+'getimagen/'+user.imagen}}" alt="" *ngIf="user.imagen">
+          <img style="width: 55px; height:55px" class="imagadmin"  src="{{user.imagen.secure_url}}" alt="" *ngIf="user.imagen">
             <div>
              <h2>{{user.nombre}}</h2>
               <h3 slot="end" *ngIf="user.visto === false">

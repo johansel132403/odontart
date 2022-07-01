@@ -25,7 +25,7 @@ api.post('/subimagen/:id',[md_auth.ensureAuth],controllers.uploadImagen); //md_a
 api.post('/subimagen02/:email',[multipartImg],controllers.uploadImagen02); //md_auth.ensureAuth, le quite eso essa es la autenticacion.... tambien le quite el /:id
 
 api.post('/subimagen02New/:email',controllers.uploadImagen02New);
-api.post('/subimagen04/:id',[multipartImg],controllers.uploadImagenChatNew);
+api.post('/subimagen04/:id',controllers.uploadImagenChatNew);
 
 api.post('/savechat',controllers.saveChat);
 api.get('/getChat/:email',controllers.getChatByEmail);
