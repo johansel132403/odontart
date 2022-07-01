@@ -3,7 +3,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 const config: CapacitorConfig = {
   appId: 'com.example.app',
  // appName: 'odontar-art',
- appName: 'Odonto-Art',
+ appName: 'odontar-art',
 
   webDir: 'www',
   bundledWebRuntime: false
