@@ -369,13 +369,13 @@ async function uploadImagen(req, res ){
 
     console.log('req.files***************',req.files)
     
-    if(req.files?.image){
+    if(req.files?.imagen){
 
-        const imgRespon = await uploadFileImgCloudinary(req.files.image.tempFilePath)
+        const imgRespon = await uploadFileImgCloudinary(req.files.imagen.tempFilePath)
 
     console.log('imgRespon***************',imgRespon)
 
-        await fs.unlink(req.files.image.tempFilePath)
+        await fs.unlink(req.files.imagen.tempFilePath)
         var file_path = req.files.imagen.path;
 
         var file = file_path.split('\\');
