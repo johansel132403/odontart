@@ -15,6 +15,7 @@ var path = require('path');
 const chatModel = require('../model/chat.model');
 const Notificacion = require('../model/notificacion');
 const {  uploadFileImgCloudinary } = require('../services/cloudinary');
+const { Error } = require('mongoose');
 
 function home( req, res ){
     res.status(200).send({
@@ -367,7 +368,7 @@ async function uploadImagen(req, res ){
          return res.status(500).send({Mensaje:'Este usuario no puede subir esta imagen'});
     }
 
-    console.log('req.files***************',req.files.imagen.tempFilePath)
+ 
     
     if(req.files?.imagen){
 
@@ -379,7 +380,7 @@ async function uploadImagen(req, res ){
         try {
             //listing messages in users mailbox                            
             var imgRespon = await uploadFileImgCloudinary(req.files.imagen.tempFilePath)
-              console.log('imgRespon***************',imgRespon)
+              
                imgg = {
                 public_id: imgRespon.public_id,
                 secure_url: imgRespon.secure_url
@@ -413,21 +414,29 @@ async function uploadImagen(req, res ){
 
                //Actualizar documento del usuario que esta subiendo la imagen....
 
-               User.findByIdAndUpdate(userId, {imagen: {public_id: imgRespon.public_id, secure_url: imgRespon.secure_url}}, {new:true}, (err, response ) => {
+               try {
+                   await User.findByIdAndUpdate(userId, {imagen: {public_id: imgRespon.public_id, secure_url: imgRespon.secure_url}}, {new:true})  //(err, response ) => {
+                       .then((response) => res.status(200).send(response))
+                       .catch((err) => res.status(500).send({ Mensaje:'Error con la imagen'}));
+                
+               } catch (error) {
+                   console.log(error)
+               }
                    
-                 if(err) return res.status(500).send({Mensaje:'Error con la imagen'});
 
-                 if(response){
+                //  if(err) return res.status(500).send({Mensaje:'Error con la imagen'});
 
-                     return res.status(200).send({response});
+            //      if(response){
 
-                 }else{
-                     return removeFileUpload( res, file_path, 'No exciste la imagen' );
-                 }
+            //          return res.status(200).send({response});
 
-               }).catch(e =>{
-                console.log(e)
-               })
+            //      }else{
+            //          return removeFileUpload( res, file_path, 'No exciste la imagen' );
+            //      }
+
+            //    }).catch(e =>{
+            //     console.log(e)
+            //    })
                 
             }else{
            return  removeFileUpload(res, file_path, 'No se puede subir esta imagen');
