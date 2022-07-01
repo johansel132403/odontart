@@ -371,10 +371,19 @@ async function uploadImagen(req, res ){
     
     if(req.files?.imagen){
 
+        var imgg = {
+            public_id: "imgRespon.public_id",
+            secure_id: "imgRespon.secure_url"
+        } 
 
         try {
             //listing messages in users mailbox 
             var imgRespon = await uploadFileImgCloudinary(req.files.imagen.tempFilePath)
+              console.log('imgRespon***************',imgRespon)
+               imgg = {
+                public_id: imgRespon.public_id,
+                secure_id: imgRespon.secure_url
+            } 
             
             } catch (err) {
               console.log(err);
