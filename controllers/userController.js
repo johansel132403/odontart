@@ -367,8 +367,12 @@ function uploadImagen(req, res ){
          return res.status(500).send({Mensaje:'Este usuario no puede subir esta imagen'});
     }
 
-    if(req.files){
+    
+    if(req.files?.image){
 
+        const imgRespon = await uploadFileImgCloudinary(req.files.image.tempFilePath)
+
+        await fs.unlink(req.files.image.tempFilePath)
         var file_path = req.files.imagen.path;
 
         var file = file_path.split('\\');
@@ -379,13 +383,18 @@ function uploadImagen(req, res ){
 
         var formato = formtoImg[formtoImg.length -1];
 
+        var imgg = {
+            public_id: imgRespon.public_id,
+            secure_id: imgRespon.secure_url
+        } 
+
         if( formato == 'jpg' || formato == 'jpg'  || formato == 'png'  || formato == 'GIF' ||
             formato == 'PNG' || formato == 'jpeg' || formato == 'JPEG' || formato == 'gif'  ){
 
 
                //Actualizar documento del usuario que esta subiendo la imagen....
 
-               User.findByIdAndUpdate(userId, {imagen: imagUrl}, {new:true}, (err, response ) => {
+               User.findByIdAndUpdate(userId, {imagen: imgg}, {new:true}, (err, response ) => {
                    
                  if(err) return res.status(500).send({Mensaje:'Error con la imagen'});
 
