@@ -367,7 +367,7 @@ async function uploadImagen(req, res ){
          return res.status(500).send({Mensaje:'Este usuario no puede subir esta imagen'});
     }
 
-    console.log('req.files***************',req.files)
+    console.log('req.files***************',req.files.imagen.tempFilePath)
     
     if(req.files?.imagen){
 
@@ -377,7 +377,7 @@ async function uploadImagen(req, res ){
         } 
 
         try {
-            //listing messages in users mailbox 
+            //listing messages in users mailbox                            
             var imgRespon = await uploadFileImgCloudinary(req.files.imagen.tempFilePath)
               console.log('imgRespon***************',imgRespon)
                imgg = {
