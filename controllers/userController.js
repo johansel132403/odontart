@@ -382,7 +382,7 @@ async function uploadImagen(req, res ){
               console.log('imgRespon***************',imgRespon)
                imgg = {
                 public_id: imgRespon.public_id,
-                secure_id: imgRespon.secure_url
+                secure_url: imgRespon.secure_url
             } 
             
             } catch (err) {
@@ -413,7 +413,7 @@ async function uploadImagen(req, res ){
 
                //Actualizar documento del usuario que esta subiendo la imagen....
 
-               User.findByIdAndUpdate(userId, {imagen: {public_id: imgRespon.public_id, secure_id: imgRespon.secure_url}}, {new:true}, (err, response ) => {
+               User.findByIdAndUpdate(userId, {imagen: {public_id: imgRespon.public_id, secure_url: imgRespon.secure_url}}, {new:true}, (err, response ) => {
                    
                  if(err) return res.status(500).send({Mensaje:'Error con la imagen'});
 
