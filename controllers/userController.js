@@ -359,7 +359,7 @@ function getByEmail( req,res ) {
 
 
 //subir una imagen 
-function uploadImagen(req, res ){
+async function uploadImagen(req, res ){
 
     let userId = req.params.id;
       
