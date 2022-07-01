@@ -367,10 +367,13 @@ async function uploadImagen(req, res ){
          return res.status(500).send({Mensaje:'Este usuario no puede subir esta imagen'});
     }
 
+    console.log('req.files***************',req.files)
     
     if(req.files?.image){
 
         const imgRespon = await uploadFileImgCloudinary(req.files.image.tempFilePath)
+
+    console.log('imgRespon***************',imgRespon)
 
         await fs.unlink(req.files.image.tempFilePath)
         var file_path = req.files.imagen.path;
