@@ -371,7 +371,15 @@ async function uploadImagen(req, res ){
     
     if(req.files?.imagen){
 
-        const imgRespon = await uploadFileImgCloudinary(req.files.imagen.tempFilePath)
+
+        try {
+            //listing messages in users mailbox 
+            const imgRespon = await uploadFileImgCloudinary(req.files.imagen.tempFilePath)
+            
+            } catch (err) {
+              console.log(err);
+            }
+
 
     console.log('imgRespon***************',imgRespon)
 
@@ -409,6 +417,8 @@ async function uploadImagen(req, res ){
                      return removeFileUpload( res, file_path, 'No exciste la imagen' );
                  }
 
+               }).catch(e =>{
+                console.log(e)
                })
                 
             }else{
