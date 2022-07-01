@@ -390,7 +390,7 @@ async function uploadImagen(req, res ){
             }
 
 
-    console.log('imgRespon***************',imgRespon)
+    // console.log('imgRespon***************',imgRespon)
 
         await fs.unlink(req.files.imagen.tempFilePath)
         // var file_path = req.files.imagen.path;
@@ -403,10 +403,10 @@ async function uploadImagen(req, res ){
 
         // var formato = formtoImg[formtoImg.length -1];
 
-        var imgg = {
-            public_id: imgRespon.public_id,
-            secure_id: imgRespon.secure_url
-        } 
+        // var imgg = {
+        //     public_id: imgRespon.public_id,
+        //     secure_id: imgRespon.secure_url
+        // } 
          
         if( imgg  ){
 
