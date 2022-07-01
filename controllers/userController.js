@@ -374,7 +374,7 @@ async function uploadImagen(req, res ){
 
         try {
             //listing messages in users mailbox 
-            const imgRespon = await uploadFileImgCloudinary(req.files.imagen.tempFilePath)
+            var imgRespon = await uploadFileImgCloudinary(req.files.imagen.tempFilePath)
             
             } catch (err) {
               console.log(err);
