@@ -384,23 +384,22 @@ async function uploadImagen(req, res ){
     console.log('imgRespon***************',imgRespon)
 
         await fs.unlink(req.files.imagen.tempFilePath)
-        var file_path = req.files.imagen.path;
+        // var file_path = req.files.imagen.path;
 
-        var file = file_path.split('\\');
+        // var file = file_path.split('\\');
 
-        var imagUrl = file[file.length -1];
+        // var imagUrl = file[file.length -1];
 
-        var formtoImg = imagUrl.split('.');
+        // var formtoImg = imagUrl.split('.');
 
-        var formato = formtoImg[formtoImg.length -1];
+        // var formato = formtoImg[formtoImg.length -1];
 
         var imgg = {
             public_id: imgRespon.public_id,
             secure_id: imgRespon.secure_url
         } 
-
-        if( formato == 'jpg' || formato == 'jpg'  || formato == 'png'  || formato == 'GIF' ||
-            formato == 'PNG' || formato == 'jpeg' || formato == 'JPEG' || formato == 'gif'  ){
+         
+        if( imgg  ){
 
 
                //Actualizar documento del usuario que esta subiendo la imagen....
