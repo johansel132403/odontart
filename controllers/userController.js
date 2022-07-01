@@ -471,7 +471,7 @@ function uploadImagen02(req, res ){
 }
 
 //subir una imagen 
-function uploadImagenChatNew(req, res ){
+async function uploadImagenChatNew(req, res ){
 
     let userId = req.params.id;
 
