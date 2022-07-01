@@ -9,7 +9,7 @@ let api = express.Router();
 let md_auth = require('../middleware/authenticate');
 
 let multiparty = require('connect-multiparty');  //multiparty({uploadDir:"./uploads/user"})
-let multipartImg = multiparty({uploadDir:path.join(__dirname, "./uploads/user")})
+let multipartImg = multiparty({uploadDir:path.join(__dirname, "/uploads/user")})
 
 api.get( '/',md_auth.ensureAuth, controllers.home );
 api.post('/registrar',controllers.saveUser);
