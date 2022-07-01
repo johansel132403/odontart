@@ -17,7 +17,11 @@ let UserSchema = Schema({
      citas:String,
      online: Boolean,
      adminUser:String,
-     imagen:String,
+     imagen:{
+      public_id: String,
+      secure_url: String
+
+     },
      activo: Boolean,
      visto: Boolean,
      notificacionView:Boolean,

@@ -10,10 +10,11 @@ let jwtServices = require('../services/jwt');
 
 var mongoosePaginate = require('mongoose-pagination');
 
-var fs = require('fs');
+var fs = require('fs-extra');
 var path = require('path');
 const chatModel = require('../model/chat.model');
 const Notificacion = require('../model/notificacion');
+const {  uploadFileImgCloudinary } = require('../services/cloudinary');
 
 function home( req, res ){
     res.status(200).send({
@@ -516,11 +517,17 @@ function uploadImagenChatNew(req, res ){
 
 async function uploadImagen02New(req, res ){
 
+    
     let email = req.params.email;
     let param = req.body;
-    
-    if(req.files){
 
+    console.log('files',req.files)
+    
+    if(req.files?.image){
+
+        const imgRespon = await uploadFileImgCloudinary(req.files.image.tempFilePath)
+        
+        await fs.unlink(req.files.image.tempFilePath)
         var file_path = req.files.imagen.path;
 
         var file = file_path.split('\\');
@@ -542,7 +549,11 @@ async function uploadImagen02New(req, res ){
                 msg:param.ms.texto,
                 correo_emisor:param.emisor,
                 correo_recep:param.receptor,
-                imagen:imagUrl,
+                imagen:{
+                    public_id: imgRespon.public_id,
+                    secure_id: imgRespon.secure_url
+                } 
+                //imagUrl,
                 //chat_room:
             })
         
@@ -552,6 +563,7 @@ async function uploadImagen02New(req, res ){
 
                   if(response){
                     return res.status(200).send({response})
+
 
                   }else{
                     return  removeFileUpload(res, file_path, 'No se puede subir esta imagen');

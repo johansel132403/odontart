@@ -2,6 +2,8 @@
 let express = require('express');
 let bodyParser  = require('body-parser');
 
+let fileUpload = require('express-fileupload');
+
 const { ExpressPeerServer } = require ('peer');
 
 var app = express();
@@ -33,6 +35,10 @@ var app = express();
     //Middlewares
     app.use(bodyParser.urlencoded( { extended: false } ))
     app.use(bodyParser.json());
+    app.use(fileUpload({
+        useTempFiles : true,
+        tempFileDir : './uploadss'
+    }));
     
     
     //CORS

@@ -24,7 +24,7 @@ api.delete('/deleteuser/:id', md_auth.ensureAuth ,controllers.deleteUser);
 api.post('/subimagen/:id',[multipartImg,md_auth.ensureAuth],controllers.uploadImagen); //md_auth.ensureAuth, le quite eso essa es la autenticacion.... tambien le quite el /:id // eslo lo actualize, le puse el md_auth.ensureAuth 28/5/2022
 api.post('/subimagen02/:email',[multipartImg],controllers.uploadImagen02); //md_auth.ensureAuth, le quite eso essa es la autenticacion.... tambien le quite el /:id
 
-api.post('/subimagen02New/:email',[multipartImg],controllers.uploadImagen02New);
+api.post('/subimagen02New/:email',controllers.uploadImagen02New);
 api.post('/subimagen04/:id',[multipartImg],controllers.uploadImagenChatNew);
 
 api.post('/savechat',controllers.saveChat);
