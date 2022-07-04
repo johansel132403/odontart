@@ -990,7 +990,7 @@ async function updateAllNote(req,res){
     
       //User.update({"_id": user._id}, {"$set": {"value": user.value }}, callback);
     users.forEach((val)=>{
-        User.findByIdAndUpdate(val._id, paramsBody, {new:true}).exec((valu) =>{
+        User.findByIdAndUpdate(val._id, paramsBody, {new:true}).exec((err,response) =>{
 
             if(err) return res.stutus(400).send({Error:"Error: No hay imagen"});
             if(response){
