@@ -17,4 +17,10 @@ cloudinary.config({
   });
 }
 
-module.exports = { uploadFileImgCloudinary };
+
+async function deleteImagenCloudinary(publicId){
+  return await cloudinary.uploader.destroy(publicId)
+
+}
+
+module.exports = { uploadFileImgCloudinary,deleteImagenCloudinary };

@@ -14,7 +14,7 @@ var fs = require('fs-extra');
 var path = require('path');
 const chatModel = require('../model/chat.model');
 const Notificacion = require('../model/notificacion');
-const {  uploadFileImgCloudinary } = require('../services/cloudinary');
+const {  uploadFileImgCloudinary, deleteImagenCloudinary } = require('../services/cloudinary');
 const { Error } = require('mongoose');
 
 function home( req, res ){
@@ -838,9 +838,21 @@ function updateNota( req, res ){
 
 }
 
-function deleteNote( req, res ){
+async function deleteNote( req, res ){
 
     let idparams = req.params.id;
+
+    Notificacion.find({_id:idparams}).exec(err,response=>{
+
+        console.log('resp imagen',response)
+
+        if(response.imagen.public_id){
+
+            await deleteImagenCloudinary(response.imagen.public_id)
+
+        }
+
+    })
  
     Notificacion.find({_id:idparams}).remove((err, response) => {
         if(err) return res.status(200).send({Mensaje:'Error, no se pudo actualizar la nota...'});
@@ -868,92 +880,67 @@ async function imagenNote( req, res){
    
     
     if(req.files?.imagen){
-        console.log('file', req.files.imagen)
-        
-        try {
-            //listing messages in users mailbox                            
-            var imgRespon = await uploadFileImgCloudinary(req.files.imagen.tempFilePath)
-              console.log('walala',imgRespon)
-               imgg = {
-                public_id: imgRespon.public_id,
-                secure_url: imgRespon.secure_url
-            } 
+      
+
+           var file_path = req.files.imagen.name;
+           var file = file_path.split('.');
+           var imagformat = file[file.length -1];
+           console.log('imagformat',imagformat)
+
+        if( imagformat == 'jpg' || imagformat == 'JPG'  || imagformat == 'png'  || imagformat == 'GIF' ||
+        imagformat == 'PNG' || imagformat == 'jpeg' || imagformat == 'JPEG' || imagformat == 'gif'  ){
+
+         //   var file_path = imgRespon.secure_url;
+         //   var file = file_path.split('//');
+         //   var imagUrl = file[file.length -1];
+         //   var file02 = imagUrl.split('/');
+
+         //   var imagUrl = file02[file02.length -1];
+
+         //   var formtoImg = imagUrl.split('.');
+         //   var formt = formtoImg[formtoImg.length -1];
+         //   console.log(formt)
+         try {
+             //listing messages in users mailbox                            
+             var imgRespon = await uploadFileImgCloudinary(req.files.imagen.tempFilePath)
+             console.log('walala',imgRespon)
+             imgg = {
+                 public_id: imgRespon.public_id,
+                 secure_url: imgRespon.secure_url
+                } 
             
-
-           if( imgRespon.imgRespon == 'jpg' || imgRespon.imgRespon == 'jpg'  || imgRespon.imgRespon == 'png'  || imgRespon.imgRespon == 'GIF' ||
-           imgRespon.imgRespon == 'PNG' || imgRespon.imgRespon == 'jpeg' || imgRespon.imgRespon == 'JPEG' || imgRespon.imgRespon == 'gif'  ){
-
-            //   var file_path = imgRespon.secure_url;
-            //   var file = file_path.split('//');
-            //   var imagUrl = file[file.length -1];
-            //   var file02 = imagUrl.split('/');
-
-            //   var imagUrl = file02[file02.length -1];
-
-            //   var formtoImg = imagUrl.split('.');
-            //   var formt = formtoImg[formtoImg.length -1];
-            //   console.log(formt)
-
-
-
-
-           }
-            
+                
+                
+                
             } catch (err) {
-              console.log(err);
+                console.log(err);
             }
             await fs.unlink(req.files.imagen.tempFilePath)
-        
-        if( imgg ){
             
-            try {
-                await Notificacion.findByIdAndUpdate(userId, {imagen: {public_id: imgRespon.public_id, secure_url: imgRespon.secure_url}}, {new:true})  //(err, response ) => {
+            if( imgg ){
+                
+                try {
+                    await Notificacion.findByIdAndUpdate(userId, {imagen: {public_id: imgRespon.public_id, secure_url: imgRespon.secure_url}}, {new:true})  //(err, response ) => {
                     .then((response) => res.status(200).send(response))
                     .catch((err) => res.status(500).send({ Mensaje:'Error con la imagen'}));
-             
-            } catch (error) {
-                console.log(error)
-            }
-
-
-    ////////////////////////////////////////////////////
-        // var file_path = req.files.imagen.path;
-
-        // var file = file_path.split('\\');
-
-        // var imagUrl = file[file.length -1];
-
-        // var formtoImg = imagUrl.split('.');
-
-        // var formato = formtoImg[formtoImg.length -1];
-
-            // if( formato == 'jpg' || formato == 'jpg'  || formato == 'png'  || formato == 'GIF' ||
-            //     formato == 'PNG' || formato == 'jpeg' || formato == 'JPEG' || formato == 'gif'  ){
-        //         console.log('00')
-
-        //        //Actualizar documento del usuario que esta subiendo la imagen....
-
-        //        Notificacion.findByIdAndUpdate(userId, {imagen: imagUrl}, {new:true}, (err, response ) => {
-               
- 
-        //          if(err) return res.status(500).send({Mensaje:'Error con la imagen'});
-
-        //          if(response){
-        //             console.log('03')
-
-        //              return res.status(200).send({response});
-
-        //          }else{
-        //              return removeFileUpload( res, file_path, 'No exciste la imagen' );
-        //          }
-
-        //        })
+                    
+                } catch (error) {
+                    console.log(error)
+                }
                 
+                
+     
+                        
+               }else{
+                  return res.status(200).send({error:'El formato de la imagen no es valido.'})
+               }
             }else{
            return  removeFileUpload(res, file_path, 'No se puede subir esta imagen');
            // return res.status(500).send({Mensaje:'Error: formato erróneo'});
         }
        
+    }else{
+        return res.status(200).send({error:'El formato de la imagen no es valido.'})
     }
 }
 
