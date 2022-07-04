@@ -993,7 +993,7 @@ async function updateAllNote(req,res){
     
       users = await User.find() // User is Schema
     
-      //User.update({"_id": user._id}, {"$set": {"value": user.value }}, callback);
+     
     users.forEach((val)=>{
         User.findByIdAndUpdate(val._id, paramsBody, {new:true}).exec((err,response) =>{
 
