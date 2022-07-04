@@ -984,7 +984,7 @@ async function updateAllNote(req,res){
   
     let users = []
     
-      users = await User.find({}) // User is Schema
+      users = await User.find() // User is Schema
     
       //User.update({"_id": user._id}, {"$set": {"value": user.value }}, callback);
     users.forEach((val)=>{
