@@ -847,7 +847,7 @@ async function deleteNote( req, res ){
         console.log('resp imagen',response)
 
         if(response.imagen.public_id){
-
+ 
             await deleteImagenCloudinary(response.imagen.public_id)
 
         }
