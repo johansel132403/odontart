@@ -971,6 +971,14 @@ async function updateAllNote(req,res){
     users.forEach((val)=>{
         User.findByIdAndUpdate(val._id, paramsBody, {new:true}).exec((valu) =>{
 
+            if(err) return res.stutus(400).send({Error:"Error: No hay imagen"});
+            if(response){
+                
+                return res.status(200).send({response});
+            }else{
+            return res.status(404).send({Error:"No se pueden actualizar los datos"})
+    
+            }
         })
     })
 
