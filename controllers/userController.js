@@ -846,24 +846,28 @@ async function deleteNote( req, res ){
 
         console.log('resp imagen',response)
 
-        if(response.imagen.public_id){
+        if(response.imagen.imagen.public_id){
  
-            await deleteImagenCloudinary(response.imagen.public_id)
+            await deleteImagenCloudinary(response.imagen.imagen.public_id)
 
         }
 
     })
+
+    setTimeout(() => {
+        Notificacion.find({_id:idparams}).remove((err, response) => {
+            if(err) return res.status(200).send({Mensaje:'Error, no se pudo actualizar la nota...'});
+               let mensaje = ''
+            if(response.deletedCount >= 1){
+                mensaje = 'Se elimino la nota exitosamente!'
+            }else{
+                mensaje = 'Nota no existente'
+            }
+            return res.status(200).send({mensaje})
+        })
+        
+    }, 500);
  
-    Notificacion.find({_id:idparams}).remove((err, response) => {
-        if(err) return res.status(200).send({Mensaje:'Error, no se pudo actualizar la nota...'});
-           let mensaje = ''
-        if(response.deletedCount >= 1){
-            mensaje = 'Se elimino la nota exitosamente!'
-        }else{
-            mensaje = 'Nota no existente'
-        }
-        return res.status(200).send({mensaje})
-    })
 
 }
 
