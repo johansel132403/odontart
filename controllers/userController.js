@@ -983,7 +983,16 @@ async function updateAllNoteWithId(req,res){
   
     let paraId = req.params.id;
 
-    User.findByIdAndUpdate(paraId, paramsBody, {new:true}).exec((valu) =>{})
+    User.findByIdAndUpdate(paraId, paramsBody, {new:true}).exec((err,response) =>{
+        if(err) return res.stutus(400).send({Error:"Error: No hay imagen"});
+        if(response){
+            
+            return res.status(200).send({response});
+        }else{
+        return res.status(404).send({Error:"No se pudo actualizar los datos"})
+
+        }
+    })
 
 }
 
