@@ -842,7 +842,7 @@ async function deleteNote( req, res ){
 
     let idparams = req.params.id;
 
-    Notificacion.find({_id:idparams}).exec(err,response=>{
+    Notificacion.find({_id:idparams}).exec( async (err,response) =>{
 
         console.log('resp imagen',response)
 
