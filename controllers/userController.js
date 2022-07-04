@@ -861,9 +861,9 @@ async function deleteNote( req, res ){
             if(response){
 
                 console.log('deletee',response)
-                if(response.imagen.imagen.public_id){
+                if(response.imagen.public_id){
  
-                    await deleteImagenCloudinary(response.imagen.imagen.public_id)
+                    await deleteImagenCloudinary(response.imagen.public_id)
         
                 }
                 mensaje = 'Se elimino la nota exitosamente!'
