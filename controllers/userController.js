@@ -868,6 +868,7 @@ async function imagenNote( req, res){
    
     
     if(req.files?.imagen){
+        console.log(req.files.imagen)
         
         try {
             //listing messages in users mailbox                            
@@ -877,6 +878,22 @@ async function imagenNote( req, res){
                 public_id: imgRespon.public_id,
                 secure_url: imgRespon.secure_url
             } 
+
+           if(imgRespon.secure_url){
+
+              var file_path = imgRespon.secure_url;
+              var file = file_path.split('//');
+              var imagUrl = file[file.length -1];
+              var file02 = imagUrl.split('/');
+
+              var imagUrl = file02[file02.length -1];
+
+              var formtoImg = imagUrl.split('.');
+              var formt = formtoImg[formtoImg.length -1];
+              console.log(formt)
+
+
+           }
             
             } catch (err) {
               console.log(err);
