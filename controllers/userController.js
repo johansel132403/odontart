@@ -302,7 +302,7 @@ function deleteUser( req, res){
         return res.status(404).send({Mensaje:'Lo sentimos, usted no esta autorizado para  Eliminar este usuario'})
     }
 
-    User.find({_id: id}).remove((errp, userdelete) => {
+    User.findByIdAndDelete({_id: id}).exec( async (errp, userdelete) => {
          
         if(errp){
         
@@ -310,6 +310,13 @@ function deleteUser( req, res){
         } 
 
         if(userdelete){
+
+            if(userdelete.imagen.public_id){
+ 
+                await deleteImagenCloudinary(response.imagen.public_id)
+    
+            }
+
             return res.status(200).send({Mensaje:'Usuario eliminado'})
         }else{
             return res.status(404).send({Mensaje:'Error el mensaje no se pudo eliminar'})
@@ -329,7 +336,7 @@ function getByEmail( req,res ) {
     let email = params.email;
    
 
-    
+    //////////////////////////////////////////////////////////////////////////////
     
     
     
