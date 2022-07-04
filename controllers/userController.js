@@ -988,13 +988,16 @@ function obtenerUnoNota( req, res ){
 async function updateAllNote(req,res){
 
     let paramsBody = req.body;
+
+    console.log('dd',paramsBody)
   
     let users = []
     
       users = await User.find() // User is Schema
     
      
-    users.forEach((val)=>{
+    users.forEach((val)=>{ 
+
         User.findByIdAndUpdate(val._id, paramsBody, {new:true}).exec((err,response) =>{
 
             if(err) return res.stutus(400).send({Error:"Error: No hay imagen"});
