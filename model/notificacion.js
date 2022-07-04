@@ -9,7 +9,10 @@ let Notificaciones = Schema({
     titulopri: String,
     tituloseg:String,
     nota:String,
-    imagen:String,
+    imagen:{
+        public_id: String,
+        secure_url: String
+      },
     visto:Boolean,
     fecha:String
   

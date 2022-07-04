@@ -36,7 +36,7 @@ api.put('/cambiarcontrasena/:id',md_auth.ensureAuth,controllers.cambiarContrasen
 api.post('/crearnota',controllers.crearNotificacion);
 api.put('/actualizarnota/:id',controllers.updateNota);
 api.delete('/borrarnota/:id',controllers.deleteNote);
-api.post('/imagennota/:id',[multipartImg],controllers.imagenNote);
+api.post('/imagennota/:id',controllers.imagenNote);
 api.get('/getAllNote',controllers.obtenerTodasNotificacion);
 api.get('/getOneNote',controllers.obtenerUnoNota);
 api.put('/updateNoteView',controllers.updateAllNote);

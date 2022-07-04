@@ -855,47 +855,78 @@ function deleteNote( req, res ){
 
 }
 
-function imagenNote( req, res){
+async function imagenNote( req, res){
 
     let userId = req.params.id;
-      
-  console.log('01')
-  console.log('0ds',req.files)
+      ///////////////////////////////////////////////////
+ 
+
+      var imgg = {
+        public_id: "",
+        secure_id: ""
+    } 
+   
+    
+    if(req.files?.imagen){
+        
+        try {
+            //listing messages in users mailbox                            
+            var imgRespon = await uploadFileImgCloudinary(req.files.imagen.tempFilePath)
+              console.log('walala',imgRespon)
+               imgg = {
+                public_id: imgRespon.public_id,
+                secure_url: imgRespon.secure_url
+            } 
+            
+            } catch (err) {
+              console.log(err);
+            }
+            await fs.unlink(req.files.imagen.tempFilePath)
+        
+        if( imgg ){
+            
+            try {
+                await Notificacion.findByIdAndUpdate(userId, {imagen: {public_id: imgRespon.public_id, secure_url: imgRespon.secure_url}}, {new:true})  //(err, response ) => {
+                    .then((response) => res.status(200).send(response))
+                    .catch((err) => res.status(500).send({ Mensaje:'Error con la imagen'}));
+             
+            } catch (error) {
+                console.log(error)
+            }
 
 
-    if(req.files){
+    ////////////////////////////////////////////////////
+        // var file_path = req.files.imagen.path;
 
-        var file_path = req.files.imagen.path;
+        // var file = file_path.split('\\');
 
-        var file = file_path.split('\\');
+        // var imagUrl = file[file.length -1];
 
-        var imagUrl = file[file.length -1];
+        // var formtoImg = imagUrl.split('.');
 
-        var formtoImg = imagUrl.split('.');
+        // var formato = formtoImg[formtoImg.length -1];
 
-        var formato = formtoImg[formtoImg.length -1];
+        // if( formato == 'jpg' || formato == 'jpg'  || formato == 'png'  || formato == 'GIF' ||
+        //     formato == 'PNG' || formato == 'jpeg' || formato == 'JPEG' || formato == 'gif'  ){
+        //         console.log('00')
 
-        if( formato == 'jpg' || formato == 'jpg'  || formato == 'png'  || formato == 'GIF' ||
-            formato == 'PNG' || formato == 'jpeg' || formato == 'JPEG' || formato == 'gif'  ){
-                console.log('00')
+        //        //Actualizar documento del usuario que esta subiendo la imagen....
 
-               //Actualizar documento del usuario que esta subiendo la imagen....
-
-               Notificacion.findByIdAndUpdate(userId, {imagen: imagUrl}, {new:true}, (err, response ) => {
+        //        Notificacion.findByIdAndUpdate(userId, {imagen: imagUrl}, {new:true}, (err, response ) => {
                
  
-                 if(err) return res.status(500).send({Mensaje:'Error con la imagen'});
+        //          if(err) return res.status(500).send({Mensaje:'Error con la imagen'});
 
-                 if(response){
-                    console.log('03')
+        //          if(response){
+        //             console.log('03')
 
-                     return res.status(200).send({response});
+        //              return res.status(200).send({response});
 
-                 }else{
-                     return removeFileUpload( res, file_path, 'No exciste la imagen' );
-                 }
+        //          }else{
+        //              return removeFileUpload( res, file_path, 'No exciste la imagen' );
+        //          }
 
-               })
+        //        })
                 
             }else{
            return  removeFileUpload(res, file_path, 'No se puede subir esta imagen');
