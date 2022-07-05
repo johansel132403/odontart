@@ -904,14 +904,20 @@ async function imagenNote( req, res){
            var file = file_path.split('.');
            var imagformat = file[file.length -1];
            console.log('imagformat',imagformat)
+           console.log('name',req.files.imagen)
 
         if( imagformat == 'jpg' || imagformat == 'JPG'  || imagformat == 'png'  || imagformat == 'GIF' ||
-        imagformat == 'PNG' || imagformat == 'jpeg' || imagformat == 'JPEG' || imagformat == 'gif'  ){
+        imagformat == 'PNG' || imagformat == 'jpeg' || imagformat == 'JPEG' || imagformat == 'gif' || imagformat == 'jfif' || imagformat == 'jfi' || imagformat == 'jif'){
 
          try {
              //listing messages in users mailbox                            
              var imgRespon = await uploadFileImgCloudinary(req.files.imagen.tempFilePath)
              console.log('walala',imgRespon)
+                
+
+
+
+
              imgg = {
                  public_id: imgRespon.public_id,
                  secure_url: imgRespon.secure_url
