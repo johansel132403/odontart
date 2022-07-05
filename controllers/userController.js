@@ -953,8 +953,8 @@ async function imagenNote( req, res){
                   return res.status(200).send({error:'El formato de la imagen no es valido.'})
                }
             }else{
-           return  removeFileUpload(res, file_path, 'No se puede subir esta imagen');
-           // return res.status(500).send({Mensaje:'Error: formato erróneo'});
+         //  return  removeFileUpload(res, file_path, 'No se puede subir esta imagen');
+            return res.status(500).send({Mensaje:'Error: formato erróneo'});
         }
        
     }else{
