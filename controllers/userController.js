@@ -995,7 +995,8 @@ async function updateAllNote(req,res, next){
     try {
         console.log(req.timedout)
         if (!req.timedout) next()
-        await User.updateMany({},paramsBody,{multi: true});
+       let response =  await User.updateMany({},paramsBody,{multi: true});
+       return res.status(200).send({response})
     
 } catch (error) {
      console.log(error)
