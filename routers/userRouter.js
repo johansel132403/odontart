@@ -22,7 +22,7 @@ api.put('/actualizar02/:id', md_auth.ensureAuth ,controllers.updateUser02);
 api.put('/actualizar03/:id', md_auth.ensureAuth ,controllers.updateUser03);
 api.delete('/deleteuser/:id', md_auth.ensureAuth ,controllers.deleteUser);
 api.post('/subimagen/:id',[md_auth.ensureAuth],controllers.uploadImagen); //md_auth.ensureAuth, le quite eso essa es la autenticacion.... tambien le quite el /:id // eslo lo actualize, le puse el md_auth.ensureAuth 28/5/2022
-api.post('/subimagen02/:email',[multipartImg],controllers.uploadImagen02); //md_auth.ensureAuth, le quite eso essa es la autenticacion.... tambien le quite el /:id
+api.post('/subimagen02/:email',[multipartImg],controllers.uploadImagen02); //md_auth.ensureAutupdateNoteViewh, le quite eso essa es la autenticacion.... tambien le quite el /:id
 
 api.post('/subimagen02New/:email',controllers.uploadImagen02New);
 api.post('/subimagen04/:id',controllers.uploadImagenChatNew);
@@ -39,7 +39,7 @@ api.delete('/borrarnota/:id',controllers.deleteNote);
 api.post('/imagennota/:id',controllers.imagenNote);
 api.get('/getAllNote',controllers.obtenerTodasNotificacion);
 api.get('/getOneNote',controllers.obtenerUnoNota);
-api.put('/updateNoteView',controllers.updateAllNote);
+api.put('/updateNoteView',md_auth.ensureAuth, controllers.updateAllNote);
 api.put('/updateAllNoteWithId/:id',md_auth.ensureAuth,controllers.updateAllNoteWithId);
 api.get('/getImagenChat/:email',controllers.getImgFromChat);
 
