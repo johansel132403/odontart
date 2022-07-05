@@ -998,6 +998,8 @@ async function updateAllNote(req,res){
 
             if(err) return res.stutus(400).send({Error:"Error: No hay imagen"});
             if(response){
+
+                console.log('resppo-',response)
                 
                 return res.status(200).send({response});
             }else{
