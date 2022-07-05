@@ -908,16 +908,6 @@ async function imagenNote( req, res){
         if( imagformat == 'jpg' || imagformat == 'JPG'  || imagformat == 'png'  || imagformat == 'GIF' ||
         imagformat == 'PNG' || imagformat == 'jpeg' || imagformat == 'JPEG' || imagformat == 'gif'  ){
 
-         //   var file_path = imgRespon.secure_url;
-         //   var file = file_path.split('//');
-         //   var imagUrl = file[file.length -1];
-         //   var file02 = imagUrl.split('/');
-
-         //   var imagUrl = file02[file02.length -1];
-
-         //   var formtoImg = imagUrl.split('.');
-         //   var formt = formtoImg[formtoImg.length -1];
-         //   console.log(formt)
          try {
              //listing messages in users mailbox                            
              var imgRespon = await uploadFileImgCloudinary(req.files.imagen.tempFilePath)
@@ -938,7 +928,7 @@ async function imagenNote( req, res){
             if( imgg ){
                 
                 try {
-                    await Notificacion.findByIdAndUpdate(userId, {imagen: {public_id: imgRespon.public_id, secure_url: imgRespon.secure_url}}, {new:true})  //(err, response ) => {
+                    await Notificacion.findByIdAndUpdate(userId, {imagen: {public_id: imgRespon.public_id, secure_url: imgRespon.secure_url}}, {new:true})  
                     .then((response) => res.status(200).send(response))
                     .catch((err) => res.status(500).send({ Mensaje:'Error con la imagen'}));
                     
