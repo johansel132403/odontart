@@ -1002,7 +1002,7 @@ async function updateAllNote(req,res){
     
                     console.log('resppo-',response)
                     
-                    return res.status(200).send({response});
+                    //return res.status(200).send({response});
                 }else{
                 return res.status(404).send({Error:"No se pueden actualizar los datos"})
         
