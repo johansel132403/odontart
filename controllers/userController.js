@@ -992,22 +992,10 @@ async function updateAllNote(req,res){
       users = await User.find() // User is Schema
     
      
-    users.forEach((val)=>{
+    users.forEach( async (val)=>{
         
         try{
-            User.findByIdAndUpdate(val._id, paramsBody, {new:true}).exec((err,response) =>{
-    
-                if(err) return res.stutus(400).send({Error:"Error: No hay imagen"});
-                if(response){
-    
-                    console.log('resppo-',response)
-                    
-                    //return res.status(200).send({response});
-                }else{
-                return res.status(404).send({Error:"No se pueden actualizar los datos"})
-        
-                }
-            })
+          await  User.findByIdAndUpdate(val._id, paramsBody, {new:true})
 
         }catch(err){
             console.log(err)
