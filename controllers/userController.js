@@ -989,21 +989,18 @@ async function updateAllNote(req,res){
   
     let users = []
     
-      users = await User.find() // User is Schema
-    
+//users = await User.find() // User is Schema
+          await User.updateMany({},paramsBody,{multi: true});
      
-    users.forEach( async (val)=>{
+    // users.forEach( async (val)=>{
         
-        try{
-          await  User.findByIdAndUpdate(val._id, paramsBody, {new:true})
+    //     try{
+    //       await  User.findByIdAndUpdate(val._id, paramsBody, {new:true})
 
-        }catch(err){
-            console.log(err)
-        }
-            
-        
-
-    })
+    //     }catch(err){
+    //         console.log(err)
+    //     }
+    // })
 
 }
 
