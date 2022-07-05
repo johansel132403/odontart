@@ -985,14 +985,17 @@ async function updateAllNote(req,res){
 
     let paramsBody = req.body;
 
+    
     console.log('dd',paramsBody)
-  
+    
     let users = []
     
-//users = await User.find() // User is Schema
-
-try {
-    await User.updateMany({},paramsBody,{multi: true});
+    //users = await User.find() // User is Schema
+    
+    try {
+        await User.updateMany({},paramsBody,{multi: true});
+        console.log(req.timedout)
+        if (!req.timedout) next()
     
 } catch (error) {
      console.log(error)

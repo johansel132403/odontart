@@ -11,6 +11,8 @@ let md_auth = require('../middleware/authenticate');
 let multiparty = require('connect-multiparty');  //multiparty({uploadDir:"./uploads/user"})
 let multipartImg = multiparty({uploadDir: "./uploads/user"})
 
+var timeout = require('connect-timeout')
+
 api.get( '/',md_auth.ensureAuth, controllers.home );
 api.post('/registrar',controllers.saveUser);
 api.post('/login',controllers.loginUser);
@@ -39,7 +41,7 @@ api.delete('/borrarnota/:id',controllers.deleteNote);
 api.post('/imagennota/:id',controllers.imagenNote);
 api.get('/getAllNote',controllers.obtenerTodasNotificacion);
 api.get('/getOneNote',controllers.obtenerUnoNota);
-api.put('/updateNoteView',md_auth.ensureAuth, controllers.updateAllNote);
+api.put('/updateNoteView', timeout('5s'),md_auth.ensureAuth, controllers.updateAllNote);
 api.put('/updateAllNoteWithId/:id',md_auth.ensureAuth,controllers.updateAllNoteWithId);
 api.get('/getImagenChat/:email',controllers.getImgFromChat);
 
