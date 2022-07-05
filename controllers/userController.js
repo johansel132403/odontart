@@ -990,7 +990,13 @@ async function updateAllNote(req,res){
     let users = []
     
 //users = await User.find() // User is Schema
-          await User.updateMany({},paramsBody,{multi: true});
+
+try {
+    await User.updateMany({},paramsBody,{multi: true});
+    
+} catch (error) {
+     console.log(error)
+}
      
     // users.forEach( async (val)=>{
         
