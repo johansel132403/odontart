@@ -981,7 +981,7 @@ function obtenerUnoNota( req, res ){
 }
 
 
-async function updateAllNote(req,res){
+async function updateAllNote(req,res, next){
 
     let paramsBody = req.body;
 
