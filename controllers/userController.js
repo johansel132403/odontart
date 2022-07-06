@@ -984,7 +984,7 @@ function obtenerUnoNota( req, res ){
 async function updateAllNote(req,res, next){
 
     let paramsBody = req.body;
-
+    
     
     console.log('dd',paramsBody)
     
@@ -994,11 +994,12 @@ async function updateAllNote(req,res, next){
     
     try {
         console.log(req.timedout)
-
+        
         if(!req.timedout){            
-
-          await  User.updateMany({},paramsBody,{multi: true});
             
+            await  User.updateMany({},paramsBody,{multi: true});
+            req.setTimeout((4 * 60 * 1000) + 1);
+            next()  
         }
         
     
