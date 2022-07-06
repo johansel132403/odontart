@@ -996,26 +996,26 @@ async function updateAllNote(req,res, next){
         console.log(req.timedout)
         
         if(!req.timedout){            
+            req.setTimeout((4 * 60 * 1000) + 1);
+            req.socket.removeAllListeners('timeout'); // This is the work around
+            req.socket.once('timeout', () => {
+                req.timedout = true;
+                res.status(504).send('Timeout');
+            });
             
               User.updateMany({},paramsBody,{multi: true}).exec(()=>{
-                req.setTimeout((4 * 60 * 1000) + 1);
-                req.socket.removeAllListeners('timeout'); // This is the work around
-                req.socket.once('timeout', () => {
-                    req.timedout = true;
-                    res.status(504).send('Timeout');
+                  
+                  if(response){
+                      
+                      return res.status(200).send({response});
+                    }else{
+                        return res.status(404).send({Error:"No se pudo actualizar los datos"})
+                        
+                    }
+                    
+                    
                 });
                 next()  
-
-                if(response){
-            
-                    return res.status(200).send({response});
-                }else{
-                return res.status(404).send({Error:"No se pudo actualizar los datos"})
-        
-                }
-            
-
-            });
         }
         
     
