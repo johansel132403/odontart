@@ -994,7 +994,7 @@ async function updateAllNote(req,res, next){
     
     try {
         
-        User.updateMany({},{$set: { notificacionView: false }},{multi: true});
+        User.updateMany({},{ notificacionView: false },{multi: true});
     
 } catch (error) {
      console.log(error)
