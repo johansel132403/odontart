@@ -993,9 +993,8 @@ async function updateAllNote(req,res, next){
     //users = await User.find() // User is Schema
     
     try {
-        console.log(req.timedout)
-        if (!req.timedout) next()
-        User.updateMany({},{$set:paramsBody},{multi: true});
+        
+        User.updateMany({},{$set: { notificacionView: false }},{multi: true});
     
 } catch (error) {
      console.log(error)
