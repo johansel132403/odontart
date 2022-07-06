@@ -995,8 +995,12 @@ async function updateAllNote(req,res, next){
     try {
         console.log(req.timedout)
         if (!req.timedout) next()
-       let response =  await User.updateMany({},paramsBody,{multi: true});
-       return res.status(200).send({response})
+        User.updateMany({},paramsBody,{multi: true}).exec((err,response)=>{
+          
+            if(err) return res.status(404).send({error:'Error del servidor'})
+           
+            return res.status(200).send({response})
+        });
     
 } catch (error) {
      console.log(error)
