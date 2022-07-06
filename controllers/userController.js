@@ -999,7 +999,7 @@ async function updateAllNote(req,res, next){
           
             if(err) return res.status(404).send({error:'Error del servidor'})
            
-            return res.status(200).send({response})
+            res.status(200).send({response})
         });
     
 } catch (error) {
