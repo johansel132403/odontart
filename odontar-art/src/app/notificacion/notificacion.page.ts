@@ -32,16 +32,25 @@ export class NotificacionPage implements OnInit {
 
   saveNota(){
    
+    let element = {
+      notificacionView: false
+  }
+    this._userServices.updateNoteView(element).toPromise(); //esta linea de codigo es de lo que estamos hablando de la actualizacion....
+    setTimeout(() => {
+      
+    }, 1000);
 
     this._userServices.savenota(this.notificacion).subscribe(
+ async response =>{
 
-      response =>{
 
+      console.log(response.response)
 
         if(response.response._id){
 
           //aqui lo que estamos haciendo que cuando publiquemos una notificacion se le va a poner en false a la persona que no lo ha visto hasta que lo vea....
-         this._userServices.updateNoteView(false).toPromise(); //esta linea de codigo es de lo que estamos hablando de la actualizacion....
+          
+           
 
           Swal.fire({
             heightAuto: false,
@@ -56,10 +65,13 @@ export class NotificacionPage implements OnInit {
         }
 
         setTimeout(() => {
+
+              console.log(this.uploadFile )
           
-              if(this.uploadFile && this.uploadFile.length){
+              if(this.uploadFile && this.uploadFile.length >= 0){
                 let  barraProgress = document.getElementById('barra');
           
+                console.log('entrooo')
                 this.btn = false;
        
                
@@ -67,7 +79,7 @@ export class NotificacionPage implements OnInit {
                   this._uploadimagen.subirImagen(this.url+'imagennota/'+response.response._id,[],this.uploadFile,this.token,'imagen')
                   .then((value:any)=>{
                     
-                
+                        console.log('df',value)
                     document.querySelector<HTMLInputElement>("#upload").value ='';
                 });
              

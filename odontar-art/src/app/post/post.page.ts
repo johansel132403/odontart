@@ -34,7 +34,7 @@ export class PostPage implements OnInit {
 
   }
 
-  getAllNote(){
+  async getAllNote(){
    let notes =  this._userServices.getAllNote().toPromise();
 
    notes.then((val) => {
@@ -43,7 +43,7 @@ export class PostPage implements OnInit {
    })
   }
 
-  imagenOpen(){
+  imagenOpen(image){
     let img = document.getElementById('myImg');
 
     var modal = document.getElementById("myModal");
@@ -54,7 +54,8 @@ export class PostPage implements OnInit {
         modal.style.display = "block";    
      //   modal.style.overflow = "hidden";    
 
-        modalImg.src = img.getAttribute('src');
+   //  modalImg.src = img.getAttribute('src');
+     modalImg.src = image;
         captionText.innerHTML = img.getAttribute('alt');
 
 
@@ -86,7 +87,7 @@ export class PostPage implements OnInit {
       Swal.fire({
         heightAuto: false,
         icon: 'success',
-        title: 'Este datos se elimino',
+        title: 'Este dato se elimino',
         showConfirmButton: false,
         timer: 1500
         

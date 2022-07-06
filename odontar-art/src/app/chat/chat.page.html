@@ -146,7 +146,7 @@
               {{ user.msg }}
             </div>
               
-            <img (click)="imagenOpen(user.imagen)" id="myImg" src="{{url+'getimagen/'+user.imagen}}" *ngIf="user.imagen" style="width:100%;max-width:300px">
+            <img (click)="imagenOpen(user.imagen.secure_url)" id="myImg" src="{{user.imagen.secure_url}}" *ngIf="user.imagen" style="width:100%;max-width:300px">
             
             
             <!-- <div id="myModal" class="modal">
@@ -176,7 +176,7 @@
           </div>
           
           
-          <img (click)="imagenOpen(user.imagen)" id="myImg" src="{{url+'getimagen/'+user.imagen}}" *ngIf="user.imagen" style="width:100%;max-width:300px">
+          <img (click)="imagenOpen(user.imagen.secure_url)" id="myImg" src="{{user.imagen.secure_url}}" *ngIf="user.imagen" style="width:100%;max-width:300px">
           
           <!-- <div id="myModal" class="modal">
           </div> -->

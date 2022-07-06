@@ -1,12 +1,21 @@
 <ion-header>
-  <!-- <ion-toolbar>
-    <ion-title>post</ion-title>
-  </ion-toolbar> -->
+  <ion-toolbar *ngIf="identity.role != 'Role_user'">
+
+
+     <!-- Button del menu  -->
+   <ion-buttons slot="start">
+    <ion-menu-button></ion-menu-button>
+   </ion-buttons>
+
+    <ion-title style="text-align: center;" *ngIf="identity.role != 'Role_user'">Notificaciones</ion-title>
+  </ion-toolbar> 
+   <!-- Button del menu -->
+ 
 
   <ion-toolbar color='secondary' *ngIf="identity.role == 'Role_user'">
     <ion-buttons slot='start'>
      
-        <ion-back-button text="Inicio" defaulHref='/inicio'>Inicio</ion-back-button>
+        <ion-back-button  text="Inicio" defaulHref='/inicio'>Inicio</ion-back-button>
 
       
     </ion-buttons>
@@ -45,7 +54,7 @@
       
       
       <ion-card>
-        <img (click)="imagenOpen()" id="myImg" src="{{url+'getimagen/'+note.imagen}}" *ngIf="note.imagen" />
+        <img (click)="imagenOpen(note.imagen.secure_url)" id="myImg" src="{{note.imagen.secure_url}}" *ngIf="note.imagen" />
         <ion-card-header>
           <ion-card-title>{{note.tituloseg}}
            

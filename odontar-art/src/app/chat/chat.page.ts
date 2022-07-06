@@ -21,22 +21,22 @@ import { AdministradoresPage } from '../administradores/administradores.page';
   templateUrl: './chat.page.html',
   styleUrls: ['./chat.page.scss'],
   providers:[UserServices,uploadImagen]
-  
+
 })
 export class ChatPage implements OnInit, DoCheck, OnDestroy {
-  
+
 
 
   public sIo = io('https://odontoart.herokuapp.com');
-  
+
   public mensaje: Mensaje;
   public mensajes:Array<any>;
   public ms;
   public identity;
   public nick;
   public prueva:Array<any>;
-  public  cl: Array<string>;  
-  public receptorr; 
+  public  cl: Array<string>;
+  public receptorr;
   public val: boolean;
   public url;
   public user;
@@ -44,7 +44,7 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
   usuarioDeOtraCuenta;
   last;
   indexx;
-  chats = []; 
+  chats = [];
   index = 0;
   public idClient;
   datos;
@@ -55,7 +55,7 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
   btn;
   other;
   otherimg;
- 
+
 
   datoUpdaForma;
 
@@ -65,29 +65,29 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
    btn_function =  true;
 
   constructor(
-   // private socket: webSocketService, 
-    private route:ActivatedRoute, 
-    private userServices:UserServices, 
-    private router: Router,  
+   // private socket: webSocketService,
+    private route:ActivatedRoute,
+    private userServices:UserServices,
+    private router: Router,
     public alertController: AlertController,
     public _uploadimagen:uploadImagen,
     // public _userServices: UserServices
-    ) { 
+    ) {
 
       this.url = Global.url;
       this.token = this.userServices.getToken();
     }
-  
-  
+
+
   ngDoCheck(){
 
       }
-      
+
       ngOnInit() {
       //   const IS_PROD = process.env.NODE_ENV === "production";
       //   const URL = IS_PROD ? "odontoart.herokuapp.com" : "http://localhost:3000";
       //  this.sIo = io(URL);
-      
+
 
       this.user = new User('','','','','','','','','','','',null,null,null,'','','');
 
@@ -95,20 +95,20 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
        this.b();
 
         this.btn =true;
-      
-        
+
+
 
 
                             // aqui recivimos la invitacion de la otra persona para una videollamada.
         ////////////////////////////////////////////////////
         this.sIo.on('alert', async (datos)=>{
 
-          
+
           const alert = await this.alertController.create({
             header: 'VIDEOLLAMADA',
             message: `${datos.msg.msg} quiere hacer una videollamada con usted`,
             backdropDismiss:false,
-            
+
             buttons: [
               {
                 text: 'Cancel',
@@ -116,10 +116,10 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
                 cssClass: 'secondary',
                 id: 'cancel-button',
                 handler: (blah) => {
-                 
-                  
-                  
-                  
+
+
+
+
                   let datossw = {
                     id: this.identity._id,
                     ms: 'La videollamada fue rechazada...',
@@ -128,17 +128,17 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
                     receptor: this.datos.receptor,
                     role:null
                   }
-                  
+
                   this.sIo.emit('cancelarvideollamada', datossw)
-                   //aqui le estamos enviando estos datos al servidor 
+                   //aqui le estamos enviando estos datos al servidor
                 }
               }, {
                 text: 'Aceptar',
                 id: 'confirm-button',
                 handler: () => {
 
-                  
-                  //aqui le vamos a enviar estos datos 
+
+                  //aqui le vamos a enviar estos datos
                   let datoss = {
                     id: this.identity._id,
                     ms: this.identity.nombre,
@@ -146,10 +146,10 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
                     emisor: this.identity.email,
                     receptor: this.datos.receptor,
                     role: 'admin'
-                    
+
                   }
                   if(this.identity.role === 'Role_admin' || this.identity.role === 'Role_subadmin'){
-                    
+
                     datoss = {
                       id: this.identity._id,
                       ms: this.identity.nombre,
@@ -159,41 +159,41 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
                       role:null
                     }
                   }
-                  
+
                   this.sIo.emit('alertrespon', datoss)
-                  
+
                   setTimeout(() => {
                     window.location.href = '/videollamada/'+`${datos.msg.id}`;
                     //this.router.navigate(['/videollamada/'+`${datos.msg.id}`])
                   }, 500);
               //    this.sIo.emit("alert02", );           //me quede por aqui
-      
+
                 //   this.peer.on("open", (id) => {
                 //     console.log('opp',id)
                 //    this.sIo.emit("join-room", data.ms, id, this.identity.nombre);           //me quede por aqui
                 //  });
-                    
+
                     //  this.camFunction(uu)
                     //  this.calling = false;
-       
-      
+
+
                 }
               }
             ]
           });
-      
+
           await alert.present();
-      
-      
-        
+
+
+
         })
 
 
 
         this.sIo.on('resp03',(datos)=>{
-          
+
           this.snipper = false;
-          
+
           setTimeout(() => {
            // this.router.navigate(['/videollamada/'+`${datos.msg.id}`])
             window.location.href = '/videollamada/'+`${datos.msg.id}`;
@@ -211,8 +211,8 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
 
           this.snipper = false;
 
-         
-             
+
+
           const alert = await this.alertController.create({
             header: 'VIDEOLLAMADA',
             message: `${datos.msg.msg}`,
@@ -224,7 +224,7 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
           setTimeout(() => {
             alert.dismiss();
           },1000);
-           
+
         })
 
         /**/////////////////////////////////////////////////////// */
@@ -233,7 +233,7 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
                                    //este es nuevo
         /**//////////////////////////////////////////////////////////////////// */
 
-        
+
          this.route.params.subscribe( async (params)  =>{
 
            //Notificacion...
@@ -248,10 +248,10 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
 
         let respp = await this.userServices.getOneCliente(params.id).toPromise()
 
-     
+
 
           this.datoUpdaForma = respp.user;
-        
+
           let datoss = {
             idAdmin: this.identity._id,
             userEmail: this.datoUpdaForma.email
@@ -260,61 +260,61 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
 
 
 
-       
+
          if(this.datoUpdaForma.role != 'Role_user'){
 
            this.datos = {
               id: this.identity._id,
               nombre: this.datoUpdaForma.email,
-              emisor: this.identity.email,                       //me quede por aqui                     
+              emisor: this.identity.email,                       //me quede por aqui
               receptor: this.datoUpdaForma.email,
               role: 'Role_user'
             }
-          
-  
+
+
           this.sIo.emit('admin-conenct', this.datos)
-          
+
           this.sIo.emit('new user', this.datos,this.datos.receptor)
-         
-         
+
+
          }
-            
-         
+
+
         });
 
-       
+
 
         //*/*////////////////////////////////////////////////////////////////////
 
-      
+
       //  this.router.navigate(['admin/chatsadmin']);
-     
-     
+
+
 
          // lo que me esta pasando aqui es que cuando envio un mensaje se dublica el mensaje por los socket dublicado del admin,
          //tengo que borrar cada vez que el admin salga se tiene que borrar el admin idSocket
-        
-        
+
+
 
         this.identity = JSON.parse(localStorage.getItem('identity'));
 
 
 
         // let datos = {
-          
+
         //   id: this.identity._id,                                     // esto aqui lo estoy comentando, estoy actualizando el codigo...
         //   nombre: 'o@hotmail.com',
         //   emisor: this.identity.email,
         //   receptor: 'o@hotmail.com',
         //   role: 'Role_user',
         // }
-          
-     
-        
+
+
+
       //   let datos = {
       //    id: this.identity._id,
       //    nombre: this.datoUpdaForma.email,
-      //    emisor: this.identity.email,                       //me quede por aqui                     
+      //    emisor: this.identity.email,                       //me quede por aqui
       //    receptor: this.datoUpdaForma.email,
       //    role: 'Role_user'
       //  }
@@ -328,40 +328,40 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
              let update = true;
              this.sIo.emit('update',update)
            }
-          
+
          })
         // this.sIo.emit('send online', datos,datos.receptor)
      //   if(this.identity.role === 'Role_admin' || this.identity.role === 'Role_subadmin'){ esto iba aqui mismo    ,esto lo actualze con otra condicion, (this.identity.role != 'Role_user')
-        
-        
+
+
         this.route.params.subscribe( async (params)  =>{
 
           if(this.identity.role === 'Role_user'){
             let vatd = await this.userServices.getOneCliente(params.id).toPromise()
             this.other =  vatd.user.nombre;
-            console.log(this.other)
+            
 
           }
-          
+
           this.idClient = params.id;
-          
+
           if(this.identity.role != 'Role_user'){
            let vat = await this.userServices.getOneCliente(params.id).toPromise()
 
            this.other =  vat.user.nombre;
            this.otherimg = vat.user.imagen
            console.log(vat.user)
-           
+
           this.usuarioDeOtraCuenta = vat.user.email;
           let datoss = {
             idAdmin: this.identity._id,
             userEmail: this.usuarioDeOtraCuenta
           }
 
-        
+
           this.sIo.emit('onlineEmail',datoss);
 
-          
+
            /*
            apellido: "marte"
             citas: null
@@ -377,7 +377,7 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
             __v: 0
             _id: "622a072f42b1950fffa3c211"
            */
-                
+
           this.datos = {
               id: this.identity._id,
               nombre:vat.user.email,
@@ -387,12 +387,12 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
           }
 
           this.receptorr = this.datos;
-          this.sIo.emit('new user', this.datos,this.datos.receptor)   
-         
-          
+          this.sIo.emit('new user', this.datos,this.datos.receptor)
+
+
         }
           });
-        
+
 
        //  this.sIo.emit('admin-conenct', datos,datos.receptor)
       //  if(this.identity.role != 'Role_admin'){
@@ -401,25 +401,25 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
       //    this.sIo.emit('new user', this.datos,this.datos.receptor)
 
       //  }
-                           
+
       //  console.log(this.identity)
 
                      //BASE DE DATO.....
         this.sIo.on('load old msgs', (data)=>{
-          
-                
+
+
           for(let i = 0; i < data.length; i++){
             this.chats.push(data[i]) //data[i].msg
-          
-            
+
+
           }
         })
-        
+
         //aqui estamos recibiendo los datos  del servidor
         this.sIo.on('new message',  (data) =>{
 
-        
-          
+          console.log('data',data)
+
          this.index = this.index + 1 ;
 
 
@@ -431,7 +431,6 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
              }
                 //////////////////////////////////////////////////////////////////
 
-              
 
 
 
@@ -444,21 +443,22 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
 
 
 
-       
 
 
-          // if(this.identity.role === 'Role_user'){                        // me quede por esta parte donde tengo que validar, no permitir que si estamos en un chat con una persona no nospuedan escribir otra persona almeno que estemos en ese chat 
+
+
+          // if(this.identity.role === 'Role_user'){                        // me quede por esta parte donde tengo que validar, no permitir que si estamos en un chat con una persona no nospuedan escribir otra persona almeno que estemos en ese chat
 
           //   if(data.msg.receptor === this.usuarioDeOtraCuenta){
-              
+
           //     console.log(this.usuarioDeOtraCuenta)
-                   
+
           //      // return  console.log('si estan entrando');
           //      //  this.chats.push() //data.msg.texto
           //     console.log('yes ')
           // //  this.chats.push(data.msg) //data.msg.texto
 
-              
+
           //   }else{
           //   this.chats.push(data.msg) //data.msg.texto
 
@@ -469,80 +469,80 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
           //   this.chats.push(data.msg) //data.msg.texto
           // }
 
-       
 
-         
 
-         
+
+
+
 
               if(this.usuarioDeOtraCuenta === data.msg.emisor || this.usuarioDeOtraCuenta === data.msg.receptor){
                 this.val = true;
              //   this.chats.push(data.msg) //data.msg.texto                     //  lo corecto es que esto este fuera de esos
-              
-             
+
+
               }else{
                 this.val = false
               }
-               
-              
-          
+
+
+
 
 
             if(this.val){
-              
+
           //    this.chats.push(data.msg) //data.msg.texto                     //  lo corecto es que esto este fuera de esos
-              
+
               // if(this.usuarioDeOtraCuenta === this.identity.email){
-                
+
                 //   this.chats.push(data.msg) //data.msg.texto                     //  lo corecto es que esto este fuera de esos
                 //   console.log('si son igual')
                 //   console.log( 'si', this.usuarioDeOtraCuenta )
                 // }
-                
-                
-              } 
-              
 
-          
+
+              }
+
+
+
           this.chats.push(data.msg) //data.msg.texto                     //  lo corecto es que esto este fuera de esos
         //  this.chats.push(data.msg) //data.msg.texto
 
           console.log(this.chats)
-           
-                     
-                
+
+
+
 
          // this.nick = data.nick;
         //  this.last = this.chats[this.chats.length -1];
 
         //  this.indexx = this.chats.length -1;
-         
-          
-       }); 
 
-       
+
+       });
+
+
     this.sIo.on('user', (data)=>{
-    
+
       this.personas = data;
     })
-    
+
         //this.prueva = ['dd','dfer','erdfff']
     this.mensaje = new Mensaje('','','','');
-  
-   
+
+
   }
 
 
 
- 
+
 
   ngOnDestroy(){
 
-   
 
-    
+
+
         // console.log('de destruyo la pag')
-         
+
          this.sIo.emit('discont', true)
          if(this.identity.role === 'Role_user'){
           this.router.navigate(['inicio']);
@@ -552,10 +552,10 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
 
          }
   }
-  
-  // bueno me quede en esta parte donde tengo que mostrar los mensaje en la vista .....tengo que reparar la vista aqui 
-  
-  async ionViewWillEnterr(element = null){
+
+  // bueno me quede en esta parte donde tengo que mostrar los mensaje en la vista .....tengo que reparar la vista aqui
+
+  async ionViewWillEnterr(element = null,img){
 
     if(element){
       console.log('es01 ',element)
@@ -563,8 +563,8 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
       console.log('es02 ',element)
 
     }
-  
-  
+
+
       // esto aqui lo hacemos para que no se envien mensajes en blanco....
     for (const [key, value] of Object.entries(this.mensaje)) {
       console.log([key, value]);
@@ -582,8 +582,8 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
 
     // esto aqui es para que cuando le demos al boton de enviar ms inmediatamente se haga un scroll en el chat hacia abajo, dando vista a el ultimo mensaje enviado....
     let chatSelect = document.getElementById('chat');
-    chatSelect.scrollTop = chatSelect.scrollHeight; 
-  
+    chatSelect.scrollTop = chatSelect.scrollHeight;
+
    // let { texto } = this.mensaje;
 
   //  let datos = {
@@ -605,16 +605,16 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
     visto: false,
     element: element
   }
-   
+
    if(this.identity.role === 'Role_admin' || this.identity.role === 'Role_subadmin'){
-   
-   
+
+
      datos = {
          ms: this.mensaje,
          nombre:this.receptorr.nombre,
          emisor: this.identity.email,
          receptor: this.receptorr.receptor,
-         imagen: '',  
+         imagen: '',
          role:null,
          visto: true,
          element:element
@@ -623,21 +623,22 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
 
 
 
-    
+
    }
 
 
-   
+
   // this.userServices.getEmail()
 
-   
+
     if(this.uploadFile && this.uploadFile.length){
-     
-      datos.imagen = this.imagenT;
+         
+      console.log('iii',img)
+      datos.imagen = img;
     //  let resp =  this.userServices.getOneCliente(this.identity._id).toPromise();
        console.log('sif')
     //  resp.then((val) =>{{
-       
+
     //   if(!val._id){
 
 
@@ -651,9 +652,9 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
     //   //     imagen:data.imagen,
     //   //     //chat_room:
     //   // })
-        
+
     //   }
-      
+
     //  }})
 
     }else if(Object.keys(this.mensaje).length === 0){
@@ -662,49 +663,49 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
        return ;
     }
 
-   
 
-    
-    
 
-    //aqui le estamos enviando estos datos al servidor 
-    
+
+
+
+    //aqui le estamos enviando estos datos al servidor
+
       this.sIo.emit('send message', datos)
       this.sIo.emit('admin-conenct03', 'this.datos')
 
-    
+
     //limpiando input
    let input =  document.getElementById('btn') as HTMLInputElement;
    input.value = '';
-    
+
 
 
 
 
      // esto aqui es para la notificacion...
    if(this.identity.role === 'Role_user'){
-    
+
     let d = this.userServices.updateData(this.identity._id,{visto:false}).toPromise();
     d.then((val) => {
-      
+
     })
   }
    //esto es para limpiar el input file una vez que se haya enviando una imagen
   document.querySelector<HTMLInputElement>("#uploadCaptureFile").value ='';
-    
+
   }
 
 
   adminData(){
     console.log('desconect')
- 
+
   //  this.router.navigate(['admin/chatsadmin']);
   }
 
 
   // En esta funcion lo que hacemos es enviarle una invitacion a la otra persona para hacer una videollamada....
   invitarVideoLlamada(){
-    
+
   let datos = {
     id: this.identity._id,
     ms: this.identity.nombre,
@@ -712,10 +713,10 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
     emisor: this.identity.email,
     receptor: this.datos.receptor,
     role: 'admin'
-    
+
   }
    if(this.identity.role === 'Role_admin' || this.identity.role === 'Role_subadmin'){
-   
+
      datos = {
          id: this.identity._id,
          ms: this.identity.nombre,
@@ -725,15 +726,15 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
          role:null
      }
    }
-    //aqui le estamos enviando estos datos al servidor 
+    //aqui le estamos enviando estos datos al servidor
     this.sIo.emit('send invitation', datos)
 
     this.snipper = true;
 
-  
-   
 
-    
+
+
+
 
   }
 
@@ -742,56 +743,57 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
 
     this.uploadFile = <Array<File>>inputFile.target.files;
 
-      // aqui lo que se esta haciendo un force.. esto es par si el usuario no tiene converzacion con el usuario  y quiere enviar una imagen 
+      // aqui lo que se esta haciendo un force.. esto es par si el usuario no tiene converzacion con el usuario  y quiere enviar una imagen
       //le verpita a la foto verse...
     if(this.uploadFile && this.uploadFile.length){
 
-  
+
       let datos = {
         ms: this.mensaje,
         nombre: this.datos.receptor,
         emisor: this.identity.email,
         receptor: this.datos.receptor,
         imagen: 'sds.jp',
-        
+
       }
-      
+
       let resp =  this.userServices.getChatByEmail(this.identity.email).toPromise();
-    
+
       resp.then( async (val) =>{{
-        
+
         console.log('val',val)
         if(!val.user){
-       // datos.imagen = this.imagenT;
+                       console.log('ttt',this.imagenT)
+        datos.imagen = this.imagenT;
        console.log('no hay, no hay que entrar')
-    
-      
+
+
         // let f =  await this.userServices.sevachat(datos).toPromise();
-           
+
         // console.log(f.response._id)
-       
-    
-    
-      
+
+
+
+
       }else{
         console.log('si hay, hay que entrar')
       }
-      
+
      }})
 
-     
+
      let  barraProgress = document.getElementById('barra');
           barraProgress.style.visibility = "visible";
 
     this.time = 15;
     this.btn_function = false;
 
-  
-     
+
+
    this.refreshInterval = setInterval(()=>{
     this.time = this.time - 2;
     this.progres += 0.3;
-   
+
           if(this.time <= 0 ){
             this.btn_function = true;
             this.time = 0;
@@ -801,18 +803,18 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
           }
         },1000)
 
-        
-        
-        
-        
+
+
+
+
       }
-      
-      
-      
-      
-      
-      
-      
+
+
+
+
+
+
+
       //
       if(this.uploadFile && this.uploadFile.length){
         let  barraProgress = document.getElementById('barra');
@@ -825,7 +827,7 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
           emisor: this.identity.email,
           receptor: this.datos.receptor,
           imagen: 'sds.jp',
-          
+
         }
 
         let result =  await this.userServices.sevachat(datos).toPromise();
@@ -833,22 +835,22 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
         setTimeout( async() => {
 
 
-           
-         
-          
+
+
+
           this._uploadimagen.subirImagen(this.url+'subimagen04/'+result.response._id,[],this.uploadFile,this.token,'imagen')
           .then((value:any)=>{
 
-            console.log(value)
-            
-            this.imagenT = value.response.imagen;
+
+            // response.imagenv
+            this.imagenT = value.imagen;  // el problema de la imagen estaba aqui ya esta resuelto
             // llamamos esta funcion para que una vez que le demos a la imagen se envie automaticamente...
             setTimeout(() => {
              // clearInterval(this.refreshInterval);
               barraProgress.style.visibility = "hidden";
               // aqui lo que hacermos cuando la barra carga,
-              this.ionViewWillEnterr(true); 
-              this.btn = true;    
+              this.ionViewWillEnterr(true,this.imagenT );
+              this.btn = true;
 
             }, 5000);
         });
@@ -869,24 +871,24 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
 // este metodo es para hacer open en la imagen que envien en el chat
   imagenOpen(img2){
 
- 
+
 
     let img = document.getElementById('myImg');
 
     var modal = document.getElementById("myModal");
     var modalImg = document.getElementById("img01") as HTMLImageElement | null;
     var captionText = document.getElementById("caption");
-      
-     //   modal.style.display = "block";
-        modal.style.display = "block";    
-     //   modal.style.overflow = "hidden";    
 
-        // modalImg.src = img.getAttribute('src'); 
-        modalImg.src =  this.url+'getimagen/'+img2;
+     //   modal.style.display = "block";
+        modal.style.display = "block";
+     //   modal.style.overflow = "hidden";
+
+        // modalImg.src = img.getAttribute('src');
+        modalImg.src = img2;
 
         captionText.innerHTML = img.getAttribute('alt');
 
-   
+
 
   }
 // y este es para cerrar la imagen
@@ -894,7 +896,7 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
     var modal = document.getElementById("myModal");
     modal.style.display = "none";
   }
-  
+
     inputOptions(){
     return   new Promise((resolve) => {
      setTimeout(() => {
@@ -906,11 +908,11 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
      }, 1000)
    })
     }
-  
+
   async b(){
     /* inputOptions can be an object or Promise */
-    
-    
+
+
 //     const { value: color } = await Swal.fire({
 //   title: 'Select color',
 //   input: 'radio',
@@ -935,16 +937,16 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
  calificacionf(){
 
 
-   
+
 
   let correo_recep = { correo_recep: this.datos.receptor}
 
   // la calificacion se activara cuando haya una conversacion.....
    let email = this.userServices.getBothChatting(this.identity.email,correo_recep).toPromise();
 
-   // Aui lo que estamos haciendo es una validacion, de que si hay una interaccion entre si, que se valore dicha interaccion.... 
+   // Aui lo que estamos haciendo es una validacion, de que si hay una interaccion entre si, que se valore dicha interaccion....
    email.then((val) => {
-    
+
 
      if(val.chat.length >= 8){
       let body = document.querySelector<HTMLElement>('.container01');
@@ -952,16 +954,16 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
      }else{
       window.location.href = '/inicio';
      }
-     
+
    })
 
  }
- 
+
  btnSumit(){
 
  let val =  (<HTMLInputElement>document.querySelector('[name="rate"]:checked')).value;
-  
- 
+
+
 
  let user = {
    id: this.identity.nombre.charAt(0).toUpperCase() + this.identity.nombre.slice(1) +' '+this.identity.apellido.charAt(0).toUpperCase() + this.identity.apellido.slice(1),
@@ -975,7 +977,7 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
    const container01 = document.querySelector<HTMLElement>('.container01')
    const widget = document.querySelector<HTMLElement>('.star-widget')
    const post = document.querySelector<HTMLElement>('.post');
-   
+
    container01.style.display = 'none';
    widget.style.display = 'none';
    post.style.display = 'none';
@@ -984,15 +986,15 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
    this.userServices.calificar(this.identity._id).toPromise();
    let identity = Object.assign(this.identity,{calificar:true});
    localStorage.setItem('identity',JSON.stringify(identity))
-    
+
   let update =  this.userServices.calificandoDoct(this.idClient,user).toPromise();
   update.then((vald)=>{
     console.log(vald)
-  
+
   })
-   
+
   window.location.href = '/inicio';
-  
+
  // return false;
 
 }
@@ -1003,7 +1005,7 @@ btnSumit02(){
 
   widget.style.display = 'block';
   post.style.display = 'none';
-  
+
 // return false;
 }
 

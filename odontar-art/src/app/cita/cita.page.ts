@@ -99,10 +99,13 @@ export class CitaPage implements OnInit,DoCheck,OnChanges {
 
 
     setTimeout(() => {
-      for(let i = 0; i < p.length; i++){
-        document.querySelectorAll<HTMLInputElement>('.name')[i].innerHTML  = p[i].IdUser.nombre;
-        document.querySelectorAll<HTMLInputElement>('.points')[i].innerHTML  = p[i].fecha;
-       // console.log('p,',p[i].IdUser.nombre)
+      if(p.length >= 0){
+        for(let i = 0; i < p.length; i++){
+          document.querySelectorAll<HTMLInputElement>('.name')[i].innerHTML  = p[i].IdUser.nombre;
+          document.querySelectorAll<HTMLInputElement>('.points')[i].innerHTML  = p[i].fecha;
+         // console.log('p,',p[i].IdUser.nombre)
+        }
+
       }
 
     }, 2000);

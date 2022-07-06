@@ -124,13 +124,13 @@
     <!-- segundo***************** -->                           
     <div *ngIf="user && user.role == 'Role_user' || identity && identity.role == 'Role_admin' " class="aboutcontent02" style="float: right; clear: both;">
       <div    class="aboutcontentsa">
-        <div  *ngIf="user && user.role == 'Role_user'" class="about">
+        <div style="color:black" *ngIf="user && user.role == 'Role_user'" class="about">
           <ion-icon  slot="end" name="person"></ion-icon>
           
           Contacto
         </div>
         
-        <div  *ngIf="identity && identity.role == 'Role_admin' && user && user.role == 'Role_subadmin' || user && user.role == 'Role_admin'" class="about">
+        <div style="color:black"  *ngIf="identity && identity.role == 'Role_admin' && user && user.role == 'Role_subadmin' || user && user.role == 'Role_admin'" class="about">
          
           <ion-icon  name="calendar-outline"></ion-icon>
           
@@ -144,14 +144,14 @@
           </ion-list>
         </div>
         
-        <div *ngIf="user && user.role == 'Role_user'"  (click)="actualizarContacto()" id="editbtn" style="color:rgb(255, 115, 0)" class="edit">
+        <div color *ngIf="user && user.role == 'Role_user'"  (click)="actualizarContacto()" id="editbtn" style="color:rgb(255, 115, 0)" class="edit">
           <ion-icon  style="color:rgb(255, 115, 0)"style="color:rgb(255, 115, 0)" name="pencil"></ion-icon>
           Editar
         </div>
         
         
 
-        <div *ngIf="user && user.role == 'Role_user'" style="clear: both" class="contenido">
+        <div style="color:black" *ngIf="user && user.role == 'Role_user'" style="clear: both" class="contenido">
           
           <div class="contenido-datos">
             <h6>Telefono</h6>
@@ -179,15 +179,18 @@
      <div  *ngIf="user && user.role == 'Role_user' || identity && identity.role == 'Role_admin'" class="aboutcontent02 tercer" style="float: right; clear: both;">
       <div    class="aboutcontentsa">
         <div *ngIf="user && user.role == 'Role_user'" class="about">
-          <ion-icon name="calendar"></ion-icon>
+          <ion-icon color="dark" name="calendar"></ion-icon>
           
-          Cita agendada
+         <h5 style="color:black">
+           Cita agendada
+         </h5>
         </div>
 
         <div *ngIf="user && user.role == 'Role_subadmin' || user && user.role == 'Role_admin' &&  identity && identity.role == 'Role_admin'" class="about">
-          <ion-icon name="calendar"></ion-icon>
-          
-          Historial de salida 
+          <h5 style="color:black">
+            <ion-icon color="dark" name="calendar"></ion-icon>
+            Historial de salida 
+          </h5>
           
           <ion-list class="listhistory">
             <ion-item  *ngFor="let historia of user.fecha_salida">
@@ -298,16 +301,16 @@
      <table class="table" >
        <thead>
          <tr>
-           <th scope="col">#</th>
-           <th scope="col">Nombre</th>
-           <th scope="col">Calificacion</th>
-           <th scope="col">Mensaje</th>
+           <th style="color:black" scope="col">#</th>
+           <th style="color:black" scope="col">Nombre</th>
+           <th style="color:black" scope="col">Calificacion</th>
+           <th style="color:black" scope="col">Mensaje</th>
          </tr>
        </thead>    
        <tbody>
          <tr *ngFor="let user of user.calificacion;let i = index">
-           <th scope="row">{{i}}</th>
-           <td class="nombre">{{user.id}}</td>
+           <th style="color:black" scope="row">{{i}}</th>
+           <td style="color:black" class="nombre">{{user.id}}</td>
            <!-- <td>{{user.calificacionEstrella}} / 5</td> estrella -->
            <td>
                     <!-- ESTRELLA DE CALIFICACION -->
@@ -374,7 +377,7 @@
 
            </td>
            <td class="tddsss">
-             <div class="tdd02">
+             <div style="color:black" class="tdd02">
                {{user.mensaje}}
                
              </div>

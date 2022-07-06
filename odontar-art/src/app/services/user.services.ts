@@ -203,6 +203,7 @@ savenota(body):Observable<any>{
 getAllNote():Observable<any>{
 
     let headers = new HttpHeaders().set('Content-type','application/json')
+                                   .set('authorization',this.getToken());
 
     return this._http.get(this.url+'getAllNote',{headers:headers})
 }
@@ -214,16 +215,15 @@ deleteNote(id):Observable<any>{
     return this._http.delete(this.url+'borrarnota/'+id,{headers:headers});
 }
 
-updateNoteView(val):Observable<any>{
+updateNoteView(element):Observable<any>{
 
-      let element = {
-        notificacionView: val
-    }
+     
     let params = JSON.stringify(element);
 
    let headers = new HttpHeaders().set('Content-type','application/json')
+                                
 
-    return this._http.put(this.url+'/updateNoteView',params,{headers:headers})
+    return this._http.put(this.url+'updateNoteView',params,{headers:headers})
 }
 
 updateNoteView02(id):Observable<any>{
@@ -236,7 +236,7 @@ updateNoteView02(id):Observable<any>{
  let headers = new HttpHeaders().set('Content-type','application/json')
                                 .set('authorization',this.getToken());
 
-  return this._http.put(this.url+'/updateAllNoteWithId/'+id,params,{headers:headers})
+  return this._http.put(this.url+'updateAllNoteWithId/'+id,params,{headers:headers})
 }
 
 
