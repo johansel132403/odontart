@@ -58,11 +58,7 @@ var app = express();
     app.use('/api', userRouter);
     app.use('/api', citaRouter);
 
-    app.use(haltOnTimedout);
 
-function haltOnTimedout(err,req,res,next) {
-   if (!req.timedout) next()
-};
 
 //export 
 
