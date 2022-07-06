@@ -995,8 +995,9 @@ async function updateAllNote(req,res, next){
     try {
         console.log(req.timedout)
 
-        if(!req.timedout){
-          await  User.updateMany({},{ notificacionView: false },{multi: true});
+        if(!req.timedout){            
+
+          await  User.updateMany({},paramsBody,{multi: true});
             
         }
         
