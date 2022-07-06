@@ -57,19 +57,11 @@ var app = express();
    // app.use('/peerjs', peerServer); // videollamada
     app.use('/api', userRouter);
     app.use('/api', citaRouter);
-    
+
     app.use(haltOnTimedout);
 
 function haltOnTimedout(err,req,res,next) {
-    if (req.timedout === true) {
-        if (res.headersSent) {
-            next(err);
-        } else {
-            res.redirect('/timedout.html');
-        }
-    } else {
-        next();
-    }
+   if (!req.timedout) next()
 };
 
 //export 
