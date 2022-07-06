@@ -1003,7 +1003,7 @@ async function updateAllNote(req,res, next){
                 res.status(504).send('Timeout');
             });
             
-              User.updateMany({},paramsBody,{multi: true}).exec(()=>{
+              User.updateMany({},paramsBody,{multi: true}).exec((err,response)=>{
                   
                   if(response){
                       
