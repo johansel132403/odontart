@@ -801,9 +801,12 @@ function crearNotificacion( req, res){
 
     var time = new Date();
     var hour = time.getHours();
+    console.log('h',hour)
     var minute = time.getMinutes();
     var second = time.getSeconds();
     var temp = '' + ((hour > 12) ? hour - 12 : hour);
+    console.log('t',temp)
+
         if (hour == 0)
           temp = '12';
         temp += ((minute < 10) ? ':0' : ':') + minute;
