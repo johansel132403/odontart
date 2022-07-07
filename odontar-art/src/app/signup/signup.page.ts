@@ -61,8 +61,7 @@ export class SignupPage implements OnInit {
        
        // aqui tenemos que hacer un arreglo a la hora de de que se salga del login tenemos que actualizar el token y ponerlo false para que pueda retornarno un response con datos 
        //                                imprimamos estos login para que podamos ver lo que retorna 
-       console.log('reee',response)   
-       console.log('po',response.user)
+      
 
        
        for(let ress in response){
@@ -90,15 +89,14 @@ export class SignupPage implements OnInit {
   
                 var fecha = new Date();
                 let   fechaf = fecha.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric' });
-                      console.log(fechaf +', '+ temp);
-                      console.log("id" +', '+ response[ress]._id);
+                     
   
     
                   //aqui le podemo poner un await pero preferimos ponerle este setTimeout()......
                   setTimeout(()=>{
                     this._userServices.updateData02(response[ress]._id, {fecha_entrada:`${fechaf}   ${ temp} `} ).subscribe(
                         responsei=>{
-                          console.log('responsew',responsei)
+                         
                         },
                         error => {
                           console.log(error)
@@ -129,7 +127,7 @@ export class SignupPage implements OnInit {
                 }).then((response) => {
                   response.present();
                   response.onDidDismiss().then((response) => {
-                    console.log('Loader dismissed', response);
+                   
                     if(this.identity.role === 'Role_admin' || this.identity.role === 'Role_subadmin'){
                        localStorage.setItem('identity',JSON.stringify(this.identity));
 
@@ -148,7 +146,7 @@ export class SignupPage implements OnInit {
      },
      error => {
 
-      console.log( error.error.Mensaje  )
+     
        if(error.error.Mensaje == 'El usuario no esta registrado' || error.error.Mensaje == 'Contraseña invalida'){
          this.status_error = true;
          this.status = error.error.Mensaje;
@@ -173,7 +171,7 @@ export class SignupPage implements OnInit {
     this._userServices.loginn(this.user,'true').subscribe(
       response=> {
 
-        console.log(response)
+       
         
           this.token = response.token;
           localStorage.setItem('token', JSON.stringify(this.token));

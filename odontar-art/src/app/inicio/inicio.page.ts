@@ -191,7 +191,7 @@ export class InicioPage implements OnInit, DoCheck, OnChanges {
           text: 'Ok',
           handler: (e) => {
             this.mensage.SendSms(e.sms);
-            console.log(e)
+            
             console.log('Confirm Ok');
           }
         }

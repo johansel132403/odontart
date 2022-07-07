@@ -146,7 +146,7 @@ export class VideollamadaPage implements OnInit {
           if (this.peer != null) {
             this.peer.destroy();
           }
-          console.log("the caller ended the call", data);
+         
         }
       });
     });
@@ -156,8 +156,7 @@ export class VideollamadaPage implements OnInit {
 
       /*/////////////////////////////////////////////////////////////////////*/
 
-      console.log('d',this.roomID)
-      console.log('uuidv4()',this.uu )
+     
       
   // this.sIo.emit('join-room', this.uu, this.roomID, this.identity.nombre);
      // console.log('id/8/',id)
@@ -176,7 +175,7 @@ export class VideollamadaPage implements OnInit {
 
     if(this.identity.role === 'Role_admin' || this.identity.role === 'Role_subadmin'){
 
-      console.log("datos.receptor")
+      
 
       this.route.params.subscribe( async (params)  =>{
 
@@ -277,7 +276,7 @@ export class VideollamadaPage implements OnInit {
 
    const videoGrid = document.getElementById("video-grid");
    const myVideo = document.createElement("video");
-   console.log(myVideo)
+  
 
     myVideo.className = 'video';
     myVideo.muted = true;   //ojo aqui ver si no esta en muted....
@@ -298,7 +297,7 @@ export class VideollamadaPage implements OnInit {
       // peer              /*/*//////////////////////////////////
       this.peer.on("call", (call) => {
         this.mediaConnection = call;
-         console.log('yes ')
+        
        call.answer(stream);
        const video = document.createElement("video");
        call.on("stream", (userVideoStream) => {
@@ -409,7 +408,7 @@ export class VideollamadaPage implements OnInit {
    
     call.on("stream", (userVideoStream) => {
 
-      console.log(call,userVideoStream)
+     
      
       this.addVideoStream(video, userVideoStream);
     });
@@ -469,7 +468,7 @@ sockeCall(datosd){
 
   this.identity = JSON.parse(localStorage.getItem('identity'));
 
-  console.log('log',this.datos.email)
+ 
   let datos = {
 
     id: this.identity._id,
@@ -539,7 +538,7 @@ startVideoCall(){
 
   }
 
-  console.log('drr',this.datos)
+  
 
   if(this.identity.role === 'Role_admin' || this.identity.role === 'Role_subadmin'){
     datos = {

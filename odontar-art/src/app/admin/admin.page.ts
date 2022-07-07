@@ -39,7 +39,7 @@ export class AdminPage implements OnInit {
       // //esto aqui es para la hora en la que se registran los usuarios admin...
       if(this.role === 'Role_subadmin'){
 
-        console.log('si entro el sub')
+       
 
         var time = new Date();
         var hour = time.getHours();
@@ -54,15 +54,14 @@ export class AdminPage implements OnInit {
 
         var fecha = new Date();
         let   fechaf = fecha.toLocaleDateString("es-MX",{ weekday:'long', day:'numeric', month:'long', year:'numeric' });
-              console.log(fechaf +', '+ temp);
+             
 
 
           //aqui le podemo poner un await pero preferimos ponerle este setTimeout()......
           setTimeout(()=>{
             this._userServices.updateData03(this.Id, {fecha_salida:`${fechaf}   ${ temp} `} ).subscribe(
               responsei=>{
-                console.log('response',responsei)
-                console.log('se el response entro')
+                
               },
               error => {
                 console.log(error)

@@ -39,6 +39,7 @@ export class ClientePage implements OnInit, DoCheck,OnChanges {
   identity;
   uploadFile;
   token;
+  alert;
 
 
   private cita: Array<any>;
@@ -213,7 +214,7 @@ export class ClientePage implements OnInit, DoCheck,OnChanges {
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
-            console.log('Confirm Cancel');
+           
           }
         }, {
           text: 'Ok',
@@ -385,7 +386,7 @@ export class ClientePage implements OnInit, DoCheck,OnChanges {
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
-            console.log('Confirm Cancel');
+           
           }
         }, {
           text: 'Ok',
@@ -431,13 +432,13 @@ export class ClientePage implements OnInit, DoCheck,OnChanges {
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
-            console.log('Confirm Cancel');
+           
           }
         }, {
           text: 'Ok',
           handler: (dato) => {
             this.actualizarDatos(dato);
-            console.log('Confirm Ok');
+           
           }
         }
       ]
@@ -509,7 +510,7 @@ export class ClientePage implements OnInit, DoCheck,OnChanges {
            
            this.citaUpdate.fecha = 'Seleccione una fecha'
           }
-          console.log(this.citaUpdate.fecha)
+         
 
          const alert = await this.alertController.create({
            cssClass: 'my-custom-class',
@@ -756,7 +757,7 @@ async cambiarcontrasena(){
          let response = this._userServices.cambiarcontrasena(this.user._id,e).toPromise();
 
          response.then((resul)=>{
-              console.log(resul)
+              
               Swal.fire({
                 heightAuto: false,
                 icon: 'success',
@@ -783,7 +784,35 @@ uploadImagenInput(inputFile:any){
 
   let idCliente = JSON.parse(localStorage.getItem('cliente'))
     
-  this.uploadFile = <Array<File>>inputFile.target.files;
+  this.uploadFile = <Array<File>>inputFile.target.files; 
+
+  
+
+ 
+
+  let form = this.uploadFile[0].name.split('.');
+  let formt = form[form.length -1];
+     console.log(formt)
+
+     if( formt == 'jpg' || formt == 'JPG'  || formt == 'png'  || formt == 'GIF' ||
+         formt == 'PNG' || formt == 'jpeg' || formt == 'JPEG' || formt == 'gif' || formt == 'jfif' || formt == 'jfi' || formt == 'jif'){ 
+
+         
+      }else{
+        document.querySelector<HTMLInputElement>("#uploadCaptureFile").value ='';
+        this.alert = true
+        setTimeout(() => {
+          
+          this.alert = false;
+          
+        }, 3000);
+
+
+      }
+
+
+
+
     //
     if(this.uploadFile && this.uploadFile.length > 0){
     

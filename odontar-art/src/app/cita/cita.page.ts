@@ -95,20 +95,24 @@ export class CitaPage implements OnInit,DoCheck,OnChanges {
 
     //liading logo.......
 
+  
 
+   if(p.length >= 0){
+     setTimeout(() => {
+     
+       
+         for(let i = 0; i < p.length; i++){
+           document.querySelectorAll<HTMLInputElement>('.name')[i].innerHTML  = p[i].IdUser.nombre;
+           document.querySelectorAll<HTMLInputElement>('.points')[i].innerHTML  = p[i].fecha;
+          // console.log('p,',p[i].IdUser.nombre)
+         }
+  
+       
+  
+     }, 2000);
 
+   }
 
-    setTimeout(() => {
-      if(p.length >= 0){
-        for(let i = 0; i < p.length; i++){
-          document.querySelectorAll<HTMLInputElement>('.name')[i].innerHTML  = p[i].IdUser.nombre;
-          document.querySelectorAll<HTMLInputElement>('.points')[i].innerHTML  = p[i].fecha;
-         // console.log('p,',p[i].IdUser.nombre)
-        }
-
-      }
-
-    }, 2000);
   }
 
   async getTodasCitas(){
@@ -169,7 +173,7 @@ editarCita(id){
 
         this.citaUpdate.fecha = 'Seleccione una fecha'
        }
-       console.log(this.citaUpdate)
+       
 
       const alert = await this.alertController.create({
         cssClass: 'my-custom-class',
@@ -223,7 +227,7 @@ editarCita(id){
             role: 'cancel',
             cssClass: 'secondary',
             handler: () => {
-              console.log('Confirm Cancel');
+             
             }
           }, {
             text: 'Ok',
@@ -246,7 +250,7 @@ editarCita(id){
                this._citaServices.editCitas(this.citaUpdate._id,dato).subscribe(
                  response=>{
 
-                  console.log('error',response.error)
+                  
 
                    let arry = [];
                    let arry02 = [];
@@ -304,7 +308,7 @@ editarCita(id){
 
       await alert.present();
 
-      console.log(this.citaUpdate.doctor)
+      
    },
    error=>{
 
@@ -355,7 +359,7 @@ public  cita02;
              this.cita02 =   arry[i]
           }
        }
-         console.log(this.cita02)
+         
           const alert = await this.alertController.create({
             cssClass: 'my-custom-alert',
             header: 'Informacion de la cita',
@@ -430,7 +434,7 @@ public  cita02;
       })
       this._citaServices.DeleteCitas(id).subscribe(
         response=>{
-          console.log(response)
+         
           
          // this.getcitasDelCliente(this.paramsIdCliente)
          this.getTodasCitas();
@@ -444,7 +448,7 @@ public  cita02;
           setTimeout(() => {
             this.errorUpdate = false;
           }, 5000);
-          console.log('err05',<any>error.error.Error)
+          
         }
       )
 
@@ -459,10 +463,10 @@ public  cita02;
   doRefresh(event) {
     // let t =  document.querySelector('.refresher-refreshing-text') as HTMLElement ;
     // t.style.color = 'white';
-    console.log('Begin async operation');
+   
 
     setTimeout(() => {
-      console.log('Async operation has ended');
+     
       event.target.complete();
     }, 2000);
    this.getTodasCitas();

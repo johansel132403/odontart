@@ -21,6 +21,8 @@ export class NotificacionPage implements OnInit {
   url;
   identity;
   token;
+  imgAlert;
+  alert;
   constructor(private _post: PostPage,private _router:Router,private _uploadimagen:uploadImagen, private _userServices:UserServices) { }
   
   ngOnInit() {
@@ -37,7 +39,7 @@ export class NotificacionPage implements OnInit {
  async response =>{
    
 
-   console.log(response.response)
+  
    
    if(response.response._id){
      
@@ -66,12 +68,12 @@ export class NotificacionPage implements OnInit {
 
         setTimeout(() => {
 
-              console.log(this.uploadFile )
+              
           
               if(this.uploadFile && this.uploadFile.length >= 0){
                 let  barraProgress = document.getElementById('barra');
           
-                console.log('entrooo')
+                
                 this.btn = false;
        
                
@@ -79,7 +81,7 @@ export class NotificacionPage implements OnInit {
                   this._uploadimagen.subirImagen(this.url+'imagennota/'+response.response._id,[],this.uploadFile,this.token,'imagen')
                   .then((value:any)=>{
                     
-                        console.log('df',value)
+                        
                     document.querySelector<HTMLInputElement>("#upload").value ='';
                 });
              
@@ -106,6 +108,35 @@ export class NotificacionPage implements OnInit {
   uploadImagenInput(inputFile:any){
     
     this.uploadFile = <Array<File>>inputFile.target.files;
+
+   
+
+    let form = this.uploadFile[0].name.split('.');
+    let formt = form[form.length -1];
+     
+
+       if( formt == 'jpg' || formt == 'JPG'  || formt == 'png'  || formt == 'GIF' ||
+           formt == 'PNG' || formt == 'jpeg' || formt == 'JPEG' || formt == 'gif' || formt == 'jfif' || formt == 'jfi' || formt == 'jif'){ 
+
+            this.imgAlert = true;
+
+            setTimeout(() => {
+              this.imgAlert =false;
+            }, 3000);
+
+            console.log('IMG')
+        }else{
+          document.querySelector<HTMLInputElement>("#upload").value ='';
+          this.alert = true
+          setTimeout(() => {
+            
+            this.alert = false;
+            
+          }, 3000);
+
+
+        }
+
 
   }
 

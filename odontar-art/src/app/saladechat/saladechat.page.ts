@@ -25,7 +25,7 @@ export class SaladechatPage implements OnInit {
     this.identity = JSON.parse(localStorage.getItem('identity'));
 
     this.sIo.on('yess', data => {
-      console.log(data)
+     
     })
    
     let dato= {
@@ -38,12 +38,12 @@ export class SaladechatPage implements OnInit {
   //   this.sIo.emit('admin-conenct',dato)
      this.sIo.on('update02',(datosp) =>{
        this.value = datosp;
-       console.log('dd',this.value)
+       
      })
 
      this.sIo.on('update03',(dato)=>{
        this.value = dato;
-       console.log('valueee',this.value)
+       
      })
     
 /*/////////////////////////////////////////////////////////////////////////////////////////////////*/
@@ -59,7 +59,7 @@ export class SaladechatPage implements OnInit {
        // this.users = newArray;
 
         this.users = newArray.filter((item) => item.online === true );
-        console.log('users',this.users)
+       
 
 
         

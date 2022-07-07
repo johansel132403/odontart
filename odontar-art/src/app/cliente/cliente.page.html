@@ -22,6 +22,15 @@
 
 <ion-content class="contenedor" *ngIf="user && user._id">
 
+
+  <div class="alert alert-danger " style="position:absolute; width: 100%; text-align: center;" *ngIf="alert == true" >
+    El formato de la imagen no es correcto
+  </div>
+
+  <div class="alert alert-success " style="position:absolute; width: 100%; text-align: center;" *ngIf="alert == true" >
+   Imagen cargada...
+  </div>
+
   <div class="contenedor01">
 
     
@@ -102,7 +111,7 @@
           </div> -->
 
           <div  *ngIf="user && user.role == 'Role_user' " class="contenido-datos">
-            <h6>Direccion</h6>
+            <h6>Dirección</h6>
             <p *ngIf="user.direccion">{{user.direccion}}</p>
           </div>
 

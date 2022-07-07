@@ -37,7 +37,7 @@ export class CrearadminPage implements OnInit {
   }
   
   onSubmit(form){
-    console.log(this.user)
+   
 
     // let value = {
     //   activo: true

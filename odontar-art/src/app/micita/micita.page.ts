@@ -111,7 +111,7 @@ export class MicitaPage implements OnInit {
     let response = await this._citaServices.getCitasDeUnId(this.identity._id).toPromise();
     // let f = await this._citaServices.getCitaWithUser().subscribe(
     //   response=>{
-        console.log(response)
+       
     localStorage.setItem('micita',JSON.stringify(response.citas))
 
           this.citas = response.citas;
@@ -150,7 +150,7 @@ editarCita(id){
 
         this.citaUpdate.fecha = 'Seleccione una fecha'
        }
-       console.log(this.citaUpdate)
+       
 
       const alert = await this.alertController.create({
         cssClass: 'my-custom-class',
@@ -285,7 +285,7 @@ editarCita(id){
 
       await alert.present();
 
-      console.log(this.citaUpdate.doctor)
+      
    },
    error=>{
 
@@ -318,7 +318,7 @@ public  cita02;
              this.cita02 =   arry[i]
           }
        }
-         console.log(this.cita02)
+         
           const alert = await this.alertController.create({
             cssClass: 'my-custom-alert',
             header: 'Informacion de la cita',
@@ -393,7 +393,7 @@ public  cita02;
       })
       this._citaServices.DeleteCitas(id).subscribe(
         response=>{
-          console.log(response)
+          
           
          // this.getcitasDelCliente(this.paramsIdCliente)
          this.getTodasCitas();

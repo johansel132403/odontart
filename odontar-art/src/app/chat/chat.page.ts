@@ -55,6 +55,7 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
   btn;
   other;
   otherimg;
+  alert;
 
 
   datoUpdaForma;
@@ -350,7 +351,7 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
 
            this.other =  vat.user.nombre;
            this.otherimg = vat.user.imagen
-           console.log(vat.user)
+          
 
           this.usuarioDeOtraCuenta = vat.user.email;
           let datoss = {
@@ -418,7 +419,7 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
         //aqui estamos recibiendo los datos  del servidor
         this.sIo.on('new message',  (data) =>{
 
-          console.log('data',data)
+         
 
          this.index = this.index + 1 ;
 
@@ -507,7 +508,7 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
           this.chats.push(data.msg) //data.msg.texto                     //  lo corecto es que esto este fuera de esos
         //  this.chats.push(data.msg) //data.msg.texto
 
-          console.log(this.chats)
+         
 
 
 
@@ -557,24 +558,18 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
 
   async ionViewWillEnterr(element = null,img){
 
-    if(element){
-      console.log('es01 ',element)
-    }else{
-      console.log('es02 ',element)
-
-    }
+ 
 
 
       // esto aqui lo hacemos para que no se envien mensajes en blanco....
     for (const [key, value] of Object.entries(this.mensaje)) {
-      console.log([key, value]);
-      console.log('[key, value]');
+      
       if(value === '' &&  this.uploadFile.length === 0){
         return;//this.uploadFile.length
       }
     }
 
-    console.log('obj',Object.values(this.mensaje))
+    
 
     // if( Object.keys(this.mensaje).length === 0){
     //      return ;
@@ -633,10 +628,10 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
 
     if(this.uploadFile && this.uploadFile.length){
          
-      console.log('iii',img)
+     
       datos.imagen = img;
     //  let resp =  this.userServices.getOneCliente(this.identity._id).toPromise();
-       console.log('sif')
+       
     //  resp.then((val) =>{{
 
     //   if(!val._id){
@@ -658,7 +653,7 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
     //  }})
 
     }else if(Object.keys(this.mensaje).length === 0){
-      console.log('nof')
+     
 
        return ;
     }
@@ -697,7 +692,7 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
 
 
   adminData(){
-    console.log('desconect')
+   
 
   //  this.router.navigate(['admin/chatsadmin']);
   }
@@ -743,6 +738,27 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
 
     this.uploadFile = <Array<File>>inputFile.target.files;
 
+    let form = this.uploadFile[0].name.split('.');
+    let formt = form[form.length -1];
+       
+
+       if( formt == 'jpg' || formt == 'JPG'  || formt == 'png'  || formt == 'GIF' ||
+           formt == 'PNG' || formt == 'jpeg' || formt == 'JPEG' || formt == 'gif' || formt == 'jfif' || formt == 'jfi' || formt == 'jif'){ 
+
+            
+        }else{
+          document.querySelector<HTMLInputElement>("#uploadCaptureFile").value ='';
+          this.alert = true
+          setTimeout(() => {
+            
+            this.alert = false;
+            
+          }, 3000);
+
+
+        }
+
+
       // aqui lo que se esta haciendo un force.. esto es par si el usuario no tiene converzacion con el usuario  y quiere enviar una imagen
       //le verpita a la foto verse...
     if(this.uploadFile && this.uploadFile.length){
@@ -761,11 +777,11 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
 
       resp.then( async (val) =>{{
 
-        console.log('val',val)
+        
         if(!val.user){
-                       console.log('ttt',this.imagenT)
+                    
         datos.imagen = this.imagenT;
-       console.log('no hay, no hay que entrar')
+      
 
 
         // let f =  await this.userServices.sevachat(datos).toPromise();
@@ -989,7 +1005,7 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
 
   let update =  this.userServices.calificandoDoct(this.idClient,user).toPromise();
   update.then((vald)=>{
-    console.log(vald)
+   
 
   })
 

@@ -69,7 +69,7 @@ this.getImg();
 async getImg(){
   
  let response = await this._userServices.getImagenFromCh(this.identity.email).toPromise();
-  console.log(response.response);
+  
  
 
    this.resImagen = response.response;
@@ -77,7 +77,7 @@ async getImg(){
    let re = this.resImagen.filter((val)=> val.imagen )
    this.imagenes = re;
 
-   console.log(this.imagenes)
+   
   }
 
   imagenOpen(img2){

@@ -18,6 +18,14 @@
 
  <div class="container">
 
+  <div class="alert alert-danger" style="top:30px" *ngIf="alert == true">
+     El formato de la imagen no es correcto
+  </div>
+  <div class="alert alert-success animate__animated animate__backInLeft" style= " position:relative; top:30px; width: 100%; text-align: center;" *ngIf="imgAlert" >
+    Imagen...
+    <ion-icon style="font-size: 25px;" name="checkmark-outline"></ion-icon>
+   </div>
+
 
   <form>
     <div class="form-group">

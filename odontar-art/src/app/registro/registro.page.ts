@@ -36,13 +36,13 @@ export class RegistroPage implements OnInit {
 
     
     let user = Object.assign(this.user,{role:'Role_user'})
-    console.log(this.user)
+   
 
 
 
     this._userServices.registro(user).subscribe(
       response => {
-    console.log('this.user',response)
+    
 
         
         if(response.user && response.user._id){

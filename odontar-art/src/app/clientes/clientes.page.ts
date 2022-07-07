@@ -119,10 +119,10 @@ export class ClientesPage implements OnInit, DoCheck {
   doRefresh(event) {
     // let t =  document.querySelector('.refresher-refreshing-text') as HTMLElement ;
     // t.style.color = 'white';
-    console.log('Begin async operation');
+    
 
     setTimeout(() => {
-      console.log('Async operation has ended');
+      
       event.target.complete();
     }, 2000);
    this.clientes();

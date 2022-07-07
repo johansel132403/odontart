@@ -50,7 +50,7 @@ export class ChatsadminPage implements OnInit,DoCheck {
     this.identity = JSON.parse(localStorage.getItem('identity'));
 
     this.sIo.on('yess', data => {
-      console.log(data)
+     
     })
    
     let dato= {
@@ -63,12 +63,12 @@ export class ChatsadminPage implements OnInit,DoCheck {
   //   this.sIo.emit('admin-conenct',dato)
      this.sIo.on('update02',(datosp) =>{
        this.value = datosp;
-       console.log('dd',this.value)
+      
      })
 
      this.sIo.on('update03',(dato)=>{
        this.value = dato;
-       console.log('valueee',this.value)
+       
      })
     
 /*/////////////////////////////////////////////////////////////////////////////////////////////////*/
@@ -176,8 +176,7 @@ export class ChatsadminPage implements OnInit,DoCheck {
 
   
     esp(v){
-    console.log(v)
-    console.log('asdasdfasdfasd')
+    
   
   }
 
@@ -206,10 +205,10 @@ export class ChatsadminPage implements OnInit,DoCheck {
   doRefresh(event) {
     // let t =  document.querySelector('.refresher-refreshing-text') as HTMLElement ;
     // t.style.color = 'white';
-    console.log('Begin async operation');
+   
 
     setTimeout(() => {
-      console.log('Async operation has ended');
+     
       event.target.complete();
     }, 2000);
     this.updateData01()

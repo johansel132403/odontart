@@ -39,7 +39,7 @@ export class PostPage implements OnInit {
 
    notes.then((val) => {
     this.notes = val.response;
-    console.log(this.notes)
+    
    })
   }
 
@@ -114,10 +114,10 @@ export class PostPage implements OnInit {
   doRefresh(event) {
     // let t =  document.querySelector('.refresher-refreshing-text') as HTMLElement ;
     // t.style.color = 'white';
-    console.log('Begin async operation');
+   
 
     setTimeout(() => {
-      console.log('Async operation has ended');
+     
       event.target.complete();
     }, 2000);
    this.getAllNote();
