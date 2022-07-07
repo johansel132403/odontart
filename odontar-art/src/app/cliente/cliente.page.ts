@@ -792,7 +792,7 @@ uploadImagenInput(inputFile:any){
 
   let form = this.uploadFile[0].name.split('.');
   let formt = form[form.length -1];
-     console.log(formt)
+     
 
      if( formt == 'jpg' || formt == 'JPG'  || formt == 'png'  || formt == 'GIF' ||
          formt == 'PNG' || formt == 'jpeg' || formt == 'JPEG' || formt == 'gif' || formt == 'jfif' || formt == 'jfi' || formt == 'jif'){ 

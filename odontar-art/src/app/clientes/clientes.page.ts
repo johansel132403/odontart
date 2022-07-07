@@ -39,7 +39,7 @@ export class ClientesPage implements OnInit, DoCheck {
          var myArray = response.users;
          var newArray = myArray.filter((item) => item.role !== 'Role_admin' && item.role !== 'Role_subadmin');
          this.users = newArray;
-         console.log(newArray);
+         
 
         
         // this.users = response.users;
