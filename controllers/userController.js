@@ -249,7 +249,7 @@ function updateUser( req, res ){
 
 
    // este metodo es para agregar una fecha cada vez que inicie session un admin....
-async function updateUser02( req, res ){
+async function updateUser02( req, res,next ){
 
     let  id  = req.params.id;
     let update = req.body;
@@ -264,6 +264,7 @@ async function updateUser02( req, res ){
     delete update.password;
    
  await User.findByIdAndUpdate(id,{ $push: {'fecha_entrada': g} },{ strict: false });
+   next()
    
 
 //   aqui esta pasando algo a la hora que salimos del login no se puede logiar otro renemos que ver que es lo que pasa......
