@@ -41,11 +41,11 @@ api.delete('/borrarnota/:id',controllers.deleteNote);
 api.post('/imagennota/:id',controllers.imagenNote);
 api.get('/getAllNote',controllers.obtenerTodasNotificacion);
 api.get('/getOneNote',controllers.obtenerUnoNota);
-api.put('/updateNoteView',controllers.updateAllNote);  
+api.put('/updateNoteView',[timeout('25s')],controllers.updateAllNote);  
 api.put('/updateAllNoteWithId/:id',md_auth.ensureAuth,controllers.updateAllNoteWithId);
 api.get('/getImagenChat/:email',controllers.getImgFromChat);
 
-// [timeout('20s')]
+
 
 api.get('/getimagen/:imagenpath', controllers.getImg);
 
