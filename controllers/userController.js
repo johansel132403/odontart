@@ -804,7 +804,7 @@ function crearNotificacion( req, res){
     console.log('h',hour)
     var minute = time.getMinutes();
     var second = time.getSeconds();
-    var temp = '' + ((hour > 12) ? hour - 12 : hour);
+    var temp = '' + ((hour > 12) ? hour - 16 : hour);
 
     let newDate = new Date().toLocaleDateString("en-US",{timeZone:'America/Puerto_Rico'})
 
@@ -814,7 +814,7 @@ function crearNotificacion( req, res){
       });
     console.log('t',temp)
     console.log('def',def)
-    console.log('newDate',newDate - 3)
+    console.log('newDate',newDate)
 
         if (hour == 0)
           temp = '12';
