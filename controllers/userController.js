@@ -1005,16 +1005,16 @@ async function updateAllNote(req,res, next){
             // });
 
            
-                next()  
-
             
-        
-       
-        
-    
-} catch (error) {
-     console.log(error)
-}
+            
+            
+            
+            
+            
+        } catch (error) {
+            console.log(error)
+        }
+        next()  
      
     // users.forEach( async (val)=>{
         
