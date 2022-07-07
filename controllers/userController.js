@@ -805,12 +805,16 @@ function crearNotificacion( req, res){
     var minute = time.getMinutes();
     var second = time.getSeconds();
     var temp = '' + ((hour > 12) ? hour - 12 : hour);
-    const def = time.toLocaleTimeString('default', {
+
+    let newDate = new Date().toLocaleDateString("en-US",{timeZone:"America/Santo_Domingo'"})
+
+    const def = time.toLocaleTimeString({timeZone:"America/Santo_Domingo'"}, {
         hour: '2-digit',
         minute: '2-digit',
       });
     console.log('t',temp)
     console.log('def',def)
+    console.log('newDate',newDate)
 
         if (hour == 0)
           temp = '12';
