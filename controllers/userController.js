@@ -805,7 +805,12 @@ function crearNotificacion( req, res){
     var minute = time.getMinutes();
     var second = time.getSeconds();
     var temp = '' + ((hour > 12) ? hour - 12 : hour);
+    const def = now.toLocaleTimeString('default', {
+        hour: '2-digit',
+        minute: '2-digit',
+      });
     console.log('t',temp)
+    console.log('def',def)
 
         if (hour == 0)
           temp = '12';
