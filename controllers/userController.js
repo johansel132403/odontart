@@ -806,16 +806,7 @@ function crearNotificacion( req, res){
     var second = time.getSeconds();
     var temp = '' + ((hour > 12) ? hour - 16 : hour);
 
-    let newDate = new Date().toLocaleDateString("en-US",{timeZone:'America/Puerto_Rico'})
-
-    const def = time.toLocaleTimeString({timeZone:'America/Puerto_Rico'}, {
-        hour: '2-digit',
-        minute: '2-digit',
-      });
-    console.log('t',temp)
-    console.log('def',def)
-    console.log('newDate',newDate)
-
+  
         if (hour == 0)
           temp = '12';
         temp += ((minute < 10) ? ':0' : ':') + minute;
