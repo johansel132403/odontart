@@ -999,13 +999,13 @@ async function updateAllNote(req,res, next){
             
             await  User.updateMany({},paramsBody,{multi: true});
          //   req.setTimeout((4 * 60 * 1000) + 1);
-            req.socket.removeAllListeners('timeout'); // This is the work around
-            req.socket.once('timeout', () => {
-                req.timedout = true;
-                res.status(504).send('Timeout');
-            });
+            // req.socket.removeAllListeners('timeout'); // This is the work around
+            // req.socket.once('timeout', () => {
+            //     req.timedout = true;
+            //     res.status(504).send('Timeout');
+            // });
         
-            next()  
+             next()  
        
         
     
