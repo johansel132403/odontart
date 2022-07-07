@@ -270,7 +270,7 @@ async function updateUser02( req, res ){
 
 }
   //esto es para actualizar las salidas de los administradores
-async function updateUser03( req, res ){
+async function updateUser03( req, res,next ){
 
     let  id  = req.params.id;
     let update = req.body;
@@ -285,7 +285,7 @@ async function updateUser03( req, res ){
     delete update.password;
 
   await  User.findByIdAndUpdate(id,{ $push: {'fecha_salida': g} },{ strict: false });
-
+    next() 
 }
 
 
