@@ -32,23 +32,23 @@ export class NotificacionPage implements OnInit {
 
   saveNota(){
    
-    let element = {
-      notificacionView: false
-  }
-    this._userServices.updateNoteView(element).toPromise(); //esta linea de codigo es de lo que estamos hablando de la actualizacion....
-    setTimeout(() => {
-      
-    }, 1000);
-
+    
     this._userServices.savenota(this.notificacion).subscribe(
  async response =>{
+   
 
-
-      console.log(response.response)
-
-        if(response.response._id){
-
-          //aqui lo que estamos haciendo que cuando publiquemos una notificacion se le va a poner en false a la persona que no lo ha visto hasta que lo vea....
+   console.log(response.response)
+   
+   if(response.response._id){
+     
+     //aqui lo que estamos haciendo que cuando publiquemos una notificacion se le va a poner en false a la persona que no lo ha visto hasta que lo vea....
+     let element = {
+       notificacionView: false
+   }
+ 
+       this._userServices.updateNoteView(element).toPromise(); //esta linea de codigo es de lo que estamos hablando de la actualizacion....
+       
+    
           
            
 

@@ -58,7 +58,7 @@
         <ion-card-header>
           <ion-card-title>{{note.tituloseg}}
            
-              <ion-icon  (click)="deleteNote(note._id)"   color="danger" name="trash"></ion-icon>
+              <ion-icon  (click)="deleteNote(note._id)"   color="danger" name="trash" *ngIf="identity.role != 'Role_user'"></ion-icon>
   
            
 

@@ -196,7 +196,7 @@ savenota(body):Observable<any>{
     let headers = new HttpHeaders().set('Content-type','application/json')
                                    .set('authorization',this.getToken());
 
-    return this._http.post(this.url+'crearnota/', params, {headers: headers});
+    return this._http.post(this.url+'crearnota', params, {headers: headers});
 
 }
 

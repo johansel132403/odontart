@@ -806,9 +806,9 @@ function crearNotificacion( req, res){
     var second = time.getSeconds();
     var temp = '' + ((hour > 12) ? hour - 12 : hour);
 
-    let newDate = new Date().toLocaleDateString("en-US",{timeZone:"America/Santo_Domingo"})
+    let newDate = new Date().toLocaleDateString("en-US",{timeZone:'America/Puerto_Rico'})
 
-    const def = time.toLocaleTimeString({timeZone:"America/Santo_Domingo"}, {
+    const def = time.toLocaleTimeString({timeZone:'America/Puerto_Rico'}, {
         hour: '2-digit',
         minute: '2-digit',
       });
