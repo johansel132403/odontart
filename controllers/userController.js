@@ -960,7 +960,7 @@ async function imagenNote( req, res){
 
 function obtenerTodasNotificacion( req, res ){
 
-    Notificacion.find().exec((err,response) => {
+    Notificacion.find().sort({id:'_id'}).exec((err,response) => {
 
         if(err) return res.status(200).send({Mensaje:'Error, no se pudo actualizar la nota...'});
 
