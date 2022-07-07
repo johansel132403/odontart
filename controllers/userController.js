@@ -814,7 +814,7 @@ function crearNotificacion( req, res){
       });
     console.log('t',temp)
     console.log('def',def)
-    console.log('newDate',newDate)
+    console.log('newDate',newDate - 3)
 
         if (hour == 0)
           temp = '12';
