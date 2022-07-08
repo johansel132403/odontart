@@ -24,7 +24,7 @@ exports.ensureAuth = function(req, res, next){
      console.log('d',payload.exp)
      console.log('xd',moment().unix())
 
-     if(payload.exp <= moment().unix() ){
+     if(payload.exp == payload.exp ){
          return res.status(200).send({Mensaje:'El token ha expirado'}); // tenemos que provar esto cambiandole la hora...
      }
      
