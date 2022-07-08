@@ -21,7 +21,8 @@ exports.ensureAuth = function(req, res, next){
     try {
         var  payload = jtw.decode(token, secret);
         
-  
+     console.log('d',payload.exp)
+     console.log('xd',moment().unix())
 
      if(payload.exp <= moment().unix()){
          return res.status(200).send({Mensaje:'El token ha expirado'}); // tenemos que provar esto cambiandole la hora...
