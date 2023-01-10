@@ -21,7 +21,12 @@ import {v4 as uuidv4} from 'uuid';
 export class VideollamadaPage implements OnInit {
   //https://odontoart.herokuapp.com
 // public sIo = io('http://localhost:3800');
-  public sIo = io('https://odontoart.herokuapp.com');
+
+              //  herokus services
+  // public sIo = io('https://odontoart.herokuapp.com');
+   public sIo = io('https://odontart-production.up.railway.app');
+
+
   public identity;
   public usuarioDeOtraCuenta;
   public receptorr;
@@ -68,8 +73,10 @@ export class VideollamadaPage implements OnInit {
 
     this.peer = new Peer(undefined, {
       path: "/peerjs",
-      // host: 'localhost',
-      host:'odontoart.herokuapp.com',
+    //  // host: 'localhost',
+                //herokus services....
+    //  host:'odontoart.herokuapp.com',
+      host:'odontart-production.up.railway.app',
       port: 443, //this port has given us heroes....
       secure: true
       
