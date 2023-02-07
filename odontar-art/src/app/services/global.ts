@@ -6,8 +6,8 @@ export var Global = {
     // esta es la url del servidor de herokuapp......
    // url:'https://odontoart.herokuapp.com/api/'
 
-   url:'https://odontart-production.up.railway.app/api/'
+ //  url:'https://odontart-production.up.railway.app/api/'
 
-   
+   url:'https://odontart-production-da15.up.railway.app/api/'
    
 }
