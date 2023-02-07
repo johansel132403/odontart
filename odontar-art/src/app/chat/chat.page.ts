@@ -28,8 +28,9 @@ export class ChatPage implements OnInit, DoCheck, OnDestroy {
 
      //este codigo era de los servicios de herokuapp....
   //public sIo = io('https://odontoart.herokuapp.com');
-  public sIo = io('https://odontart-production.up.railway.app');
-
+ // public sIo = io('https://odontart-production.up.railway.app');
+  public sIo = io('https://odontart-production-da15.up.railway.app');
+  
 
   public mensaje: Mensaje;
   public mensajes:Array<any>;

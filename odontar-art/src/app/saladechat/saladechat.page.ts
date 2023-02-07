@@ -15,7 +15,8 @@ export class SaladechatPage implements OnInit {
   private identity;
   private line;
   
-  public sIo = io('https://odontoart.herokuapp.com');
+  //public sIo = io('https://odontoart.herokuapp.com');
+  public sIo = io('https://odontart-production-da15.up.railway.app')
 
   constructor(private userServices: UserServices,private router: Router) { }
   private value;

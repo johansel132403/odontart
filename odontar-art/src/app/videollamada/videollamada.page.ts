@@ -12,6 +12,7 @@ import   Peer, { DataConnection }  from 'peerjs';     //aunque este asi en rojo 
 
 
 import {v4 as uuidv4} from 'uuid';
+import { PredictAllAgeAndGenderWithFaceAlignmentTask } from 'face-api.js/build/commonjs/globalApi/PredictAgeAndGenderTask';
 
 @Component({
   selector: 'app-videollamada',
@@ -24,7 +25,7 @@ export class VideollamadaPage implements OnInit {
 
               //  herokus services
   // public sIo = io('https://odontoart.herokuapp.com');
-   public sIo = io('https://odontart-production.up.railway.app');
+   public sIo = io('https://odontart-production-da15.up.railway.app');
 
 
   public identity;
@@ -80,7 +81,7 @@ export class VideollamadaPage implements OnInit {
       port: 443, //this port has given us heroes....
       secure: true
       
-
+     
 
      });
      //  console.log(this.peer)

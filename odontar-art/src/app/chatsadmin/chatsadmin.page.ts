@@ -21,7 +21,7 @@ export class ChatsadminPage implements OnInit,DoCheck {
   url;
               // herokus services....
   // public sIo = io('https://odontoart.herokuapp.com');
-  public sIo = io('https://odontart-production.up.railway.app');
+  public sIo = io('https://odontart-production-da15.up.railway.app');
   
   constructor( private userServices: UserServices,private router: Router) {
 
