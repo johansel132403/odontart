@@ -1,0 +1,134 @@
+
+// .body {
+//     margin: 0;
+//     padding: 0;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     background-color: #1d1d1d;
+//     width: 100vw;
+//     height: 100vh;
+// }
+
+// canvas {
+//     position:  absolute;
+//     z-index: 1;
+//    background-color: #756b6b77;
+// }
+// video{
+//     top: 50px;
+//     left: 60px;
+//     position:  absolute; //yo comente esto ...... 
+//        z-index: 0;
+// }
+
+
+.body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1d1d1d;
+    width: 100vw;
+    height: 100vh;
+}
+#video-grid{
+   margin: 0px;
+   padding: 0px;
+   height: 540px;
+}
+
+canvas {
+    position: absolute;
+   
+}
+// video{
+//     width: 720px !important;
+//     height: 540px !important;
+// }
+
+////////////////////////////////////////////////////////////////////
+
+// video, canvas {
+//      width: 720px;
+//      height: 550px;
+//    object-fit: cover;
+//    position:  absolute;
+    
+//   }
+
+
+  //import androidx.appcompat.app.AppCompatActivity;
+  
+  
+.filters {
+    // position: absolute;
+    // top: 101px;
+    // left: -146px;
+    position: absolute;
+    // top:-566px;
+    // left: -146px;
+    clear: both;
+}
+
+.filter-eye {
+    position: absolute;
+    display: flex;
+    z-index: 1;
+    clear: both;
+  }
+                                                 // LOS CLEAR: BOTH PUEDO BORRARLO.....
+  .filter-image  img {
+     clear: both;
+      width: 80px;
+     
+      /* margin-left: -80px; */
+      /* margin-top: 25px; */
+       position:relative;
+     //  margin-left: -331px;
+       margin-left: 98px;
+       left: -433px;
+       margin-top:-8px;
+       top:-225px;
+       z-index: 2;
+     
+    }
+
+    
+    #pagination{
+        position: absolute;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        bottom:5px;
+
+    }
+    .pagination li{
+
+        width: 10px;
+        height: 10px;
+        color: white;
+        font-size: 25px;
+        font-weight: bold;
+        list-style: none;
+        padding:15px;
+        border: 1px solid white;
+        border-radius: 50%;
+
+
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        display: flex;
+
+    }
+    .pagination li:first-child{
+        float:left;
+        margin-right: 50px ;
+    }
+
+    .pagination li:last-child{
+        margin-left: 50px ;
+        float:right;
+    }   

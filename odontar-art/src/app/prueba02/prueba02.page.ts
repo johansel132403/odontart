@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+
+import { Router,NavigationEnd } from '@angular/router'
 
 import  io from 'socket.io-client';
 
@@ -19,20 +21,27 @@ import {v4 as uuidv4} from 'uuid';
   templateUrl: './prueba02.page.html',
   styleUrls: ['./prueba02.page.scss'],
 })
-export class Prueba02Page implements OnInit {
+export class Prueba02Page implements OnInit,OnDestroy  {
   public face;
   peer;
   roomID;
   otherPeer;
   public mediaConnection;
   uu;
-  
+ arr;    
+ someSubscription: any;
   public sIo = io('https://odontart-production-da15.up.railway.app');
-  
+
 
   faceDetectionOptions;
 
-  constructor() {
+  constructor( public router: Router) {
+
+   
+
+
+
+    this.arr = ['Captura01.png','new.png','newb03.png','sonrisa.png'];    
 
     this.uu = uuidv4();
     
@@ -49,7 +58,7 @@ export class Prueba02Page implements OnInit {
     //  // host: 'localhost',
                 //herokus services....
     //  host:'odontoart.herokuapp.com',
-      host:'odontart-production.up.railway.app',
+      host:'odontart-production-da15.up.railway.app',
       port: 443, //this port has given us heroes....
       secure: true
       
@@ -89,19 +98,22 @@ export class Prueba02Page implements OnInit {
     ////////////////////////////////////////////////////
 
 
+    
+
+    
 
 
-   
 
 
 
-
-    const myVideo = document.createElement("video");
-    myVideo.className = 'video';
-    myVideo?.setAttribute('id', 'video');
-    myVideo.muted = true;
+   // const myVideo = document.createElement("video");
+    // myVideo.className = 'video';
+    // myVideo.style.height = "540px !important";
+    // myVideo.style.width = "720px !important";
+    // myVideo?.setAttribute('id', 'video');
+    // myVideo.muted = true;
    this.elVideo = <HTMLVideoElement>document.getElementById('video')
-   console.log('vii',this.elVideo)
+   //console.log('vii',this.elVideo)
     // setTimeout(()=>{
 
     //   console.log(this.elVideo)
@@ -111,49 +123,50 @@ export class Prueba02Page implements OnInit {
 
     setTimeout(() => {
 
-    //   navigator.mediaDevices.getUserMedia({   
-    //     audio: true,
-    //     video: true,
-    // })
-    // .then((stream) => {
+      navigator.mediaDevices.getUserMedia({   
+        audio: true,
+        video: true,
+    })
+    .then((stream:MediaStream) => {
      
     //    // this.myVideoStream = stream;
-    //    this.addVideoStream(myVideo, stream);
+        this.addVideoStream(this.elVideo, stream);
  
-      
+                                        
       
  
     //    // peer              /*/*//////////////////////////////////
-    //    this.peer.on("call", (call) => {
-    //      this.mediaConnection = call;
-    //      console.log('lop')
+       this.peer.on("call", (call) => {
+         this.mediaConnection = call;
+        /// console.log('lop')
          
-    //     call.answer(stream);
-    //     const video = document.createElement("video");
-    //     call.on("stream", (userVideoStream) => {
-    //       console.log('lop')
-    //      this.addVideoStream(video, userVideoStream);
+        call.answer(stream);
+        const video = document.createElement("video");
+        video.style.width = "720px";
+        call.on("stream", (userVideoStream) => {
+          //console.log('lop')
+         this.addVideoStream(video, userVideoStream);
        
  
-    //     });
-    //   });
+        });
+      });
 
-    //  // this.uu = this.roomID;
+      this.uu = this.roomID;
       
-    // //  this.connectToNewUser(this.roomID, stream);
+      this.connectToNewUser(this.roomID, stream);
 
-    // this.sIo.on("user-connected", (userId) => {
+    this.sIo.on("user-connected", (userId) => {
 
 
-    //   this.uu = userId;
+      this.uu = userId;
       
-    //    this.connectToNewUser(userId, stream);
+       this.connectToNewUser(userId, stream);
 
-    //  });
+     });
                                                //        comentario 1
 
 
-    // });
+     });
   
       
       var n = <any>navigator;
@@ -167,24 +180,24 @@ export class Prueba02Page implements OnInit {
             // stream => 
             // this.addVideoStream(myVideo,stream)
             ((stream)=>{
-              this.addVideoStream(myVideo,stream),
+              this.addVideoStream(this.elVideo,stream),
 
 
 
 
               ///////////////////////////////////////////////
 
-            //   this.peer.on("call", (call) => {
-            //     this.mediaConnection = call;
+              this.peer.on("call", (call) => {
+                this.mediaConnection = call;
                 
-            //    call.answer(stream);
-            //    const video = document.createElement("video");
-            //    call.on("stream", (userVideoStream) => {
-            //      this.addVideoStream(video, userVideoStream);
-                                                                                      //02 comentario
+               call.answer(stream);
+               const video = document.createElement("video");
+               call.on("stream", (userVideoStream) => {
+                 this.addVideoStream(video, userVideoStream);
+                                                                                     
         
-            //    });
-            //  });
+               });
+             });
 
               //////////////////////////////////////////////
 
@@ -196,16 +209,16 @@ export class Prueba02Page implements OnInit {
               setTimeout(()=>{
                 const videoGrid = document.getElementById("video-grid");
               
-                myVideo.srcObject = stream;
-                myVideo.addEventListener("loadedmetadata", () => {
-                  myVideo.play();
-                   videoGrid.append(myVideo);
+                this.elVideo.srcObject = stream;
+                this.elVideo.addEventListener("loadedmetadata", () => {
+                  this.elVideo.play();
+                   videoGrid.append(this.elVideo);
                 });
                 setTimeout(()=>{
                   this.videoFunction()
 
                 },3000)
-               // this.elVideo.srcObject = stream
+               //  this.elVideo.srcObject = stream
               },2000)
             })
             ,
@@ -262,6 +275,17 @@ export class Prueba02Page implements OnInit {
   
   }
 
+
+  ngOnDestroy() {
+    console.log('Items destroyed');
+
+   // document.getElementById('body').remove()
+  //  location.reload()
+
+  
+
+  }
+
   referenceImage;
   async po(){
   //   const REFERENCE_IMAGE = '../../assets/img/carillas/rostro02.jpg';
@@ -284,45 +308,103 @@ export class Prueba02Page implements OnInit {
   videoFunction(){
     //this.elVideo = <HTMLVideoElement>document.getElementById('video')
        var myCanvas = <HTMLCanvasElement>document.getElementById("myCanvas")
-       console.log('elVideo',myCanvas)
+       
+     //  console.log('elVideo',myCanvas)
        this.elVideo = <HTMLVideoElement>document.getElementById('video')
        
        this.elVideo.videoHeight; 
        this.elVideo.videoWidth;
-       console.log('video',this.elVideo.videoHeight)
-   // const canvas = faceapi.createCanvasFromMedia(this.elVideo)
+     //  console.log('video',this.elVideo.videoHeight)
+   // const myCanvas = faceapi.createCanvasFromMedia(this.elVideo)
     // lo añadimos al body
     //document.body.append(canvas)
 
     // tamaño del canvas
-    const displaySize = { width:  this.elVideo.videoWidth, height: this.elVideo.videoHeight  }
+    const displaySize = { width:  720, height: 540  }
     faceapi.matchDimensions(myCanvas, displaySize)
+
+    // let domf =  document.getElementById('filters') ;
+    //     domf.style.position = 'absolute';
 
     setInterval(async () => {
         // hacer las detecciones de cara
-        const detections = await faceapi.detectAllFaces(this.elVideo)
-            .withFaceLandmarks()
-            .withFaceExpressions()
-            .withAgeAndGender()
-          //  .withFaceDescriptors()
+        const detections = await faceapi.detectAllFaces(this.elVideo, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions() // esta parte aqui tengo que cambiarla...
+            
 
-        // ponerlas en su sitio
-        const resizedDetections = faceapi.resizeResults(detections, displaySize)
+        try {
+          let mouth1 =  detections[0].landmarks.positions.slice(48,49)
+          let  mouth7 = detections[0].landmarks.positions.slice(55,56)
+    
+          const wx  = Math.abs(mouth1[0].x - mouth7[0].x) * 1.2;   
+          // console.log('width',Math.floor(wx))  
+    
+          const wd = Math.floor(wx);
+          document.getElementById('img').style.width = `${wx}px`
+  
+                  //////////////////////////////////////////////////////////////////////////////
+          ///////////////////////////////////////////////////////////////
+          //          esta parte de codigo es para el rotate...
+          // aqui se esta tomando la ubicacion de la cara....
+          let point1 = detections[0].landmarks.positions.slice(0,1)
+          let point17 = detections[0].landmarks.positions.slice(15,16)
+        
+          let x1 = point1[0].x;
+          let y1 = point1[0].y;
+          
+          let x2= point17[0].x
+          let y2= point17[0].y;
+          
+          let _m = (y2-y1)/(x2-x1)
+          let rad = Math.atan(_m)  
+          
+          let ang = rad *(180/3.14) * (1);
+        //  let ang = rad *(180/3.14)* (-1); con el menos uno toma otra posicion...
+          /////////////////////////////////////////////////////////////
+        //    console.log('hello02',ang)
+        let img  = document.getElementById('img');
+        //   img.style.rotate = `z ${ang}deg`
+        img.style.rotate = `${ ang - 6 }deg`;   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      //  .withFaceDescriptors()
+  
+    // ponerlas en su sitio
+    const resizedDetections = faceapi.resizeResults(detections, displaySize)
+  
+    const lips =  detections[0].landmarks.positions.slice( 49, 55)
+    // limpiar el canvas
+    myCanvas.getContext('2d').clearRect(0, 0, myCanvas.width, myCanvas.height)
+  
+    const scale = this.elVideo.width / displaySize.width;
+    // dibujar las líneas
+   // faceapi.draw.drawDetections(myCanvas, resizedDetections)
+  //  faceapi.draw.drawFaceLandmarks(myCanvas, resizedDetections)
+  //  faceapi.draw.drawFaceExpressions(myCanvas, resizedDetections)
+      const elementFilterEye = document.getElementById('filter-eye');
+      elementFilterEye.style.left = `${lips[0].x * scale}px`;
+      elementFilterEye.style.top = `${lips[0].y * scale}px`;
+         // caja azul .........
+    // resizedDetections.forEach(detection => {
+    //     const box = detection.detection.box
+    //     new faceapi.draw.DrawBox(box, {
+    //     //    label: Math.round(detection.age) + ' años ' + detection.gender
+    //     }).draw(myCanvas)
+    // })
+          
+        } catch (error) {
+          
+        }
 
-        // limpiar el canvas
-        myCanvas.getContext('2d').clearRect(0, 0, myCanvas.width, myCanvas.height)
-
-        // dibujar las líneas
-        faceapi.draw.drawDetections(myCanvas, resizedDetections)
-        faceapi.draw.drawFaceLandmarks(myCanvas, resizedDetections)
-        faceapi.draw.drawFaceExpressions(myCanvas, resizedDetections)
-
-        resizedDetections.forEach(detection => {
-            const box = detection.detection.box
-            new faceapi.draw.DrawBox(box, {
-                label: Math.round(detection.age) + ' años ' + detection.gender
-            }).draw(myCanvas)
-        })
     })
 
   }
@@ -474,9 +556,10 @@ connectToNewUser(userId, stream)  {
 
 };
 
+vii;
 addVideoStream = (video, stream) => {
 
-  console.log('pol',stream)
+  //console.log('pol',stream)
      
   const videoGrid = document.getElementById("video-grid");
 
@@ -484,11 +567,15 @@ addVideoStream = (video, stream) => {
   video.addEventListener("loadedmetadata", () => {
      video.play();
      videoGrid.append(video);
+     this.vii;
   });
 
 
 
 };
+
+
+
 
 
 // addVideoStream = (video, stream) => {
@@ -505,4 +592,75 @@ addVideoStream = (video, stream) => {
 
 // };
 
+
+
+
+// pagination .......
+
+
+    
+
+      previuosss(){
+        let value = JSON.parse(localStorage.getItem('currentPosition'))
+
+      let currenPost = value + 1;
+
+     if(currenPost >= 4){
+        value = 0;
+        currenPost =0;
+     }
+
+     localStorage.setItem('currentPosition',JSON.stringify(currenPost))
+      value = JSON.parse(localStorage.getItem('currentPosition'))
+
+   
+
+    let v =   this.arr[value];
+
+    console.log('v',v)
+    let img = <HTMLImageElement>document.getElementById('img');
+
+    img.src = `../../assets/img/carillas/${v}`
+
+     
+      }
+
+      next(){
+        let value = JSON.parse(localStorage.getItem('currentPosition'))
+
+        let currenPost = value - 1;
+          console.log('c',currenPost)
+        if(currenPost <= -1){
+            currenPost = 3;
+        }
+    
+        localStorage.setItem('currentPosition',JSON.stringify(currenPost))
+          value = JSON.parse(localStorage.getItem('currentPosition'))
+         
+      
+    
+       let v =   this.arr[value];
+       let img = <HTMLImageElement>document.getElementById('img');
+           img.src = `../../assets/img/carillas/${v}`
+           console.log('v',v)
+    
+    
+      }
+
+      close(){
+
+       
+
+            console.log('asdf')
+        var video = <HTMLVideoElement>document.getElementById("video");
+     
+        document.getElementById("video").style.display="none";
+            video.pause()
+          
+            video.currentTime = 0;
+        
+    //  this.ngOnInit();
+      //  this.router.navigate(['/inicio'])
+      }
+      
 }

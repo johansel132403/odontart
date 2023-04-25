@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color='secondary'>
+    <ion-buttons slot="start">
+      <!-- <a routerLink='/inicio'>Inicio</a> -->
+       <ion-back-button text="Inicio"  (click)="close()" ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Diseño de sonrisa</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  
+  <div id="body" class="body">
+    <!-- <img  id="myImg" width="400" height="650"  src="../../assets/img/carillas/rostro13.jpg"/> -->
+    <!-- <video id="video" autoplay width="630" height="342"  muted ></video> -->
+    <!-- <canvas id="myCanvas"  style="position: absolute;top:0px;left:0px; z-index:1">  -->
+      
+      
+      <!-- <div id="video-grid">
+      </div> -->
+      <video id="video" autoplay muted width="720" height="540"></video>                 
+      <div id="pagination">
+        <ul class="pagination">
+          <li (click)="previuosss()" id="pag1"> < </li>
+          <li (click)="next()" id="pag2"> > </li>
+        </ul>
+        
+      </div>
+      
+      <div class="filters" id="filters">
+        
+        <div class="filter-eye filter-image" id="filter-eye">
+          <img id="img" src="../../assets/img/carillas/sonrisa.png" alt="">
+          <!-- <img id="img" src="./img/newb03.png" alt=""> -->
+        </div>
+      </div>
+      <canvas id="myCanvas" width="720" height="540"></canvas> 
+    </div>
+    
+    
+    
+  </ion-content>
